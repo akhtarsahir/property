@@ -43,10 +43,10 @@ class CitySubAddressController extends Controller {
 	public function ajaxdata(Request $request) {
 		$cities = DB::table('citysubaddress')->where('city_id',$request->id)->get();
 		$html = '';
-		$html .= '<select  class="selectpicker form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select" required>';
+		$html .= '<select onchange="javascript:myFunction(this.value);" class="selectpicker form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select" required>';
 		foreach($cities as $city)
 		{
-			$html .= "<option class=\"$city->latitude,$city->longitude\" value=\"$city->cityname\">$city->citysubaddress</option>";
+			$html .= "<option class=\"$city->latitude,$city->longitude\" value=\"$city->latitude,$city->longitude\">$city->citysubaddress</option>";
 		}
 		$html .= '</select>';
 		return $html;

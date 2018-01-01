@@ -82,9 +82,9 @@
                                             <label class="control-label" for="inputError"><?php echo $errors->first('cityname');?></label>
                                             <div class="show-first-time">
 												<?php $datas = DB::table('citysubaddress')->where('city_id',$edit->id)->get();?>
-                                                <select  class="selectpicker form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select" required>
+                                                <select onchange="javascript:myFunction(this.value);" class="selectpicker form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select" required>
                                                     @foreach($datas as $city)
-                                                        <option class="{{ $city->latitude }},{{ $city->longitude }}" value="{{ $city->cityname }}">{{ $city->citysubaddress }}</option>
+                                                        <option class="{{ $city->latitude }},{{ $city->longitude }}" value="{{ $city->latitude }},{{ $city->longitude }}">{{ $city->citysubaddress }}</option>
                                                     @endforeach
 
                                                 </select>
@@ -173,39 +173,37 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKvuyrvPumFAi_BQR8ygi206QFZmoCkuk&libraries=places&callback=initMap"
             async defer></script>
     <script>
-        //   $(document).ready(function ()
-        //    {
-        //  $("#city").change(function(){
-        //    $.ajax({
-        //        url: "employees",
-        //        type: "post",
-        //        data: { id : $(this).val() },
-        //        success: function(data){
-        //            $("#employees").html(data);
-        //        }
-        //    });
-        //});});
+        function myFunction(value) {
+            initMap2(value);
+//            var subAddress = value.split(",");
+//            alert( subAddress[0] );
+//            alert( subAddress[1] );
+//            new google.maps.Map(document.getElementById('map'), {
+//                center: { lat:subAddress[0], lng:subAddress[1] },
+//                zoom: 13
+//            });
+        }
         $(document).ready(function ()
         {
             $('#city').change(function () {
-                var task_id = $(this).val();
-                alert('city name' + task_id);
+                var city_id = $(this).val();
                 $.ajax({
                     url: '{{ route("get-city-address") }}',
                     type: "get",
-                    data: {id:task_id},
+                    data: {id:city_id},
                     success: function(response){ // What to do if we succeed
-                        $('.show-first-time').addClass("hide");
-                        $(".show-ajax-value").html(response);
+                        $(".show-first-time").html(response);
                     },
                     error: function(response){
                         //alert('Error'+response);
                     }
                 });
 
-                $('.subcityaddress').removeClass("hide");
+//                $('.subcityaddress').removeClass("hide");
                 $("#subaddress").val();
             });
+
+
         });
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
@@ -224,6 +222,122 @@
             };
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: {{ $edit -> latitude }}, lng:{{ $edit -> longitude }} },
+                zoom: 13
+            });
+            var card = document.getElementById('pac-card');
+            var input = document.getElementById('pac-input');
+            var types = document.getElementById('type-selector');
+            var strictBounds = document.getElementById('strict-bounds-selector');
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            // Bind the map's bounds (viewport) property to the autocomplete object,
+            // so that the autocomplete requests use the current map bounds for the
+            // bounds option in the request.
+            autocomplete.bindTo('bounds', map);
+            var infowindow = new google.maps.InfoWindow();
+            var infowindowContent = document.getElementById('infowindow-content');
+            infowindow.setContent(infowindowContent);
+            var marker = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, - 29)
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: '{{ 'Multan'  }} !'
+            });
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                document.getElementById('place-name').value = place.name;
+                document.getElementById('latitude').value = place.geometry.location.lat();
+                document.getElementById('longitude').value = place.geometry.location.lng();
+//            alert("This function is working!");
+//            alert(place.name);
+                document.getElementById('cityname').value = place.address_components[2].long_name;
+                map.addListener('click', function (e) {
+                        // if the previousMarker exists, remove it
+                        if (marker)
+                            marker.setMap(null);
+                        latLng = e.latLng;
+                        var latitude = e.latLng.lat();
+                        var longitude = e.latLng.lng();
+                        $('#latitude').val(latitude);
+                        $('#longitude').val(longitude);
+                        //image = clientURL + "/common/images/markers/red.png";
+
+                        marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map
+                        });
+                    }
+
+                );
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17); // Why 17? Because it looks good.
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                infowindowContent.children['place-icon'].src = place.icon;
+                infowindowContent.children['place-name'].textContent = place.name;
+                infowindowContent.children['place-address'].textContent = address;
+                var addListener = infowindow.open(map, marker);
+            });
+            // Sets a listener on a radio button to change the filter type on Places
+            // Autocomplete.
+            function setupClickListener(id, types) {
+                var radioButton = document.getElementById(id);
+                radioButton.addEventListener('click', function () {
+                    autocomplete.setTypes(types);
+                });
+            }
+
+            setupClickListener('changetype-all', []);
+            setupClickListener('changetype-address', ['address']);
+            setupClickListener('changetype-establishment', ['establishment']);
+            setupClickListener('changetype-geocode', ['geocode']);
+            document.getElementById('use-strict-bounds')
+                .addEventListener('click', function () {
+                    console.log('Checkbox clicked! New state=' + this.checked);
+                    autocomplete.setOptions({strictBounds: this.checked});
+                });
+        }
+
+
+        function initMap2(value) {
+            var subAddress = value.split(",");
+            var latitude  = parseFloat(subAddress[0]);
+            var longitude = parseFloat(subAddress[1]);
+            alert( latitude );
+            alert( longitude );
+            var myLatLng = {
+                lat: latitude,
+                lng: longitude
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: latitude, lng:longitude },
                 zoom: 13
             });
             var card = document.getElementById('pac-card');
