@@ -324,6 +324,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
- Route::post('/datasend/ajax', 'CitySubAddressController@ajaxdata');
-          
+ Route::get('/datasend/ajax', 'CitySubAddressController@ajaxdata')->name('get-city-address');
+
           Route::get('ajax',function(){ return view('ajax');});
