@@ -69,7 +69,7 @@
                                         <div class="@if($errors->first('citysubaddress')) has-error @endif">
                                             <label class="control-label" for="inputError"><?php echo $errors->first('citysubaddress'); ?></label>
                                             <div id="pac-container">
-                                                <input type="text" class="form-control" id="pac-input"  name="citysubaddress" value="{{ $edit->citysubaddress }}" placeholder="Enter address" required>
+                                                <input type="text" class="form-control" id="pac-input"  name="citysubaddress" value="" placeholder="Enter address" required>
                                                 <label class=" alert-danger hide" id="address_error"> Please Enter Property Address </label>
                                             </div>
                                         </div>
@@ -88,9 +88,6 @@
                                                     @endforeach
 
                                                 </select>
-                                            </div>
-                                            <div class="show-ajax-value">
-
                                             </div>
                                         </div>
                                     </div>
@@ -192,10 +189,12 @@
                     type: "get",
                     data: {id:city_id},
                     success: function(response){ // What to do if we succeed
+                        alert('done'+response);
                         $(".show-first-time").html(response);
+                        
                     },
                     error: function(response){
-                        //alert('Error'+response);
+                        alert('Error'+response);
                     }
                 });
 
