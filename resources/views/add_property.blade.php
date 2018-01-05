@@ -410,8 +410,9 @@
                                     <div class="col-sm-3">
                                         <?Php $edit = DB::table('citysubaddress')->first();
 	                                 $data = DB::table('city')->get(); ?>
-                                        <select  class="selectpicker form-control" name="city" id="city"  data-live-search="false" dat-live-search-style="begins" title="Select" required>
-                                           @foreach($data as $city)
+                                        <select  class="form-control" name="city" id="city"  data-live-search="false" dat-live-search-style="begins" title="Select" required>
+                                            <option value="" >Select </option>
+                                            @foreach($data as $city)
                                                     <option class="{{ $city->latitude }},{{ $city->longitude }}" value="{{ $city->id }}">{{ $city->name }}</option>
                                                 @endforeach
                                             </select>
@@ -610,37 +611,37 @@
 
                             <div class="add-tab-row push-padding-bottom">
                                 <div class="row">
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <label for="property-price-after" class="bold-class">Rooms / Bed Rooms</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-1">
                                         <div class="form-group">
                                             <input class="form-control outline" id="beds" type="number" min="1" name="beds" value="" placeholder="Enter Number of Beds ">
                                             <label class=" alert-danger hide" id="beds_error"> Please Enter Number of Beds </label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <label for="property-price-after" class="bold-class">Bath / Wash Rooms</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-1">
                                         <div class="form-group">
                                             <input class="form-control outline" id="bathroom" type="number" min="1" name="bathroom" value="" placeholder="Enter Number of Bathroom ">
                                             <label class=" alert-danger hide" id="bathroom_error"> Please Enter Number of Bathroom </label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <label for="property-price-after" class="bold-class">Floors</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-1">
                                         <div class="form-group">
                                             <input class="form-control outline" id="floor" name="floor"  type="number" min="1" value="" placeholder="Enter Number of Floor ">
                                             <label class=" alert-danger hide" id="floor_error"> Please Enter Number of Floor </label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <label for="property-price-after" class="bold-class">Kitchens</label>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-1">
                                         <div class="form-group">
                                             <input class="form-control outline" id="kitchens" name="kitchens" type="number" min="1" value="" placeholder="Enter Number of Kitchens ">
                                             <label class=" alert-danger hide" id="kitchens_error"> Please Enter Number of kitchens </label>
@@ -1072,120 +1073,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="homeandcommercial hide" id="homeandcommercial">
-                        <div class="add-title-tab">
-                            <h3>Measurement of Land</h3>
-                            <!--<div class="add-expand"></div>-->
-                        </div>
-                        <div class="add-tab-row push-padding-bottom">
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class" >Road Of Front</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <input class="form-control" id="height" name="height" value="" placeholder="Enter height ft" type="number">
-                                            <label class=" alert-danger hide" id="height_error"> Please Enter Property Height </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Depth</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <input class="form-control" id="width" name="width" value="" placeholder="Enter width ft" type="number">
-                                            <label class=" alert-danger hide" id="width_error"> Please Enter Property Width </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Constructed Area</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <input  class="form-control" id="ConstructedArea" name="ConstructedArea" value="" placeholder="Enter Constructed Area">
-                                            <label class=" alert-danger hide" id="ConstructedArea_error"> Please Enter Property Constructed Area </label>
-                                        </div>
-                                    </div>
-                                    <!--                                    <div class="col-sm-2">
-                                                                            <label for="property-price-before" class="bold-class">Constructed Area Unit</label>
-                                                                        </div>-->
-                                    <div class="form-group"> 
-                                        <div class="col-sm-2">
-                                            <select  class="selectpicker" id="CAarea_unit" name="CAarea_unit" data-live-search="false" data-live-search-style="begins" >
-                                                <option value="Marla">Marla</option>
-                                                <option value="Kanal">Kanal</option>
-                                                <option value="acres">Acres</option>
-                                                <option value="Square Yard">Square Yard</option>
-                                                <option value="Square Feet">Square Feet</option>
-                                            </select>
-                                            <label class=" alert-danger hide" id="CAarea_unit_error"> Please Select Anyone Area Unit </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-10">       
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Open Area</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <input class="form-control" id="OpenArea" name="OpenArea" value="" placeholder="Enter Open Area">
-                                            <label class=" alert-danger hide" id="OpenArea_error"> Please Enter Property Open Area </label>
-                                        </div>
-                                    </div>
-                                    <!--                                    <div class="col-sm-2">
-                                                                            <label for="property-price-before" class="bold-class">Open Area Unit</label>
-                                                                        </div>-->
-                                    <div class="form-group"> 
-                                        <div class="col-sm-2">
-                                            <select  class="selectpicker" id="OAarea_unit" name="OAarea_unit" data-live-search="false" data-live-search-style="begins">
-                                                <option value="Marla">Marla</option>
-                                                <option value="Kanal">Kanal</option>
-                                                <option value="acres">Acres</option>
-                                                <option value="Square Yard">Square Yard</option>
-                                                <option value="Square Feet">Square Feet</option>
-                                            </select>
-                                            <label class=" alert-danger hide" id="OAarea_unit_error"> Please Select Anyone Area Unit </label>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Construction Year</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <input type="date_text" class="form-control" id="ConstructionYear" name="ConstructionYear" value="" placeholder="Enter Construction Year" >
-                                            <label class=" alert-danger hide" id="ConstructionYear_error"> Please Enter Property Construction Year </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Owner Ship Status</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <select class="selectpicker" id="OwnerShipStatus" name="OwnerShipStatus" data-live-search="false" data-live-search-style="begins" title="Select" >
-                                                <option value="Allotment">Allotment </option>
-                                                <option value="Registered">Registered </option>
-                                                <option value="Leased">Leased  </option>
-                                            </select>
-                                            <label class=" alert-danger hide" id="OwnerShipStatus_error"> Please Select Anyone Owner Ship Status </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="account-block" id="blockfive">
+                <div class="account-block" id="blockfive">
 
                         <div class="add-title-tab">
                             <h3>Property media</h3>
@@ -1226,102 +1114,212 @@
                                                     <input type="text" class="form-control" id="video_url" name="video_url" value="" placeholder="Enter Property Video Url Link">
                                                 </div>
                                             </div>
-<!--                                            @if(!empty($agentdata->id))
-                                            <div class="col-sm-4">
-                                                <div class="col-sm-12">
-                                                    <label for="property-price-before" class="bold-class">Select Agent </label>
-                                                    <select class="selectpicker" id="agent_id" name="agent_id" data-live-search="false" dat-live-search-style="begins" title="Select">
-                                                        @foreach($agent as $agentdata)
-                                                        <option value="{{$agentdata->id}}">{{$agentdata->name}}</option>
-                                                        @endforeach
-                                                    </select> 
-                                                    <label class=" alert-danger hide" id="agent_id_error"> Please Select Agent of Property </label> </div>
-                                            </div>
-                                            @endif-->
                                         </div>
-                                        <!--                                <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <div class="btn btn-info">
-                                                                                    <input type="file" name="image[]" required accept="image/*" multiple>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                        
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <div class="btn btn-danger">
-                                                                                    <input type="file" name="image[]"  accept="image/*">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <div class="btn btn-primary">
-                                                                                    <input type="file" name="image[]"   accept="image/*">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                        
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <div class="btn btn-success">
-                                                                                    <input type="file" name="image[]"  accept="image/*">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <div class="btn btn-warning">
-                                                                                    <input type="file" name="image[]"  accept="image/*">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>-->
                                     </div>
                                 </div>
-
-
-                                {{--<div class="add-title-tab">--}}
-                                {{--<h3>Property Expire</h3>--}}
-                                {{--</div>--}}
-                                {{--<div class="add-tab-content">--}}
-                                {{--<div class="add-tab-row">--}}
-                                {{--<div class="col-sm-6">--}}
-                                {{--<div class="form-group">--}}
-                                {{--<select class="selectpicker" id="propertexpire" name="propertexpire" data-live-search="false" data-live-search-style="begins" title="Select" tabindex="-98">--}}
-                                {{--<option class="bs-title-option" value="">Select</option>--}}
-                                {{--<option value="1"> One Months</option>--}}
-                                {{--<option value="2"> Two Months</option>--}}
-                                {{--<option value="3"> Three Months</option>--}}
-                                {{--<option value="4"> Four Months</option>--}}
-                                {{--</select>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-
-                                {{--<div class="add-tab-content">--}}
-                                {{--<div class="add-tab-row">--}}
-                                {{--<div class="col-sm-6">--}}
-                                {{--<div class="form-group">--}}
-                                {{--<label for="property-price-before" class="bold-class">Please Enter Property Video Url</label>--}}
-                                {{--<input type="text" class="form-control" id="video_url" name="video_url" value="" placeholder="Enter Property Video Url Link">--}}
-                                {{--<label class="alert-info"> Optional (Enter If you have your property Video on youtube) </label>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-
                             </div>
                         </div>
                     </div>
-                    <div class="add-tab-content">
+                    <div class="homeandcommercial hide" id="homeandcommercial">
                         <div class="add-title-tab">
-                            <h3>Maps & Payment Plans</h3>
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active"><a href="#home" data-toggle="tab" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Add Extra Feature</a></li>
+    </ul>
+                            <!--<h3>Measurement of Land</h3>-->
+                            <!--<div class="add-expand"></div>-->
                         </div>
+                          <div id="myTabContent" class="tab-content">
+                               <div class="tab-pane fade in active" id="home">
                         <div class="add-tab-row push-padding-bottom">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class" >Road Of Front</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <input class="form-control" id="height" name="height" value="" placeholder="Enter height ft" type="number">
+                                            <label class=" alert-danger hide" id="height_error"> Please Enter Property Height </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class">Depth</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <input class="form-control" id="width" name="width" value="" placeholder="Enter width ft" type="number">
+                                            <label class=" alert-danger hide" id="width_error"> Please Enter Property Width </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class">Owner Ship Status</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker" id="OwnerShipStatus" name="OwnerShipStatus" data-live-search="false" data-live-search-style="begins" title="Select" >
+                                                <option value="Allotment">Allotment </option>
+                                                <option value="Registered">Registered </option>
+                                                <option value="Leased">Leased  </option>
+                                            </select>
+                                            <label class=" alert-danger hide" id="OwnerShipStatus_error"> Please Select Anyone Owner Ship Status </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class">Constructed Area</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <input  class="form-control" id="ConstructedArea" name="ConstructedArea" value="" placeholder="Enter Constructed Area">
+                                            <label class=" alert-danger hide" id="ConstructedArea_error"> Please Enter Property Constructed Area </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                    <div class="form-group"> 
+                                        <div class="col-sm-12">
+                                            <select  class="selectpicker" id="CAarea_unit" name="CAarea_unit" data-live-search="false" data-live-search-style="begins" >
+                                                <option value="Marla">Marla</option>
+                                                <option value="Kanal">Kanal</option>
+                                                <option value="acres">Acres</option>
+                                                <option value="Square Yard">Square Yard</option>
+                                                <option value="Square Feet">Square Feet</option>
+                                            </select>
+                                            <label class=" alert-danger hide" id="CAarea_unit_error"> Please Select Anyone Area Unit </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                     <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class">Construction Year</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group"> 
+                                            <input type="date_text" class="form-control" id="ConstructionYear" name="ConstructionYear" value="" placeholder="Enter Construction Year" >
+                                            <label class=" alert-danger hide" id="ConstructionYear_error"> Please Enter Property Construction Year </label>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="row">
+                                <div class="col-sm-12">       
+                                    <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class">Open Area</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <input class="form-control" id="OpenArea" name="OpenArea" value="" placeholder="Enter Open Area">
+                                            <label class=" alert-danger hide" id="OpenArea_error"> Please Enter Property Open Area </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                    <div class="form-group"> 
+                                        <div class="col-sm-12">
+                                            <select  class="selectpicker" id="OAarea_unit" name="OAarea_unit" data-live-search="false" data-live-search-style="begins">
+                                                <option value="Marla">Marla</option>
+                                                <option value="Kanal">Kanal</option>
+                                                <option value="acres">Acres</option>
+                                                <option value="Square Yard">Square Yard</option>
+                                                <option value="Square Feet">Square Feet</option>
+                                            </select>
+                                            <label class=" alert-danger hide" id="OAarea_unit_error"> Please Select Anyone Area Unit </label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row" id="housefeature">
+                                <hr>
+                                <div class="col-sm-12"><label  class="bold-class">Property Feature</label></div>
+                                @foreach($housefeature as $feature)
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="feature[]" value="{{ $feature->id }}">
+                                            {{ $feature->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+
+                            <div class="row" id="landfeature">
+                                 <hr>
+                                 <div class="col-sm-12"><label  class="bold-class">Property Feature</label></div>
+                                @foreach($landfeature as $feature)
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="feature[]" value="{{ $feature->id }}">
+                                            {{ $feature->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            <div class="row" id="projectsfeature">
+                                 <hr>
+                                 <div class="col-sm-12"><label  class="bold-class">Property Feature</label></div>
+                                @foreach($projectsfeature as $feature)
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="feature[]" value="{{ $feature->id }}">
+                                            {{ $feature->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            <div class="row" id="houseservices">
+                             <hr>   <div class="col-sm-12"><label  class="bold-class">Near By</label></div>
+                                @foreach($houseservices as $services)
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="services[]" value="{{ $services->id }}">
+                                            {{ $services->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <div class="row" id="landservices">
+                              <hr>   <div class="col-sm-12"><label  class="bold-class">Near By</label></div>
+                                @foreach($landservices as $services)
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="services[]" value="{{ $services->id }}">
+                                            {{ $services->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <div class="row" id="projectsservices">
+                                <hr>   <div class="col-sm-12"><label  class="bold-class">Near By</label></div>
+                                @foreach($projectsservices as $services)
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="services[]" value="{{ $services->id }}">
+                                            {{ $services->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            <div class="row"><hr>
+                                <div class="col-sm-12">
+                                     <div class="col-sm-2 ">
+                                           <label for="property-price-before" class="bold-class">Maps & Payment Plans</label>
+                                       </div>
+                                     <div class="col-sm-4">
                                         <div class="control-group" id="fie">
                                             <label class="control-label" for="field1">
                                                 if Upload More than One images Click <span class="glyphicon glyphicon-plus"></span> Button <br>
@@ -1339,11 +1337,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4 ">
-                                     <div class="col-sm-12">
-                                <label for="property-price-before" class="bold-class">Expiry Date</label>
-                                    <select class="selectpicker" id="propertexpire" name="propertexpire" data-live-search="false" data-live-search-style="begins" title="Select" tabindex="-98" required>
-                                        <option class="bs-title-option" value="">Select</option>
+                                       <div class="col-sm-2 ">
+                                           <label for="property-price-before" class="bold-class">Property Expiry_Date</label>
+                                       </div>
+                                     <div class="col-sm-2">
+                                
+                                    <select class="selectpicker" id="propertexpire" name="propertexpire" data-live-search="false" data-live-search-style="begins">
                                         <option value="1"> One Months</option>
                                         <option value="2"> Two Months</option>
                                         <option value="3"> Three Months</option>
@@ -1353,55 +1352,21 @@
                                 </div>
                                 </div>
                             </div>
-                        </div>
+                          </div>
+                          </div>
                     </div>
+                    </div>
+
                 </div>
                 <!--<div class="account-block hide" id="blockfour">-->
                 <div class="account-block" id="blockfour">
-                    <div class="add-title-tab">
+<!--                    <div class="add-title-tab">
                         <h3>Property Features</h3>
                     </div>
                     <div class="add-tab-content">
                         <div class="add-tab-row push-padding-bottom">
 
-                            <div class="row" id="housefeature">
-                                @foreach($housefeature as $feature)
-                                <div class="col-sm-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="feature[]" value="{{ $feature->id }}">
-                                            {{ $feature->name }}
-                                        </label>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-
-
-                            <div class="row" id="landfeature">
-                                @foreach($landfeature as $feature)
-                                <div class="col-sm-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="feature[]" value="{{ $feature->id }}">
-                                            {{ $feature->name }}
-                                        </label>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                            <div class="row" id="projectsfeature">
-                                @foreach($projectsfeature as $feature)
-                                <div class="col-sm-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="feature[]" value="{{ $feature->id }}">
-                                            {{ $feature->name }}
-                                        </label>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="add-title-tab">
@@ -1409,46 +1374,9 @@
                     </div>
                     <div class="add-tab-content">
                         <div class="add-tab-row push-padding-bottom">
-                            <div class="row" id="houseservices">
-                                @foreach($houseservices as $services)
-                                <div class="col-sm-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="services[]" value="{{ $services->id }}">
-                                            {{ $services->name }}
-                                        </label>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-
-                            <div class="row" id="landservices">
-                                @foreach($landservices as $services)
-                                <div class="col-sm-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="services[]" value="{{ $services->id }}">
-                                            {{ $services->name }}
-                                        </label>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-
-                            <div class="row" id="projectsservices">
-                                @foreach($projectsservices as $services)
-                                <div class="col-sm-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="services[]" value="{{ $services->id }}">
-                                            {{ $services->name }}
-                                        </label>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
+                            
                         </div>
-                    </div>
+                    </div>-->
                     <div class="add-title-tab">
                         <h3>Contact Details</h3>
                     </div>
@@ -1575,14 +1503,14 @@
 //                zoom: 13
 //            });
         }
-        var text;
+        var citytext;
     $(document).ready(function ()
 
         {
             $('#city').change(function () {
                 var city_id = $(this).val();
-                text = $('#city :selected').text();
-           alert( 'some one text'+ text);
+                citytext = $('#city :selected').text();
+//           alert( 'some one text'+ text);
                 $.ajax({
                     url: '{{ route("get-city-address") }}',
                     type: "get",
@@ -1623,7 +1551,7 @@
 var input = document.getElementById('pac-input');
 var options = {
     componentRestrictions: {
-        city: text
+        city: citytext
     }
 };
 
@@ -1631,7 +1559,7 @@ var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 $(input).on('input',function(){
 	var str = input.value;
-  var prefix = text;
+  var prefix = citytext +',';
 	if(str.indexOf(prefix) == 0) {
 		console.log(input.value);
 	} else {
@@ -1679,7 +1607,7 @@ $(input).on('input',function(){
                 document.getElementById('longitude').value = place.geometry.location.lng();
 //            alert("This function is working!");
 //            alert(place.name);
-                document.getElementById('city').value = place.address_components[2].long_name;
+//                document.getElementById('city').value = place.address_components[2].long_name;
                 map.addListener('click', function (e) {
                         // if the previousMarker exists, remove it
                         if (marker)
@@ -1756,13 +1684,14 @@ $(input).on('input',function(){
 
         function initMap2(value) {
 //            
-//           var text = $('subAddress :selected').text();
-//           alert(text);
+          
             var subAddress = value.split(",");
             var latitude  = parseFloat(subAddress[0]);
             var longitude = parseFloat(subAddress[1]);
 //            alert( latitude );
 //            alert( longitude );
+       var text = $('#subAddress').text();
+           alert(text);
             var myLatLng = {
                 lat: latitude,
                 lng: longitude
@@ -1802,7 +1731,7 @@ $(input).on('input',function(){
                 document.getElementById('longitude').value = place.geometry.location.lng();
 //            alert("This function is working!");
 //            alert(place.name);
-                document.getElementById('city').value = place.address_components[2].long_name;
+//                document.getElementById('city').value = place.address_components[2].long_name;
                 map.addListener('click', function (e) {
                         // if the previousMarker exists, remove it
                         if (marker)
@@ -2590,6 +2519,48 @@ $(input).on('input',function(){
             return false;
         });
     });
+    
+    
+//    tab section 
+$(function() {
+    
+    var active = $('a[data-toggle="tab"]').parents('.active').length;
+    var tabClicked = false;
+    
+    // Closes current active tab (toggle and pane):
+    var close = function() {
+        $('a[data-toggle="tab"]').parent().removeClass('active');
+        $('.tab-pane.active').removeClass('active');
+        active = false;
+    }
+    
+    // Closing active tab on clicking on toggle:
+    $('[data-toggle=tab]').click(function(){
+        if ($(this).parent().hasClass('active')){
+            $($(this).attr("href")).toggleClass('active');
+            active = false;
+        } else {
+            tabClicked = true;
+            active = this;
+        }
+    });
+    
+    // Closing active tab on clicking outside tab context (toggle and pane):
+    $(document).on('click.bs.tab.data-api', function(event) {
+        if(active && !tabClicked && !$(event.target).closest('.tab-pane.active').length) {
+            close();
+        }
+        
+        tabClicked = false;
+    });
+    
+    // Closing active tab on ESC key release:
+    $(document).keyup(function(e){
+        if(active && e.keyCode === 27) { // ESC
+            close();
+        }
+    });
+});
 </script>
 
 
