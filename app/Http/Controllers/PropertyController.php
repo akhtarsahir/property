@@ -57,7 +57,7 @@ class PropertyController extends Controller {
         //    return redirect('/login');
         // }
         $city = $this->CityModel->get();
-        $citysubadress = $this->CitySubAddresModel->get();
+        $citysubadress = $this->CitySubAddresModel->first();
         $agent = $this->agentModel
 //                ->where('user_id','=', Auth::user()->id)
                 ->get();

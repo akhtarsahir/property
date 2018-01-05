@@ -22,6 +22,7 @@ class CreatePropertyTable extends Migration
             $table->string('type');
             $table->string('subtype');
             $table->string('city');
+            $table->string('subaddress');
             $table->string('address');
             $table->string('latitude');
             $table->string('longitude');

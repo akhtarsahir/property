@@ -43,12 +43,15 @@ class CitySubAddressController extends Controller {
 	public function ajaxdata(Request $request) {
 		$cities = DB::table('citysubaddress')->where('city_id',$request->id)->get();
 		$html = '';
-		$html .= '<select onchange="javascript:myFunction(this.value);" class="selectpicker form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select" required>';
-		foreach($cities as $city)
+//                $html .= "<label for=\"property-price-before\" class=\"bold-class\">or_Subaddress</label>";
+		$html .= '<select onchange="javascript:myFunction(this.value);" class=" form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select">';
+		$html .= "<option value=\"\" >---Select from list----</option>";
+                foreach($cities as $city)
 		{
 			$html .= "<option class=\"$city->latitude,$city->longitude\" value=\"$city->latitude,$city->longitude\">$city->citysubaddress</option>";
 		}
 		$html .= '</select>';
+//		$html .= "<input type=\"text\" class=\"form-control\" id=\"\"  name=\"subaddress\"  value=\"$city->citysubaddress\" placeholder=\"Enter address\" >";
 		return $html;
 	}
 

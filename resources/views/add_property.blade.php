@@ -417,31 +417,22 @@
                                             </select>
                                         <label class=" alert-danger hide" id="city_error"> Please Select City of Property </label>
                                      </div>
-                                    <div class="col-sm-2">
-                                        <label for="property-price-before" class="bold-class">Subaddress</label>
-                                    </div>
-                                    <div class="col-sm-4">
-                                           <div class="@if($errors->first('cityname')) has-error @endif">
-                                            <label class="control-label" for="inputError"><?php echo $errors->first('cityname');?></label>
-                                            <div class="show-first-time">
-												<?php $datas = DB::table('citysubaddress')->where('city_id',$edit->id)->get();?>
-                                                <select onchange="javascript:myFunction(this.value);" class="selectpicker form-control subcityaddress" name="subaddress" id="subaddress"  data-live-search="false" dat-live-search-style="begins" title="Select" required>
-                                                    @foreach($datas as $city)
-                                                        <option class="{{ $city->latitude }},{{ $city->longitude }}" value="{{ $city->latitude }},{{ $city->longitude }}">{{ $city->citysubaddress }}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                      <div class="form-group ">
-                                    <div class="col-sm-2">
-                                        <label for="property-price" class="bold-class">Location / Address</label>
+                                         <div class="col-sm-2 cityhide hide">
+                                        <label for="property-price-before" class="bold-class">Location / Address</label>
                                     </div>
                                     <div class="col-sm-5">
+                                            <div class="show-first-time">
+						
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 cityhide hide">
+                                        <label for="property-price " class="bold-class">OR</label>
+                                    </div>
+                                    <div class="col-sm-4 cityhide hide">
                                         <div id="pac-container">
-                                        <input type="text" class="form-control" id="pac-input"  name="address" value="" placeholder="Enter address" required>
+                                        <input type="text" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>
                                         <label class=" alert-danger hide" id="address_error"> Please Enter Property Address </label>
                                        </div>
 <!--<div id="type-selector " class="pac-controls">
@@ -475,13 +466,12 @@
     </div>
  <!--<div id="map"></div>-->   
     </div>
-   
-   
-                                       
+      
                                     </div>
+                                    
                                 </div>
                             </div>
-                            <div class="col-sm-12" style="display:none">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="col-sm-2">
                                         <label for="property-price" class="bold-class">Longitude</label>
@@ -1574,6 +1564,7 @@
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKvuyrvPumFAi_BQR8ygi206QFZmoCkuk&libraries=places&callback=initMap"
         async defer></script>
      <script>
+         
         function myFunction(value) {
             initMap2(value);
 //            var subAddress = value.split(",");
@@ -1584,10 +1575,14 @@
 //                zoom: 13
 //            });
         }
-        $(document).ready(function ()
+       
+    $(document).ready(function ()
+
         {
             $('#city').change(function () {
                 var city_id = $(this).val();
+                var text = $('#city :selected').text();
+           alert( 'some one text'+ text);
                 $.ajax({
                     url: '{{ route("get-city-address") }}',
                     type: "get",
@@ -1597,11 +1592,11 @@
                         $(".show-first-time").html(response);
                     },
                     error: function(response){
-                        alert('Error'+response);
+//                        alert('Error'+response);
                     }
                 });
-
-//                $('.subcityaddress').removeClass("hide");
+              
+                $('.cityhide').removeClass("hide");
                 $("#subaddress").val();
             });
 
@@ -1617,21 +1612,48 @@
         //        map.setCenter(new google.maps.LatLng(coordinate[0], coordinate[1]));
         //    });
 
-        function initMap() {
-            var myLatLng = {
-                lat: {{ $edit -> latitude }},
-                lng: {{ $edit -> longitude }}
-            };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: {{ $edit -> latitude }}, lng:{{ $edit -> longitude }} },
+           
+      function initMap() {
+           var text = $('#city :selected').text();
+           alert( 'some one text'+ text);
+  var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 30.2208614, lng:71.47499889999995 },
                 zoom: 13
-            });
-            var card = document.getElementById('pac-card');
-            var input = document.getElementById('pac-input');
-            var types = document.getElementById('type-selector');
-            var strictBounds = document.getElementById('strict-bounds-selector');
-            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-            var autocomplete = new google.maps.places.Autocomplete(input);
+            });     
+var input = document.getElementById('pac-input');
+var options = {
+    componentRestrictions: {
+        city: 'multan'
+    }
+};
+
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+$(input).on('input',function(){
+	var str = input.value;
+  var prefix = 'Multan, ';
+	if(str.indexOf(prefix) == 0) {
+		console.log(input.value);
+	} else {
+		if (prefix.indexOf(str) >= 0) {
+    	input.value = prefix;
+    } else {
+  		input.value = prefix+str;
+   }
+	}
+
+});
+// var marker = new google.maps.Marker({
+//                map: map,
+//                anchorPoint: new google.maps.Point(0, - 29)
+//            });
+//google.maps.event.addListener(autocomplete, 'place_changed', function () {
+//    var place = autocomplete.getPlace();
+//    var lat = place.geometry.location.lat();
+//    var long = place.geometry.location.lng();
+//    alert(lat + ", " + long);
+//
+//});
             // Bind the map's bounds (viewport) property to the autocomplete object,
             // so that the autocomplete requests use the current map bounds for the
             // bounds option in the request.
@@ -1643,19 +1665,21 @@
                 map: map,
                 anchorPoint: new google.maps.Point(0, - 29)
             });
+                        $('#latitude').val(latitude);
+                        $('#longitude').val(longitude);
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
-                title: '{{ 'Multan'  }} !'
+               
             });
-            autocomplete.addListener('place_changed', function () {
+   autocomplete.addListener('place_changed', function () {
                 var place = autocomplete.getPlace();
                 document.getElementById('place-name').value = place.name;
                 document.getElementById('latitude').value = place.geometry.location.lat();
                 document.getElementById('longitude').value = place.geometry.location.lng();
 //            alert("This function is working!");
 //            alert(place.name);
-                document.getElementById('cityname').value = place.address_components[2].long_name;
+                document.getElementById('city').value = place.address_components[2].long_name;
                 map.addListener('click', function (e) {
                         // if the previousMarker exists, remove it
                         if (marker)
@@ -1724,16 +1748,21 @@
                 .addEventListener('click', function () {
                     console.log('Checkbox clicked! New state=' + this.checked);
                     autocomplete.setOptions({strictBounds: this.checked});
-                });
-        }
+                });         
+       
+       
+      }
 
 
         function initMap2(value) {
+//            
+//           var text = $('subAddress :selected').text();
+//           alert(text);
             var subAddress = value.split(",");
             var latitude  = parseFloat(subAddress[0]);
             var longitude = parseFloat(subAddress[1]);
-            alert( latitude );
-            alert( longitude );
+//            alert( latitude );
+//            alert( longitude );
             var myLatLng = {
                 lat: latitude,
                 lng: longitude
@@ -1759,10 +1788,12 @@
                 map: map,
                 anchorPoint: new google.maps.Point(0, - 29)
             });
+                        $('#latitude').val(latitude);
+                        $('#longitude').val(longitude);
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
-                title: '{{ 'Multan'  }} !'
+               
             });
             autocomplete.addListener('place_changed', function () {
                 var place = autocomplete.getPlace();
@@ -1771,7 +1802,7 @@
                 document.getElementById('longitude').value = place.geometry.location.lng();
 //            alert("This function is working!");
 //            alert(place.name);
-                document.getElementById('cityname').value = place.address_components[2].long_name;
+                document.getElementById('city').value = place.address_components[2].long_name;
                 map.addListener('click', function (e) {
                         // if the previousMarker exists, remove it
                         if (marker)
@@ -1844,7 +1875,7 @@
         }
     </script>     
 <script>
-//    
+    
 //      function initMap() {
 //        var map = new google.maps.Map(document.getElementById('map'), {
 //          center: {lat: 33.7294, lng: 73.0931},

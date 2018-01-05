@@ -44,7 +44,10 @@ class PropertyModel extends Model
         'subtype',
         'propety_number',
         'street','sector',
-        'city','region',
+        'city',
+        'subaddress',
+        'address',
+        'region',
         'latitude',
         'longitude',
         'price',
@@ -106,6 +109,7 @@ class PropertyModel extends Model
 //        $this->type             = $request->type;
         $this->subtype          = $request->subtype;
         $this->city             = $request->city;
+        $this->subaddress          = $request->subaddress;
         $this->address          = $request->address;
         $this->latitude         = $request->latitude;
         $this->longitude        = $request->longitude;
@@ -287,6 +291,7 @@ class PropertyModel extends Model
             'type'             => $request->type,
             'subtype'          => $request->subtype,
             'city'             => $request->city,
+            'subaddress'       => $request->subaddress,
             'latitude'         => $request->latitude,
             'longitude'        => $request->longitude,
             'address'          => $request->address,

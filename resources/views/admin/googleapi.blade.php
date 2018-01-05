@@ -189,7 +189,7 @@
                     type: "get",
                     data: {id:city_id},
                     success: function(response){ // What to do if we succeed
-                        alert('done'+response);
+//                        alert('done'+response);
                         $(".show-first-time").html(response);
                         
                     },
@@ -329,8 +329,8 @@
             var subAddress = value.split(",");
             var latitude  = parseFloat(subAddress[0]);
             var longitude = parseFloat(subAddress[1]);
-            alert( latitude );
-            alert( longitude );
+//            alert( latitude );
+//            alert( longitude );
             var myLatLng = {
                 lat: latitude,
                 lng: longitude
