@@ -1575,13 +1575,13 @@
 //                zoom: 13
 //            });
         }
-       
+        var text;
     $(document).ready(function ()
 
         {
             $('#city').change(function () {
                 var city_id = $(this).val();
-                var text = $('#city :selected').text();
+                text = $('#city :selected').text();
            alert( 'some one text'+ text);
                 $.ajax({
                     url: '{{ route("get-city-address") }}',
@@ -1614,8 +1614,8 @@
 
            
       function initMap() {
-           var text = $('#city :selected').text();
-           alert( 'some one text'+ text);
+//           var text = $('#city :selected').text();
+//           alert( 'some one text'+ text);
   var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 30.2208614, lng:71.47499889999995 },
                 zoom: 13
@@ -1623,7 +1623,7 @@
 var input = document.getElementById('pac-input');
 var options = {
     componentRestrictions: {
-        city: 'multan'
+        city: text
     }
 };
 
@@ -1631,7 +1631,7 @@ var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 $(input).on('input',function(){
 	var str = input.value;
-  var prefix = 'Multan, ';
+  var prefix = text;
 	if(str.indexOf(prefix) == 0) {
 		console.log(input.value);
 	} else {
