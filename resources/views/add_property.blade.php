@@ -428,8 +428,8 @@
                                     </div>
                                     <div class="col-sm-4 cityhide hide">
                                         <div id="pac-container">
-                                        <input type="text" onchange="javascript:myFun(this.value);" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>
-                                        <!--<input type="text"  class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>-->
+                                        <!--<input type="text" onchange="javascript:myFun(this.value);" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>-->
+                                        <input type="text"  class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>
                                         <label class=" alert-danger hide" id="address_error"> Please Enter Property Address </label>
                                        </div>
 <!--<div id="type-selector " class="pac-controls">
@@ -1488,8 +1488,8 @@
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKvuyrvPumFAi_BQR8ygi206QFZmoCkuk&libraries=places&callback=initMap"
         async defer></script>
      <script>
-         function myFun(value) {
-            initMap(value);}
+//         function myFun(value) {
+//            initMap();}
         function myFunction(value) {
             initMap2(value);
             initMap();
@@ -1539,9 +1539,7 @@
         //    });
 
            
-      function initMap(value) {
-          var subAddress = value.split();
-            alert( subAddress );
+      function initMap() {
 //           var text = $('#city :selected').text();
 //           alert( 'some one text'+ text);
   var map = new google.maps.Map(document.getElementById('map'), {
