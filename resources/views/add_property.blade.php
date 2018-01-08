@@ -57,30 +57,15 @@
 <section id="section-body">
 
     <div class="container" style="background-color: #13507f; background-image:  url('assets/images/texture.png'); ">
+    <!--<div class="container">-->
         <div class="membership-page-top">
             <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="membership-page-title ">
-                        <?php
-                        if (!isset($_SESSION)) {
-                            session_start();
-                        }
-                        if (isset($_SESSION['Message'])) {
-                            ?>
-                            <h3 class="page-title alert alert-success">{{ $_SESSION['Message'] }}</h3>
+                <div class="col-sm-12 col-xs-12" style="margin-top:-56px">
+                    <div class="membership-page-title " style="margin-bottom:0px;">
+                       
 
-                        <?php } unset($_SESSION['Message']) ?>
-
-                        <h1 class="page-title font-color"> Add New Property </h1>
-                        <p class="page-subtitle font-color"> Please enter your property Detail Below! </p>
+                        <h2 class="page-title font-color"> Add New Property </h2>
                     </div>
-                    <ol class="pay-step-bar ">
-                        <li class="pay-step-block font-color active" id="headone"><span>1. <span><b>Type & Purpose</b></span></span></li>
-                        <li class="pay-step-block font-color" id="headtwo"><span>2. <span><b>Location</b></span></span></li>
-                        <li class="pay-step-block font-color" id="headthree"><span>3. <span><b>Property Detail</b></span></span></li>
-                        <li class="pay-step-block font-color" id="headfour"><span>4. <span><b>Features & Services</b></span></span></li>
-                        <li class="pay-step-block font-color" id="headfive"><span>5. <span><b>Done</b></span></span></li>
-                    </ol>
                 </div>
                   <div class="col-md-12">
                     @if(Session::has('Error'))
@@ -93,6 +78,15 @@
                          <p class="errors">{!! Session::get('emailerror') !!}</p>
                      </div>
                    @endif
+                    <?php
+                        if (!isset($_SESSION)) {
+                            session_start();
+                        }
+                        if (isset($_SESSION['Message'])) {
+                            ?>
+                            <h3 class="page-title alert alert-success">{{ $_SESSION['Message'] }}</h3>
+
+                        <?php } unset($_SESSION['Message']) ?>
                    </div>
             </div>
         </div>
@@ -100,7 +94,8 @@
 
         <form action="{{url('/add_property')}}" method="post" enctype="multipart/form-data"  class="form-horizontal" id="myForm" name="myForm">
             {!! csrf_field() !!}
-            <div class="account-block " id="blockone" style="background: #ebe5d9 url('assets/images/texture.jpg')">
+            <div class="account-block " id="blockone" >
+            <!--<div class="account-block " id="blockone" style="background: #ebe5d9 url('assets/images/texture.jpg')">-->
                 <div class="add-title-tab ">
                     <h3>Property Purpose</h3>
                 </div>
@@ -433,7 +428,8 @@
                                     </div>
                                     <div class="col-sm-4 cityhide hide">
                                         <div id="pac-container">
-                                        <input type="text" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>
+                                        <input type="text" onchange="javascript:myFun(this.value);" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>
+                                        <!--<input type="text"  class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>-->
                                         <label class=" alert-danger hide" id="address_error"> Please Enter Property Address </label>
                                        </div>
 <!--<div id="type-selector " class="pac-controls">
@@ -460,7 +456,7 @@
             placeholder="Enter a location">
       </div>-->
    <div class="pac-card" id="pac-card"> 
-    <div id="infowindow-content">
+    <div id="infowindow-content ">
       <img src="" width="16" height="16" id="place-icon">
       <span id="place-name"  class="title"></span><br>
       <span id="place-address"></span>
@@ -472,7 +468,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" >
                                 <div class="form-group">
                                     <div class="col-sm-2">
                                         <label for="property-price" class="bold-class">Longitude</label>
@@ -1492,9 +1488,11 @@
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKvuyrvPumFAi_BQR8ygi206QFZmoCkuk&libraries=places&callback=initMap"
         async defer></script>
      <script>
-         
+         function myFun(value) {
+            initMap(value);}
         function myFunction(value) {
             initMap2(value);
+            initMap();
 //            var subAddress = value.split(",");
 //            alert( subAddress[0] );
 //            alert( subAddress[1] );
@@ -1541,20 +1539,25 @@
         //    });
 
            
-      function initMap() {
+      function initMap(value) {
+          var subAddress = value.split();
+            alert( subAddress );
 //           var text = $('#city :selected').text();
 //           alert( 'some one text'+ text);
   var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 30.2208614, lng:71.47499889999995 },
                 zoom: 13
             });     
+            var card = document.getElementById('pac-card');
 var input = document.getElementById('pac-input');
 var options = {
     componentRestrictions: {
         city: citytext
     }
 };
-
+var types = document.getElementById('type-selector');
+            var strictBounds = document.getElementById('strict-bounds-selector');
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 $(input).on('input',function(){
@@ -1593,13 +1596,7 @@ $(input).on('input',function(){
                 map: map,
                 anchorPoint: new google.maps.Point(0, - 29)
             });
-                        $('#latitude').val(latitude);
-                        $('#longitude').val(longitude);
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-               
-            });
+                     
    autocomplete.addListener('place_changed', function () {
                 var place = autocomplete.getPlace();
                 document.getElementById('place-name').value = place.name;
@@ -1681,7 +1678,6 @@ $(input).on('input',function(){
        
       }
 
-
         function initMap2(value) {
 //            
           
@@ -1690,8 +1686,8 @@ $(input).on('input',function(){
             var longitude = parseFloat(subAddress[1]);
 //            alert( latitude );
 //            alert( longitude );
-       var text = $('#subAddress').text();
-           alert(text);
+//       var text = $('#subAddress :selected').text();
+//           alert(text);
             var myLatLng = {
                 lat: latitude,
                 lng: longitude
@@ -1702,10 +1698,30 @@ $(input).on('input',function(){
             });
             var card = document.getElementById('pac-card');
             var input = document.getElementById('pac-input');
+            var options = {
+    componentRestrictions: {
+        city: citytext
+    }
+};
+
             var types = document.getElementById('type-selector');
             var strictBounds = document.getElementById('strict-bounds-selector');
             map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-            var autocomplete = new google.maps.places.Autocomplete(input);
+            var autocomplete = new google.maps.places.Autocomplete(input,options);
+          $(input).on('input',function(){
+	var str = input.value;
+  var prefix = citytext +',';
+	if(str.indexOf(prefix) == 0) {
+		console.log(input.value);
+	} else {
+		if (prefix.indexOf(str) >= 0) {
+    	input.value = prefix;
+    } else {
+  		input.value = prefix+str;
+   }
+	}
+
+});  
             // Bind the map's bounds (viewport) property to the autocomplete object,
             // so that the autocomplete requests use the current map bounds for the
             // bounds option in the request.
@@ -1803,177 +1819,7 @@ $(input).on('input',function(){
                 });
         }
     </script>     
-<script>
-    
-//      function initMap() {
-//        var map = new google.maps.Map(document.getElementById('map'), {
-//          center: {lat: 33.7294, lng: 73.0931},
-//          zoom: 13
-//        });
-//        var card = document.getElementById('pac-card');
-//        var input = document.getElementById('pac-input');
-//        var types = document.getElementById('type-selector');
-//        var strictBounds = document.getElementById('strict-bounds-selector');
-//
-//        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-//
-//        var autocomplete = new google.maps.places.Autocomplete(input);
-//
-//        // Bind the map's bounds (viewport) property to the autocomplete object,
-//        // so that the autocomplete requests use the current map bounds for the
-//        // bounds option in the request.
-//        autocomplete.bindTo('bounds', map);
-//
-//        var infowindow = new google.maps.InfoWindow();
-//        var infowindowContent = document.getElementById('infowindow-content');
-//        infowindow.setContent(infowindowContent);
-//        
-//        var marker = new google.maps.Marker({
-//         
-//          map: map,
-//          anchorPoint: new google.maps.Point(0, -29)
-//        });
-//          
-//        autocomplete.addListener('place_changed', function() {
-//            var place = autocomplete.getPlace();
-//            document.getElementById('place-name').value = place.name;
-//            document.getElementById('latitude').value = place.geometry.location.lat();
-//            document.getElementById('longitude').value = place.geometry.location.lng();
-////            alert("This function is working!");
-////            alert(place.name);
-////            alert(place.address_components[0].long_name);
-// map.addListener('click', function (e) {
-//            // if the previousMarker exists, remove it
-//            if (marker)
-//                marker.setMap(null);
-//
-//            latLng = e.latLng;
-//
-//            var latitude = e.latLng.lat();
-//            var longitude = e.latLng.lng();
-//
-//            $('#latitude').val(latitude);
-//            $('#longitude').val(longitude);
-//
-//            //image = clientURL + "/common/images/markers/red.png";
-//
-//            marker = new google.maps.Marker({
-//                position: latLng,
-//                map: map
-//            });
-//        }
-//
-//        );
-//          infowindow.close();
-//          marker.setVisible(false);
-//          var place = autocomplete.getPlace();
-//          if (!place.geometry) {
-//            // User entered the name of a Place that was not suggested and
-//            // pressed the Enter key, or the Place Details request failed.
-//            window.alert("No details available for input: '" + place.name + "'");
-//            return;
-//          }
-//
-//          // If the place has a geometry, then present it on a map.
-//          if (place.geometry.viewport) {
-//            map.fitBounds(place.geometry.viewport);
-//          } else {
-//            map.setCenter(place.geometry.location);
-//            map.setZoom(17);  // Why 17? Because it looks good.
-//          }
-//          marker.setPosition(place.geometry.location);
-//          marker.setVisible(true);
-//          
-//          var address = '';
-//          if (place.address_components) {
-//            address = [
-//              (place.address_components[0] && place.address_components[0].short_name || ''),
-//              (place.address_components[1] && place.address_components[1].short_name || ''),
-//              (place.address_components[2] && place.address_components[2].short_name || '')
-//            ].join(' ');
-//          }
-// 
-//          infowindowContent.children['place-icon'].src = place.icon;
-//          infowindowContent.children['place-name'].textContent = place.name;
-//          infowindowContent.children['place-address'].textContent = address;
-//        var addListener = infowindow.open(map, marker);
-//      
-//        });
-//
-//        // Sets a listener on a radio button to change the filter type on Places
-//        // Autocomplete.
-//        function setupClickListener(id, types) {
-//          var radioButton = document.getElementById(id);
-//          radioButton.addEventListener('click', function() {
-//            autocomplete.setTypes(types);
-//          });
-//        }
-//
-//        setupClickListener('changetype-all', []);
-//        setupClickListener('changetype-address', ['address']);
-//        setupClickListener('changetype-establishment', ['establishment']);
-//        setupClickListener('changetype-geocode', ['geocode']);
-//
-//        document.getElementById('use-strict-bounds')
-//            .addEventListener('click', function() {
-//              console.log('Checkbox clicked! New state=' + this.checked);
-//              autocomplete.setOptions({strictBounds: this.checked});
-//              
-//            });
-//
-//       
-//       
-//      }
-    </script>
 
-<script>
-
-//    $('.target').change(function () {
-//        //alert($('select[name="city"]').find(':selected').attr('class').split(','));
-//
-//        var coordinate = $('select[name="city"]').find(':selected').attr('class').split(',');//$('select option:selected').val().split(',');
-//        map.setCenter(new google.maps.LatLng(coordinate[0], coordinate[1]));
-//    });
-
-
-
-
-//    var map;
-//    var previousMarker; // global variable to store previous marker
-//    function initMap() {
-//        map = new google.maps.Map(document.getElementById('map'), {
-//            center: {
-//                lat: 33.7294,
-//                lng: 73.0931
-//            },
-//            zoom: 10
-//        });
-//        map.addListener('click', function (e) {
-//            // if the previousMarker exists, remove it
-//            if (previousMarker)
-//                previousMarker.setMap(null);
-//
-//            latLng = e.latLng;
-//
-//            var latitude = e.latLng.lat();
-//            var longitude = e.latLng.lng();
-//
-//            $('#latitude').val(latitude);
-//            $('#longitude').val(longitude);
-//
-//            //image = clientURL + "/common/images/markers/red.png";
-//
-//            previousMarker = new google.maps.Marker({
-//                position: latLng,
-//                map: map
-//            });
-//        }
-//
-//        );
-//    }
-</script>
-  
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0C1Dmi-PE4nrIHJ3sxb2NqBdS6pj2n1o&callback=initMap" async defer></script>-->
 
 <script>
    
@@ -2066,7 +1912,8 @@ $(input).on('input',function(){
                     subtype == 'Industrial Estates /Zone'
                     ) {
                 $('#projects_size').removeClass("hide");
-                $('#homeandcommercial').addClass("hide");
+                $('#homeandcommercial').removeClass("hide");
+//                $('#homeandcommercial').addClass("hide");
                 $('#project_div').addClass("hide");
             } else {
                 $('#project_div').removeClass("hide");
@@ -2119,11 +1966,11 @@ $(input).on('input',function(){
                 $("#city").focus();
                 $('#city_error').removeClass("hide");
             }
-            var address = $("#address").val();
-            if (address == '') {
-                $("#address").focus();
-                $('#address_error').removeClass("hide");
-            }
+//            var address = $("#address").val();
+//            if (address == '') {
+//                $("#address").focus();
+//                $('#address_error').removeClass("hide");
+//            }
 
 //            if ( address != '') {
 //
@@ -2171,36 +2018,36 @@ $(input).on('input',function(){
                 $('#Label_error').removeClass("hide");
             }
 
-            var ConstructedArea = $("#ConstructedArea").val();
-            if (ConstructedArea == '') {
-                $("#ConstructedArea").focus();
-                $('#ConstructedArea_error').removeClass("hide");
-            }
-            var CAarea_unit = $("#CAarea_unit").val();
-            if (CAarea_unit == '') {
-                $("#CAarea_unit").focus();
-                $('#CAarea_unit_error').removeClass("hide");
-            }
-            var OwnerShipStatus = $("#OwnerShipStatus").val();
-            if (OwnerShipStatus == '') {
-                $("#OwnerShipStatus").focus();
-                $('#OwnerShipStatus_error').removeClass("hide");
-            }
-            var ConstructionYear = $("#ConstructionYear").val();
-            if (ConstructionYear == '') {
-                $("#ConstructionYear").focus();
-                $('#ConstructionYear_error').removeClass("hide");
-            }
-            var OpenArea = $("#OpenArea").val();
-            if (OpenArea == '') {
-                $("#OpenArea").focus();
-                $('#OpenArea_error').removeClass("hide");
-            }
-            var OAarea_unit = $("#OAarea_unit").val();
-            if (OAarea_unit == '') {
-                $("#OAarea_unit").focus();
-                $('#OAarea_unit_error').removeClass("hide");
-            }
+//            var ConstructedArea = $("#ConstructedArea").val();
+//            if (ConstructedArea == '') {
+//                $("#ConstructedArea").focus();
+//                $('#ConstructedArea_error').removeClass("hide");
+//            }
+//            var CAarea_unit = $("#CAarea_unit").val();
+//            if (CAarea_unit == '') {
+//                $("#CAarea_unit").focus();
+//                $('#CAarea_unit_error').removeClass("hide");
+//            }
+//            var OwnerShipStatus = $("#OwnerShipStatus").val();
+//            if (OwnerShipStatus == '') {
+//                $("#OwnerShipStatus").focus();
+//                $('#OwnerShipStatus_error').removeClass("hide");
+//            }
+//            var ConstructionYear = $("#ConstructionYear").val();
+//            if (ConstructionYear == '') {
+//                $("#ConstructionYear").focus();
+//                $('#ConstructionYear_error').removeClass("hide");
+//            }
+//            var OpenArea = $("#OpenArea").val();
+//            if (OpenArea == '') {
+//                $("#OpenArea").focus();
+//                $('#OpenArea_error').removeClass("hide");
+//            }
+//            var OAarea_unit = $("#OAarea_unit").val();
+//            if (OAarea_unit == '') {
+//                $("#OAarea_unit").focus();
+//                $('#OAarea_unit_error').removeClass("hide");
+//            }
 
             if ($('input[name=type]:checked').val() == 'projects')
             {
@@ -2242,37 +2089,37 @@ $(input).on('input',function(){
                     $('#Label_error').addClass("hide");
                 }
 
-                var ConstructedArea = $("#ConstructedArea").val();
-                if (ConstructedArea == '') {
-                    $("#ConstructedArea").focus();
-                    $('#ConstructedArea_error').addClass("hide");
-                }
-                var CAarea_unit = $("#CAarea_unit").val();
-                if (CAarea_unit == '') {
-                    $("#CAarea_unit").focus();
-                    $('#CAarea_unit_error').addClass("hide");
-                }
-                var OwnerShipStatus = $("#OwnerShipStatus").val();
-                if (OwnerShipStatus == '') {
-                    $("#OwnerShipStatus").focus();
-                    $('#OwnerShipStatus_error').addClass("hide");
-                }
-                var ConstructionYear = $("#ConstructionYear").val();
-                if (ConstructionYear == '') {
-                    $("#ConstructionYear").focus();
-                    $('#ConstructionYear_error').addClass("hide");
-                }
-                var OpenArea = $("#OpenArea").val();
-                if (OpenArea == '') {
-                    $("#OpenArea").focus();
-                    $('#OpenArea_error').addClass("hide");
-                }
-                var OAarea_unit = $("#OAarea_unit").val();
-                if (OAarea_unit == '') {
-                    $("#OAarea_unit").focus();
-                    $('#OAarea_unit_error').addClass("hide");
-                }
-                if (area != '' && area_unit != '' && property_title != '' && description != ''  && ConstructedArea != '' && OwnerShipStatus != '' && ConstructionYear != '' && OpenArea != '')
+//                var ConstructedArea = $("#ConstructedArea").val();
+//                if (ConstructedArea == '') {
+//                    $("#ConstructedArea").focus();
+//                    $('#ConstructedArea_error').addClass("hide");
+//                }
+//                var CAarea_unit = $("#CAarea_unit").val();
+//                if (CAarea_unit == '') {
+//                    $("#CAarea_unit").focus();
+//                    $('#CAarea_unit_error').addClass("hide");
+//                }
+//                var OwnerShipStatus = $("#OwnerShipStatus").val();
+//                if (OwnerShipStatus == '') {
+//                    $("#OwnerShipStatus").focus();
+//                    $('#OwnerShipStatus_error').addClass("hide");
+//                }
+//                var ConstructionYear = $("#ConstructionYear").val();
+//                if (ConstructionYear == '') {
+//                    $("#ConstructionYear").focus();
+//                    $('#ConstructionYear_error').addClass("hide");
+//                }
+//                var OpenArea = $("#OpenArea").val();
+//                if (OpenArea == '') {
+//                    $("#OpenArea").focus();
+//                    $('#OpenArea_error').addClass("hide");
+//                }
+//                var OAarea_unit = $("#OAarea_unit").val();
+//                if (OAarea_unit == '') {
+//                    $("#OAarea_unit").focus();
+//                    $('#OAarea_unit_error').addClass("hide");
+//                }
+                if (area != '' && area_unit != '' && property_title != '' && description != '')
                 {
                     $("#headthree").removeClass("active");
                     $("#headfour").addClass("active");
@@ -2290,14 +2137,14 @@ $(input).on('input',function(){
                 if (price == '') {
                     $('#price_error').removeClass("hide");
                 }
-                var height = $("#height").val();
-                if (height == '') {
-                    $('#height_error').removeClass("hide");
-                }
-                var width = $("#width").val();
-                if (width == '') {
-                    $('#width_error').removeClass("hide");
-                }
+//                var height = $("#height").val();
+//                if (height == '') {
+//                    $('#height_error').removeClass("hide");
+//                }
+//                var width = $("#width").val();
+//                if (width == '') {
+//                    $('#width_error').removeClass("hide");
+//                }
 
 
 
@@ -2332,7 +2179,7 @@ $(input).on('input',function(){
                     }
 
 
-                    if (beds != '' && bathroom != '' && floor != '' && kitchens != '' && area != '' && area_unit != '' && property_title != '' && description != '' && height != '' && width != '' && ConstructedArea != '' && OwnerShipStatus != '' && ConstructionYear != '' && OpenArea != '')
+                    if (beds != '' && bathroom != '' && floor != '' && kitchens != '' && area != '' && area_unit != '' && property_title != '' && description != '' )
                     {
                         $("#headthree").removeClass("active");
                         $("#headfour").addClass("active");
@@ -2347,7 +2194,7 @@ $(input).on('input',function(){
 
                 } else {
 
-                    if (area != '' && area_unit != '' && property_title != '' && description != '' && height != '' && width != '' && ConstructedArea != '' && OwnerShipStatus != '' && ConstructionYear != '' && OpenArea != '')
+                    if (area != '' && area_unit != '' && property_title != '' && description != '' )
                     {
                         $("#headthree").removeClass("active");
                         $("#headfour").addClass("active");
