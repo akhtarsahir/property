@@ -56,7 +56,7 @@
 <!--start section page body-->
 <section id="section-body">
 
-    <div class="container" style="background-color: #13507f; background-image:  url('assets/images/texture.png'); ">
+    <div class="container" style="background-color: gainsboro">
     <!--<div class="container">-->
         <div class="membership-page-top">
             <div class="row">
@@ -64,7 +64,7 @@
                     <div class="membership-page-title " style="margin-bottom:0px;">
                        
 
-                        <h2 class="page-title font-color"> Add New Property </h2>
+                        <h2 class="page-title " style="text-align: left !important;"> Add New Property </h2>
                     </div>
                 </div>
                   <div class="col-md-12">
@@ -1488,8 +1488,6 @@
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKvuyrvPumFAi_BQR8ygi206QFZmoCkuk&libraries=places&callback=initMap"
         async defer></script>
      <script>
-//         function myFun(value) {
-//            initMap();}
         function myFunction(value) {
             initMap2(value);
             initMap();
