@@ -56,15 +56,13 @@
 <!--start section page body-->
 <section id="section-body">
 
-    <div class="container" style="background-color: gainsboro">
+    <div class="container" style="background-color: ghostwhite;">
     <!--<div class="container">-->
         <div class="membership-page-top">
             <div class="row">
                 <div class="col-sm-12 col-xs-12" style="margin-top:-56px">
                     <div class="membership-page-title " style="margin-bottom:0px;">
-                       
-
-                        <h2 class="page-title " style="text-align: left !important;"> Add New Property </h2>
+                        <h2 class="page-title " style="text-align: left !important; font-size: 25px;"> Add New Property </h2>
                     </div>
                 </div>
                   <div class="col-md-12">
@@ -468,7 +466,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="col-sm-12" >
+                            <div class="col-sm-12" style="display:none;">
                                 <div class="form-group">
                                     <div class="col-sm-2">
                                         <label for="property-price" class="bold-class">Longitude</label>
@@ -490,7 +488,7 @@
                             <div class="col-sm-12">
                                                                 <!--<div class="add-title-tab bold-class">Google Map</div>-->
                                 <div id="map"></div>
-                                <button class="btn btn-primary btn-block">Place the pin using the property address above</button>
+                                <!--<button class="btn btn-primary btn-block">Place the pin using the property address above</button>-->
                             </div></div>
                         </div>
                     </div>
@@ -608,7 +606,7 @@
                             <div class="add-tab-row push-padding-bottom">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Rooms / Bed Rooms</label>
+                                        <label for="property-price-after" class="bold-class"style="padding-left: 20px" >Rooms / Bed Rooms</label>
                                     </div>
                                     <div class="col-sm-1">
                                         <div class="form-group">
@@ -617,7 +615,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Bath / Wash Rooms</label>
+                                        <label for="property-price-after" class="bold-class" style="padding-left: 20px">Bath / Wash Rooms</label>
                                     </div>
                                     <div class="col-sm-1">
                                         <div class="form-group">
@@ -626,7 +624,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Floors</label>
+                                        <label for="property-price-after" class="bold-class" style="padding-left: 100px">Floors</label>
                                     </div>
                                     <div class="col-sm-1">
                                         <div class="form-group">
@@ -634,8 +632,8 @@
                                             <label class=" alert-danger hide" id="floor_error"> Please Enter Number of Floor </label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Kitchens</label>
+                                    <div class="col-sm-2" >
+                                        <label for="property-price-after" class="bold-class" style="padding-left: 96px">Kitchens</label>
                                     </div>
                                     <div class="col-sm-1">
                                         <div class="form-group">
@@ -1110,17 +1108,25 @@
                                                     <input type="text" class="form-control" id="video_url" name="video_url" value="" placeholder="Enter Property Video Url Link">
                                                 </div>
                                             </div>
+                                            
+                                       <div class="col-sm-2 ">
+                                           <label for="property-price-before" class="bold-class">Property Expiry_Date</label>
+                                    <select class="selectpicker" id="propertexpire" name="propertexpire" data-live-search="false" data-live-search-style="begins">
+                                        <option value="1"> One Months</option>
+                                        <option value="2"> Two Months</option>
+                                        <option value="3"> Three Months</option>
+                                        <option value="4"> Four Months</option>
+                                    </select>
+                                </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="homeandcommercial hide" id="homeandcommercial">
-                        <div class="add-title-tab">
+                            
+                    <div class="homeandcommercial hide" id="homeandcommercial"style="margin-top:15px;">
+                        <div >
                             <ul id="myTab" class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Add Extra Feature</a></li>
-    </ul>
+                                <li class="active"><a style="margin-top: 30px; margin-left: 13px;" href="#home" data-toggle="tab" class="btn btn-success btn-add"><span class="glyphicon glyphicon-plus"></span>Add Extra Feature</a></li>
+                            </ul>
                             <!--<h3>Measurement of Land</h3>-->
                             <!--<div class="add-expand"></div>-->
                         </div>
@@ -1134,30 +1140,21 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <input class="form-control" id="height" name="height" value="" placeholder="Enter height ft" type="number">
+                                            <input class="form-control" id="height" name="height" value="" placeholder="Length ft" type="number">
                                             <label class=" alert-danger hide" id="height_error"> Please Enter Property Height </label>
                                         </div>
                                     </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                <div class="col-sm-12">
                                     <div class="col-sm-2">
                                         <label for="property-price-after" class="bold-class">Depth</label>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <input class="form-control" id="width" name="width" value="" placeholder="Enter width ft" type="number">
+                                            <input class="form-control" id="width" name="width" value="" placeholder="Width ft" type="number">
                                             <label class=" alert-danger hide" id="width_error"> Please Enter Property Width </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-sm-2">
-                                        <label for="property-price-after" class="bold-class">Owner Ship Status</label>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <select class="selectpicker" id="OwnerShipStatus" name="OwnerShipStatus" data-live-search="false" data-live-search-style="begins" title="Select" >
-                                                <option value="Allotment">Allotment </option>
-                                                <option value="Registered">Registered </option>
-                                                <option value="Leased">Leased  </option>
-                                            </select>
-                                            <label class=" alert-danger hide" id="OwnerShipStatus_error"> Please Select Anyone Owner Ship Status </label>
                                         </div>
                                     </div>
                                 </div>
@@ -1223,6 +1220,23 @@
                                         </div>
                                     </div>
                                   </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">       
+                                       <div class="col-sm-2">
+                                        <label for="property-price-after" class="bold-class">Owner Ship Status</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker" id="OwnerShipStatus" name="OwnerShipStatus" data-live-search="false" data-live-search-style="begins" title="Select" >
+                                                <option value="Allotment">Allotment </option>
+                                                <option value="Registered">Registered </option>
+                                                <option value="Leased">Leased  </option>
+                                            </select>
+                                            <label class=" alert-danger hide" id="OwnerShipStatus_error"> Please Select Anyone Owner Ship Status </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" id="housefeature">
@@ -1333,23 +1347,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-sm-2 ">
-                                           <label for="property-price-before" class="bold-class">Property Expiry_Date</label>
-                                       </div>
-                                     <div class="col-sm-2">
-                                
-                                    <select class="selectpicker" id="propertexpire" name="propertexpire" data-live-search="false" data-live-search-style="begins">
-                                        <option value="1"> One Months</option>
-                                        <option value="2"> Two Months</option>
-                                        <option value="3"> Three Months</option>
-                                        <option value="4"> Four Months</option>
-                                    </select>
-                                </div>
                                 </div>
                                 </div>
                             </div>
                           </div>
                           </div>
+                    </div>
+                            </div>
+                        </div>
                     </div>
                     </div>
 
@@ -1490,7 +1495,7 @@
      <script>
         function myFunction(value) {
             initMap2(value);
-            initMap();
+//            initMap();
 //            var subAddress = value.split(",");
 //            alert( subAddress[0] );
 //            alert( subAddress[1] );
