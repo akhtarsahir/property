@@ -418,8 +418,8 @@
                                     </div>
                                     <div class="col-sm-5">
                                             <div class="show-first-time">
-						
                                         </div>
+                                        <input type="text"  class="form-control" id="citysubaddress" name="citysubaddress" value="" placeholder="citysubaddress" style="display:none;" >
                                     </div>
                                     <div class="col-sm-1 cityhide hide">
                                         <label for="property-price " class="bold-class">OR</label>
@@ -427,7 +427,7 @@
                                     <div class="col-sm-4 cityhide hide">
                                         <div id="pac-container">
                                         <!--<input type="text" onchange="javascript:myFun(this.value);" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>-->
-                                        <input type="text"  class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>
+                                        <input type="text"  class="form-control" id="pac-input" name="address" value="" placeholder="Enter address">
                                         <label class=" alert-danger hide" id="address_error"> Please Enter Property Address </label>
                                        </div>
 <!--<div id="type-selector " class="pac-controls">
@@ -1680,15 +1680,15 @@ $(input).on('input',function(){
       }
 
         function initMap2(value) {
-//            
-          
+            
             var subAddress = value.split(",");
             var latitude  = parseFloat(subAddress[0]);
             var longitude = parseFloat(subAddress[1]);
 //            alert( latitude );
 //            alert( longitude );
-//       var text = $('#subAddress :selected').text();
-//           alert(text);
+       var citysubaddress = $('#subaddress :selected').text();
+//           alert(citysubaddress);
+            $('#citysubaddress').val(citysubaddress);
             var myLatLng = {
                 lat: latitude,
                 lng: longitude

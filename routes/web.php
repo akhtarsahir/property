@@ -245,7 +245,7 @@ Route::group(array('prefix' => 'admin'), function ()
 Route::post('Search-Result' , ['as' => 'Search' , 'uses' => 'SearchController@SearchFormData']);
 Route::post('searchajax'    , ['as' => 'Search' , 'uses' => 'SearchController@searchajax']);
 //Route::post('autocomplete',  ['as' => 'property','uses' => 'PropertiesController@Ajaxproperty']);
-
+Route::post('searchaddress', 'SearchController@searchaddress');
 
 
 

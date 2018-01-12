@@ -45,7 +45,6 @@
 
 
 <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
-<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
 <script type="text/javascript" src="{{asset('assets/js/modernizr.custom.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 
@@ -59,14 +58,10 @@
 <script type="text/javascript" src="{{asset('assets/js/jquery-ui.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/jquery.nicescroll.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/js/vegas.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/js/infobox.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/js/markerclusterer.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/js/jquery.prettyPhoto.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/custom.js')}}"></script>
 <!-- end of global js -->
-{{--<script src="http://code.jquery.com/jquery-1.10.2.js"></script>--}}
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- end of global js -->
+<script type="text/javascript" src="{{asset('assets/js/jquery-ui-key.js')}}"></script>
 
 
 
@@ -101,6 +96,40 @@
         minLength: 2,
         select: function( event, ui ) {
             $("#keyword").text( "Selected: " + ui.item.value );
+        }
+    } );
+</script>
+<script>
+    $( "#keywordaddress" ).autocomplete({
+        source: function( request, response ) {
+            $.ajax( {
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "searchaddress",
+                dataType: "html",
+                data: {
+                    term: request.term, "_token": "{{ csrf_token() }}",
+                },
+                success: function( data ) {
+                    var dataArray;
+                    data = JSON.parse(data);
+//                        response( data );
+                    response($.map(data, function (el) {
+                        dataArray =  {
+                            label: el.value,
+                            value: el.value
+                        };
+                        console.log(dataArray);
+                        return dataArray;
+                    }));
+                }
+            } );
+        },
+        minLength: 2,
+        select: function( event, ui ) {
+            $("#keywordaddress").text( "Selected: " + ui.item.value );
         }
     } );
 </script>

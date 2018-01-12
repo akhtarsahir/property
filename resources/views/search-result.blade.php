@@ -10,7 +10,7 @@
 <!--@include('layouts.advance_search')-->
 <!--end advanced search section -->
 <!--start advanced search section-->
-    @include('layouts.header')
+
     <!--end advanced search section -->
 <!--start section page body-->
 <section id="section-body">

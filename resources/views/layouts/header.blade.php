@@ -276,7 +276,7 @@
     </div>
 @if(\Request::path() != 'add_property')
     <!--start advanced search section-->
-    @include('layouts.advance_search-sticky')
+    @include('layouts.searchbar')
     <!--end advanced search section-->
     @endif
 

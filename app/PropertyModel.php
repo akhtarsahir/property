@@ -46,6 +46,7 @@ class PropertyModel extends Model
         'street','sector',
         'city',
         'subaddress',
+        'citysubaddress',
         'address',
         'region',
         'latitude',
@@ -96,7 +97,14 @@ class PropertyModel extends Model
     {
         //dd(Input::file('image')[0]);
         //echo count(Input::file('image'));
-        //dd(Input::file('image'));
+//        dd(Input::get('citysubaddress'));
+//        dd(Input::get('address'));
+         if($request->address)
+	    {
+		    $address = $request->address;
+	    }else{
+		    $address = $request->citysubaddress;
+	    }
         $ConstructedArea        = $request->ConstructedArea;
         $ConstructedAreaunit    = $request->CAarea_unit;
         $CAUnit                 = "$ConstructedArea"."$ConstructedAreaunit";
@@ -109,8 +117,9 @@ class PropertyModel extends Model
 //        $this->type             = $request->type;
         $this->subtype          = $request->subtype;
         $this->city             = $request->city;
-        $this->subaddress          = $request->subaddress;
-        $this->address          = $request->address;
+        $this->subaddress       = $request->subaddress;
+        $this->citysubaddress   = $request->citysubaddress;
+        $this->address          = $address;
         $this->latitude         = $request->latitude;
         $this->longitude        = $request->longitude;
         $this->title            = $request->title;
@@ -292,6 +301,7 @@ class PropertyModel extends Model
             'subtype'          => $request->subtype,
             'city'             => $request->city,
             'subaddress'       => $request->subaddress,
+            'citysubaddress'   => $request->citysubaddress,
             'latitude'         => $request->latitude,
             'longitude'        => $request->longitude,
             'address'          => $request->address,
