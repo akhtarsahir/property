@@ -92,7 +92,7 @@
                             <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select class="form-control" name="OwnerShipStatus" title="Owner Ship">
-                                       <option value="">select</option>
+                                       <option value="">Select OwnerShip</option>
                                         <option value="Allotment">Allotment </option>
                                         <option value="Registered">Registered </option>
                                         <option value="Leased">Leased  </option>
@@ -102,7 +102,7 @@
                             <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select class="form-control"  name="kitchens" title="Number of kitchens">
-                                       <option value="">select</option>
+                                       <option value="">Select kitchen</option>
                                         <option value="1"> 1</option>
                                         <option value="2"> 2</option>
                                         <option value="3"> 3</option>
@@ -114,7 +114,7 @@
                             <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select class="form-control" name="beds" title="Number of Beds">
-                                        <option value="">select</option>
+                                        <option value="">Select Bed</option>
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
@@ -130,7 +130,7 @@
                             <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select class="form-control"title="Number of Baths">
-                                        <option value="">select</option>
+                                        <option value="">Select Bath</option>
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>

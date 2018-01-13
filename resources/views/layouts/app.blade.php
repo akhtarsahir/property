@@ -45,6 +45,7 @@
 
 
 <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
+<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
 <script type="text/javascript" src="{{asset('assets/js/modernizr.custom.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 
@@ -58,11 +59,13 @@
 <script type="text/javascript" src="{{asset('assets/js/jquery-ui.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/jquery.nicescroll.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/vegas.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/infobox.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/markerclusterer.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/jquery.prettyPhoto.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/custom.js')}}"></script>
 <!-- end of global js -->
-<!-- end of global js -->
 <script type="text/javascript" src="{{asset('assets/js/jquery-ui-key.js')}}"></script>
-
 
 
 <script>
