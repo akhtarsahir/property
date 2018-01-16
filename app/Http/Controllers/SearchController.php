@@ -121,7 +121,7 @@ class SearchController extends Controller {
 
 
 
-        if (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') == 'Rs 5,000' && Input::get('price_to') == 'Rs 500,000') {
+        if (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') == 'Rs 5,000' && Input::get('price_to') == 'Rs 500,000') {
 
             $keyword = Input::get('keyword');
             $properties = $this->PropertyModel
@@ -133,7 +133,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if only  price_to and price_from is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //           echo 'price';
             $strm = Input::get('price_from');
@@ -158,7 +158,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
 //-----if only  keyword is selected   
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //        echo "keyword"; 
 //        exit();
             $keyword = Input::get('keyword');
@@ -179,7 +179,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
 //-----if only  Address (keywordaddress) is selected   
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //        echo "keywordaddress"; 
 //        exit();
             $keywordaddress = Input::get('keywordaddress');
@@ -203,7 +203,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if only  city is selected    
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //           echo "city"; 
 //           exit();
             $value = Input::get('city');
@@ -225,7 +225,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
 //-----if only  purpose is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //           echo "purpose"; 
 //           exit();
             $keyword = Input::get('keyword');
@@ -246,7 +246,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
 //-----if only  subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //             echo "subtype";
 //             exit();
@@ -266,89 +266,94 @@ class SearchController extends Controller {
                     ->count();
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
-        //-----if only  OwnerShipStatus is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') != '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
-//           echo 'OwnerShipStatus';    
-            $keyword = Input::get('keyword');
+        //-----if only  Land area(area_unit) is selected           
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+           echo 'Land area(area_unit)';    
+            $keyword = Input::get('area_unit');
             $properties = $this->PropertyModel
                     ->where([
-                        ['OwnerShipStatus', '=', Input::get('OwnerShipStatus')],
+                        ['area_unit', '=', Input::get('area_unit')],
                         ['propertexpire', '>', date("Y-m-d")],
                         ['status', '=', '1']
                     ])
                     ->paginate(10);
             $total_property = $this->PropertyModel
                     ->where([
-                        ['OwnerShipStatus', '=', Input::get('OwnerShipStatus')],
+                        ['area_unit', '=', Input::get('area_unit')],
                         ['propertexpire', '>', date("Y-m-d")],
                         ['status', '=', '1']
                     ])
                     ->count();
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
-        //-----if only  kitchens is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') != '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
-//           echo 'kitchens';    
-            $keyword = Input::get('keyword');
+        //-----if only   Land area, area_from  is selected           
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') != '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
+//           echo 'area_unit from';    
+            $keyword = Input::get('area_unit');
             $properties = $this->PropertyModel
                     ->where([
-                        ['kitchens', '=', Input::get('kitchens')],
+                        ['area_unit', '=', Input::get('area_unit')],
+                        ['area', '=', Input::get('area_from')],
                         ['propertexpire', '>', date("Y-m-d")],
                         ['status', '=', '1']
                     ])
                     ->paginate(10);
             $total_property = $this->PropertyModel
                     ->where([
-                        ['kitchens', '=', Input::get('kitchens')],
+                        ['area_unit', '=', Input::get('area_unit')],
+                        ['area', '=', Input::get('area_from')],
                         ['propertexpire', '>', date("Y-m-d")],
                         ['status', '=', '1']
                     ])
                     ->count();
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
-        //-----if only  beds is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') != '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
-//           echo 'beds';    
-            $keyword = Input::get('keyword');
+        //-----if only  Land area, area_to is selected           
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') == '' && Input::get('area_to') != ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
+//           echo 'area_unit to';    
+            $keyword = Input::get('area_unit');
             $properties = $this->PropertyModel
                     ->where([
-                        ['beds', '=', Input::get('beds')],
+                        ['area_unit', '=', Input::get('area_unit')],
+                        ['area', '=', Input::get('area_to')],
                         ['propertexpire', '>', date("Y-m-d")],
                         ['status', '=', '1']
                     ])
                     ->paginate(10);
             $total_property = $this->PropertyModel
                     ->where([
-                        ['beds', '=', Input::get('beds')],
+                        ['area_unit', '=', Input::get('area_unit')],
+                        ['area', '=', Input::get('area_to')],
                         ['propertexpire', '>', date("Y-m-d")],
                         ['status', '=', '1']
                     ])
                     ->count();
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
-        //-----if only  bathroom is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') != '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
-//           echo 'bathroom';    
-            $keyword = Input::get('keyword');
+        //-----if only   Land area, area_from, area_to  is selected           
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') != '' && Input::get('area_to') != ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
+           echo 'area_unit from and to ';    
+            $keyword   = Input::get('area_unit');
+            $area_from = Input::get('area_from');
+            $area_to = Input::get('area_to');
+            echo $area_from .'='.$area_to;
             $properties = $this->PropertyModel
-                    ->where([
-                        ['bathroom', '=', Input::get('bathroom')],
-                        ['propertexpire', '>', date("Y-m-d")],
-                        ['status', '=', '1']
-                    ])
-                    ->paginate(10);
+//                         ->where('area_unit', '=', Input::get('area_unit'))
+//                         ->where('propertexpire', '>', date("Y-m-d"))
+//                         ->where('status', '=', '1')
+                         ->orwhereBetween('area',[$area_from, $area_to])
+//                         ->orderBy('area','DESC')
+                          ->get();
+            dd($properties);
             $total_property = $this->PropertyModel
-                    ->where([
-                        ['bathroom', '=', Input::get('bathroom')],
-                        ['propertexpire', '>', date("Y-m-d")],
-                        ['status', '=', '1']
-                    ])
+                     ->where([['area_unit', '=', Input::get('area_unit')],['propertexpire', '>', date("Y-m-d")],['status', '=', '1']])
+                         ->orwhereBetween('area',[$area_from, $area_to])
                     ->count();
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
 
         //-----if two  city ,purpose is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //          echo 'city an pursose';         
 //          exit();
             $value = Input::get('city');
@@ -372,7 +377,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if two   city ,subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //          echo 'city an subtype';        
 //          exit();
             $value = Input::get('city');
@@ -396,7 +401,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if two   city  and keyword is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //          echo " keyword and city"; 
 //          exit();
@@ -420,7 +425,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if two   city  and address (keywordaddress) is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keywordaddress');
 //          echo " keywordaddress and city"; 
 //          exit();
@@ -446,7 +451,7 @@ class SearchController extends Controller {
 
 
         //-----if two   keyword and purpose is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //          echo " keyword and purpose";
 //          exit();
@@ -469,7 +474,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if two   keyword and subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //         echo "keyword and subtype"; 
 //         exit();
             $keyword = Input::get('keyword');
@@ -492,7 +497,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if two   keyword and address keywordaddress is selected           
-        elseif (Input::get('keyword') != '' && Input::get('keywordaddress') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keyword') != '' && Input::get('keywordaddress') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
             echo "address keywordaddress ";
             exit();
             $keyword = Input::get('keyword');
@@ -517,7 +522,7 @@ class SearchController extends Controller {
         }
 
         //-----if two  address (keywordaddress) and purpose is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //         echo "keyword and subtype"; 
 //         exit();
             $keyword = Input::get('keywordaddress');
@@ -541,7 +546,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if two  address (keywordaddress) and subtype is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //         echo "keyword and subtype"; 
 //         exit();
             $keyword = Input::get('keywordaddress');
@@ -566,7 +571,7 @@ class SearchController extends Controller {
         }
 
         //-----if two  purpose and subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //         echo "purpose and subtype"; 
 //         exit();
             $keyword = Input::get('keyword');
@@ -590,7 +595,7 @@ class SearchController extends Controller {
         }
 //       ok
         //-----if three city, purpose ,subtype field is selected    
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 
 //              echo " city, purpose ,subtype"; 
 //              exit();
@@ -617,7 +622,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  three city, address(keywordaddress) ,subtype field is selected    
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 
 //              echo " city, address(keywordaddress) ,subtype"; 
 //              exit();
@@ -644,7 +649,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if three  city, address(keywordaddress) ,purpose field is selected    
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 
 //              echo " city, address(keywordaddress) ,purpose"; 
 //              exit();
@@ -672,7 +677,7 @@ class SearchController extends Controller {
         }
 
         //-----if  three   keyword,purpose and subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //             echo 'keyword,purpose and subtype';
 //                          exit();
             $keyword = Input::get('keyword');
@@ -697,7 +702,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  three   keyword, address(keywordaddress) and subtype is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //             echo 'keyword,address(keywordaddress) and subtype';
 //                          exit();
             $keyword = Input::get('keyword');
@@ -723,7 +728,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  three   keyword, address(keywordaddress) and purpose is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //             echo 'keyword,address(keywordaddress) and purpose';
 //                          exit();
             $keyword = Input::get('keyword');
@@ -749,7 +754,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  three   keyword, address(keywordaddress) and city is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //             echo 'keyword,address(keywordaddress) and city';
 //                          exit();
             $keyword = Input::get('keyword');
@@ -775,7 +780,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  three   keyword,city and subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //          echo 'keyword,city and subtype';
 //                          exit();
@@ -801,7 +806,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  three   keyword,city and purpose is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //          echo 'keyword,city and subtype';
 //                          exit();
@@ -828,7 +833,7 @@ class SearchController extends Controller {
         }
 
         //-----if  four   keyword,city ,purpose and subtype is selected           
-        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '') {
+        elseif (Input::get('keywordaddress') == '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' &&  Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
 //            echo "keyword,city ,purpose and subtype "; 
 //            exit();
@@ -857,7 +862,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if four keyword,city ,purpose and address(keywordaddress) is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
             $keywordaddress = Input::get('keywordaddress');
 //            echo "keyword,city ,purpose and keywordaddress "; 
@@ -887,7 +892,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  four   keyword,city ,subtype and address(keywordaddress) is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') == 'All' && Input::get('subtype') != '' &&  Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
             $keywordaddress = Input::get('keywordaddress');
 //            echo "keyword,city ,subtype and keywordaddress "; 
@@ -917,7 +922,7 @@ class SearchController extends Controller {
             return view('search-result', ['value' => $value, 'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  four   keyword,purpose ,subtype and address(keywordaddress) is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') == 'All' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
             $keywordaddress = Input::get('keywordaddress');
 //            echo "keyword,purpose ,subtype and keywordaddress "; 
@@ -946,7 +951,7 @@ class SearchController extends Controller {
             return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if  four  city,purpose ,subtype and address(keywordaddress) is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') == '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' &&  Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keywordaddress');
             $keywordaddress = Input::get('keywordaddress');
 //            echo "keywordaddress,purpose ,subtype and city "; 
@@ -977,7 +982,7 @@ class SearchController extends Controller {
         }
 
         //-----if Five  keyword ,city,purpose ,subtype and address(keywordaddress) is selected           
-        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' && Input::get('OwnerShipStatus') == '' && Input::get('kitchens') == '' && Input::get('beds') == '' && Input::get('bathroom') == '') {
+        elseif (Input::get('keywordaddress') != '' && Input::get('keyword') != '' && Input::get('city') != '' && Input::get('purpose') != '' && Input::get('subtype') != '' &&  Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == ''  && Input::get('price_from') != '' && Input::get('price_to') != '') {
             $keyword = Input::get('keyword');
             $keywordaddress = Input::get('keywordaddress');
 //            echo "keywordaddress,purpose ,subtype and city "; 

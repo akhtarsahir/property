@@ -89,7 +89,57 @@
                     </div>
                     <div class="advance-fields">
                       <div class="row">
-                            <div class="col-sm-3 col-xs-6">
+                           
+                           <div class="col-sm-1 col-xs-6">
+                                <div class="form-group">
+                                   <span class="range-title">Land Area</span>
+                                </div>
+                            </div>
+                           <div class="col-sm-2 col-xs-6">
+                                <div class="form-group">
+                                   <select  class="form-control" id="area_unit" name="area_unit">
+                                                <option value="">Select</option>
+                                                <option value="Marla">Marla</option>
+                                                <option value="Kanal">Kanal</option>
+                                                <option value="acres">Acres</option>
+                                                <option value="Square Yard">Square Yard</option>
+                                                <option value="Square Feet">Square Feet</option>
+                                            </select>
+                                </div>
+                            </div>
+                           <div class="col-sm-1 col-xs-6">
+                                <div class="form-group"style="padding: 7px 0px 0px 55px;">
+                                   <span class="range-title">From</span>
+                                </div>
+                            </div>
+                           <div class="col-sm-1 col-xs-6">
+                                <div class="form-group">
+                                     <input class="form-control" type="text" name="area_from"  placeholder="No Min">
+                                </div>
+                            </div>
+                           <div class="col-sm-1 col-xs-6">
+                                <div class="form-group" style="padding: 7px 0px 0px 80px;">
+                                     <span class="range-title">to</span>
+                                </div>
+                            </div>
+                           <div class="col-sm-1 col-xs-6">
+                                <div class="form-group">
+                                     <input class="form-control" type="text" name="area_to" placeholder="No Max">
+                                </div>
+                           </div>
+                          <div class="col-sm-6 col-xs-6">
+                                <div class="range-advanced-main">
+                                    <div class="range-text">
+                                        <input type="text" name="price_from" class="min-price-range-hidden range-input" readonly >
+                                        <input type="text" name="price_to" class="max-price-range-hidden range-input" readonly >
+                                        <p><span class="range-title">Price Range:</span> from <span class="min-price-range"></span> to <span class="max-price-range"></span></p>
+                                    </div>
+                                    <div class="range-wrap">
+                                        <div class="price-range-advanced"></div>
+                                    </div>
+                                </div>
+                            </div>
+<!--                            <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select class="form-control" name="OwnerShipStatus" title="Owner Ship">
                                        <option value="">Select OwnerShip</option>
@@ -138,7 +188,7 @@
                                         <option value="5">05</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div>-->
 
                             {{--<div class="col-sm-3 col-xs-6">--}}
                                 {{--<div class="form-group">--}}
@@ -151,18 +201,7 @@
                                     {{--</select>--}}
                                 {{--</div>--}}
                             {{--</div>--}}
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="range-advanced-main">
-                                    <div class="range-text">
-                                        <input type="text" name="price_from" class="min-price-range-hidden range-input" readonly >
-                                        <input type="text" name="price_to" class="max-price-range-hidden range-input" readonly >
-                                        <p><span class="range-title">Price Range:</span> from <span class="min-price-range"></span> to <span class="max-price-range"></span></p>
-                                    </div>
-                                    <div class="range-wrap">
-                                        <div class="price-range-advanced"></div>
-                                    </div>
-                                </div>
-                            </div>
+                           
 <!--                            <div class="col-sm-12 col-xs-12 features-list">
 
                                 <label class="advance-trigger text-uppercase title"><i class="fa fa-plus-square"></i> Other Features </label>
