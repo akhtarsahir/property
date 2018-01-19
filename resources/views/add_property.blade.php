@@ -413,18 +413,11 @@
                                      </div>
                                 </div>
                                      <div class="form-group ">
-                                         <div class="col-sm-2 cityhide hide">
-                                        <label for="property-price-before" class="bold-class">Location / Address</label>
+                                       
+                                    <div class="col-sm-2 cityhide hide">
+                                        <label for="property-price " class="bold-class">Location / Address</label>
                                     </div>
-                                    <div class="col-sm-5">
-                                            <div class="show-first-time">
-                                        </div>
-                                        <input type="text"  class="form-control" id="citysubaddress" name="citysubaddress" value="" placeholder="citysubaddress" style="display:none;" >
-                                    </div>
-                                    <div class="col-sm-1 cityhide hide">
-                                        <label for="property-price " class="bold-class">OR</label>
-                                    </div>
-                                    <div class="col-sm-4 cityhide hide">
+                                    <div class="col-sm-5 cityhide hide">
                                         <div id="pac-container">
                                         <!--<input type="text" onchange="javascript:myFun(this.value);" class="form-control" id="pac-input" name="address" value="" placeholder="Enter address" required>-->
                                         <input type="text"  class="form-control" id="pac-input" name="address" value="" placeholder="Enter address">
@@ -463,10 +456,17 @@
     </div>
       
                                     </div>
-                                    
+                                      <div class="col-sm-1 cityhide hide">
+                                        <label for="property-price-before" class="bold-class">OR</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <div class="show-first-time">
+                                        </div>
+                                        <input type="text"  class="form-control" id="citysubaddress" name="citysubaddress" value="" placeholder="citysubaddress" style="display:none;" >
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12" style="display:none;">
+                            <div class="col-sm-12" >
                                 <div class="form-group">
                                     <div class="col-sm-2">
                                         <label for="property-price" class="bold-class">Longitude</label>
@@ -1530,21 +1530,9 @@
             });
 
 
-        });
-        // This example requires the Places library. Include the libraries=places
-        // parameter when you first load the API. For example:
-        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-        // $('.target').change(function () {
-        //        //alert($('select[name="city"]').find(':selected').attr('class').split(','));
-        //
-        //        var coordinate = $('select[name="city"]').find(':selected').attr('class').split(',');//$('select option:selected').val().split(',');
-        //        map.setCenter(new google.maps.LatLng(coordinate[0], coordinate[1]));
-        //    });
-
-           
+        }); 
       function initMap() {
-//           var text = $('#city :selected').text();
-//           alert( 'some one text'+ text);
+          
   var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 30.2208614, lng:71.47499889999995 },
                 zoom: 13
@@ -1575,17 +1563,6 @@ $(input).on('input',function(){
 	}
 
 });
-// var marker = new google.maps.Marker({
-//                map: map,
-//                anchorPoint: new google.maps.Point(0, - 29)
-//            });
-//google.maps.event.addListener(autocomplete, 'place_changed', function () {
-//    var place = autocomplete.getPlace();
-//    var lat = place.geometry.location.lat();
-//    var long = place.geometry.location.lng();
-//    alert(lat + ", " + long);
-//
-//});
             // Bind the map's bounds (viewport) property to the autocomplete object,
             // so that the autocomplete requests use the current map bounds for the
             // bounds option in the request.
@@ -1742,82 +1719,21 @@ $(input).on('input',function(){
                
             });
             autocomplete.addListener('place_changed', function () {
-                var place = autocomplete.getPlace();
-                document.getElementById('place-name').value = place.name;
-                document.getElementById('latitude').value = place.geometry.location.lat();
-                document.getElementById('longitude').value = place.geometry.location.lng();
-//            alert("This function is working!");
-//            alert(place.name);
-//                document.getElementById('city').value = place.address_components[2].long_name;
-                map.addListener('click', function (e) {
-                        // if the previousMarker exists, remove it
-                        if (marker)
-                            marker.setMap(null);
-                        latLng = e.latLng;
-                        var latitude = e.latLng.lat();
-                        var longitude = e.latLng.lng();
-                        $('#latitude').val(latitude);
-                        $('#longitude').val(longitude);
-                        //image = clientURL + "/common/images/markers/red.png";
-
-                        marker = new google.maps.Marker({
-                            position: latLng,
-                            map: map
-                        });
-                    }
-
-                );
-                infowindow.close();
-                marker.setVisible(false);
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    // User entered the name of a Place that was not suggested and
-                    // pressed the Enter key, or the Place Details request failed.
-                    window.alert("No details available for input: '" + place.name + "'");
-                    return;
-                }
-
-                // If the place has a geometry, then present it on a map.
-                if (place.geometry.viewport) {
-                    map.fitBounds(place.geometry.viewport);
-                } else {
-                    map.setCenter(place.geometry.location);
-                    map.setZoom(17); // Why 17? Because it looks good.
-                }
+                 var place = autocomplete.getPlace();
+                if (marker && marker.setMap)
+                    marker.setMap(null);
+                $('#latitude').val( place.geometry.location.lat());
+                $('#longitude').val(place.geometry.location.lng());
+                marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    animation: google.maps.Animation.BOUNCE,
+                    map: map
+                });
                 marker.setPosition(place.geometry.location);
-                marker.setVisible(true);
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                        (place.address_components[0] && place.address_components[0].short_name || ''),
-                        (place.address_components[1] && place.address_components[1].short_name || ''),
-                        (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
-
-                infowindowContent.children['place-icon'].src = place.icon;
-                infowindowContent.children['place-name'].textContent = place.name;
-                infowindowContent.children['place-address'].textContent = address;
-                var addListener = infowindow.open(map, marker);
+                map.setCenter(place.geometry.location);
+                if (place.geometry.viewport)
+                    map.fitBounds(place.geometry.viewport);
             });
-            // Sets a listener on a radio button to change the filter type on Places
-            // Autocomplete.
-            function setupClickListener(id, types) {
-                var radioButton = document.getElementById(id);
-                radioButton.addEventListener('click', function () {
-                    autocomplete.setTypes(types);
-                });
-            }
-
-            setupClickListener('changetype-all', []);
-            setupClickListener('changetype-address', ['address']);
-            setupClickListener('changetype-establishment', ['establishment']);
-            setupClickListener('changetype-geocode', ['geocode']);
-            document.getElementById('use-strict-bounds')
-                .addEventListener('click', function () {
-                    console.log('Checkbox clicked! New state=' + this.checked);
-                    autocomplete.setOptions({strictBounds: this.checked});
-                });
         }
     </script>     
 
@@ -1973,30 +1889,6 @@ $(input).on('input',function(){
 //                $('#address_error').removeClass("hide");
 //            }
 
-//            if ( address != '') {
-//
-//                $("#headtwo").removeClass("active");
-//                $("#headthree").addClass("active");
-////                $("#blockthree").removeClass("hide");
-//                $("#blockthree").removeClass("active");
-////                $("#blocktwo").addClass("hide");
-//                $("#blocktwo").addClass("active");
-//                if ($('input[name=type]:checked').val() == 'projects') {
-//                    $('#projects_size').removeClass("hide");
-//                    $('#homeandcommercial').addClass("hide");
-//                    $('#project_div').addClass("hide");
-//                } else {
-//                    $('#project_div').removeClass("hide");
-//                    $('#homeandcommercial').removeClass("hide");
-//                    $('#projects_size').addClass("hide");
-//                }
-//            }
-
-//    button 3
-//            var image = $("#image").val();
-//            if (image == '') {
-//                $('#image_error').removeClass("hide");
-//            }
             var property_title = $("#property_title").val();
             if (property_title == '') {
                 $('#title_error').removeClass("hide");
@@ -2018,64 +1910,8 @@ $(input).on('input',function(){
                 $("#Label").focus();
                 $('#Label_error').removeClass("hide");
             }
-
-//            var ConstructedArea = $("#ConstructedArea").val();
-//            if (ConstructedArea == '') {
-//                $("#ConstructedArea").focus();
-//                $('#ConstructedArea_error').removeClass("hide");
-//            }
-//            var CAarea_unit = $("#CAarea_unit").val();
-//            if (CAarea_unit == '') {
-//                $("#CAarea_unit").focus();
-//                $('#CAarea_unit_error').removeClass("hide");
-//            }
-//            var OwnerShipStatus = $("#OwnerShipStatus").val();
-//            if (OwnerShipStatus == '') {
-//                $("#OwnerShipStatus").focus();
-//                $('#OwnerShipStatus_error').removeClass("hide");
-//            }
-//            var ConstructionYear = $("#ConstructionYear").val();
-//            if (ConstructionYear == '') {
-//                $("#ConstructionYear").focus();
-//                $('#ConstructionYear_error').removeClass("hide");
-//            }
-//            var OpenArea = $("#OpenArea").val();
-//            if (OpenArea == '') {
-//                $("#OpenArea").focus();
-//                $('#OpenArea_error').removeClass("hide");
-//            }
-//            var OAarea_unit = $("#OAarea_unit").val();
-//            if (OAarea_unit == '') {
-//                $("#OAarea_unit").focus();
-//                $('#OAarea_unit_error').removeClass("hide");
-//            }
-
             if ($('input[name=type]:checked').val() == 'projects')
             {
-//                                var title = $("#title").val();
-//                                if (title == '') {
-//                                    $('#title_error').removeClass("hide");
-//                                }
-//                                var property_type = $("#property_type").val();
-//                                if (property_type == '') {
-//                                    $('#property_type_error').removeClass("hide");
-//                                }
-//                                var price = $("#price").val();
-//                                if (price == '') {
-//                                    $('#price_error').removeClass("hide");
-//                                }
-//                                var beds = $("#beds").val();
-//                                if (beds == '') {
-//                                    $('#beds_error').removeClass("hide");
-//                                }
-//                                var bath = $("#bath").val();
-//                                if (bath == '') {
-//                                    $('#bath_error').removeClass("hide");
-//                                }
-//                                var property_size = $("#property_size").val();
-//                                if (property_size == '') {
-//                                    $('#property_size').removeClass("hide");
-//                                }
                 var area = $("#area").val();
                 if (area == '') {
                     $('#area_error').addClass("hide");
@@ -2090,36 +1926,6 @@ $(input).on('input',function(){
                     $('#Label_error').addClass("hide");
                 }
 
-//                var ConstructedArea = $("#ConstructedArea").val();
-//                if (ConstructedArea == '') {
-//                    $("#ConstructedArea").focus();
-//                    $('#ConstructedArea_error').addClass("hide");
-//                }
-//                var CAarea_unit = $("#CAarea_unit").val();
-//                if (CAarea_unit == '') {
-//                    $("#CAarea_unit").focus();
-//                    $('#CAarea_unit_error').addClass("hide");
-//                }
-//                var OwnerShipStatus = $("#OwnerShipStatus").val();
-//                if (OwnerShipStatus == '') {
-//                    $("#OwnerShipStatus").focus();
-//                    $('#OwnerShipStatus_error').addClass("hide");
-//                }
-//                var ConstructionYear = $("#ConstructionYear").val();
-//                if (ConstructionYear == '') {
-//                    $("#ConstructionYear").focus();
-//                    $('#ConstructionYear_error').addClass("hide");
-//                }
-//                var OpenArea = $("#OpenArea").val();
-//                if (OpenArea == '') {
-//                    $("#OpenArea").focus();
-//                    $('#OpenArea_error').addClass("hide");
-//                }
-//                var OAarea_unit = $("#OAarea_unit").val();
-//                if (OAarea_unit == '') {
-//                    $("#OAarea_unit").focus();
-//                    $('#OAarea_unit_error').addClass("hide");
-//                }
                 if (area != '' && area_unit != '' && property_title != '' && description != '')
                 {
                     $("#headthree").removeClass("active");
@@ -2146,8 +1952,6 @@ $(input).on('input',function(){
 //                if (width == '') {
 //                    $('#width_error').removeClass("hide");
 //                }
-
-
 
                 if (subtype == 'School / College' ||
                         subtype == 'Guest House/Banquet Hall' ||
@@ -2213,31 +2017,6 @@ $(input).on('input',function(){
             }
 
         });
-
-//        $("#submit").click(function ()
-//        {
-//
-//            $("#headfour").removeClass("active");
-//            $("#headfive").addClass("active");
-////            $("#blockfour").addClass("hide");
-//            $("#blockfour").addClass("active");
-////            $("#blockfive").removeClass("hide");
-//            $("#blockfive").removeClass("active");
-//            initMap();
-//
-//        });
-//
-//
-//
-//        $(function () {
-//            $("input#files[type='file']").change(function () {
-//                var $fileUpload = $("input#files[type='file']");
-//                if (parseInt($fileUpload.get(0).files.length) > 5) {
-//                    alert("You can only upload a maximum of 5 files");
-//                    return false;
-//                }
-//            });
-//        });
 
 
 

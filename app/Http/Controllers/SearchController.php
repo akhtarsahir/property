@@ -269,7 +269,7 @@ class SearchController extends Controller {
         }
         //-----if only  Land area(area_unit) is selected           
         elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
-            echo 'Land area(area_unit)';
+//            echo 'Land area(area_unit)';
             $keyword = Input::get('area_unit');
             $properties = $this->PropertyModel
                     ->where([
@@ -291,7 +291,7 @@ class SearchController extends Controller {
         //-----if two   Land area, area_from  is selected           
         elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') != '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //           echo 'area_unit from';    
-            $keyword = Input::get('area_from') . " to " . Input::get('area_unit');
+            $keyword = Input::get('area_from') . "" . Input::get('area_unit');
             $properties = $this->PropertyModel
                     ->where([
                         ['area_unit', '=', Input::get('area_unit')],
@@ -313,7 +313,7 @@ class SearchController extends Controller {
         //-----if two  Land area, area_to is selected           
         elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') == '' && Input::get('area_to') != '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //           echo 'area_unit to';    
-            $keyword = Input::get('area_to') . " to " . Input::get('area_unit');
+            $keyword = Input::get('area_to') . "" . Input::get('area_unit');
             $properties = $this->PropertyModel
                     ->where([
                         ['area_unit', '=', Input::get('area_unit')],
@@ -335,7 +335,7 @@ class SearchController extends Controller {
         //-----if two   Land area, area_from, area_to  is selected           
         elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') != '' && Input::get('area_from') != '' && Input::get('area_to') != '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
 //           echo 'area_unit from and to ';    
-            $keyword = Input::get('area_from') . " to " . Input::get('area_to') . " " . Input::get('area_unit');
+            $keyword = Input::get('area_from') . " to " . Input::get('area_to') . "" . Input::get('area_unit');
             $area_from = Input::get('area_from');
             $area_to = Input::get('area_to');
 //            echo $area_from .'='.$area_to;
