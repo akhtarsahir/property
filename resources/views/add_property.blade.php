@@ -466,7 +466,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12" >
+                            <div class="col-sm-12" style="display:none;">
                                 <div class="form-group">
                                     <div class="col-sm-2">
                                         <label for="property-price" class="bold-class">Longitude</label>
@@ -1112,7 +1112,7 @@
                                        <div class="col-sm-2 ">
                                            <label for="property-price-before" class="bold-class">Property Expiry_Date</label>
                                     <select class="selectpicker" id="propertexpire" name="propertexpire" data-live-search="false" data-live-search-style="begins">
-                                        <option value="1"> One Months</option>
+                                        <option value="1"> One Month</option>
                                         <option value="2"> Two Months</option>
                                         <option value="3"> Three Months</option>
                                         <option value="4"> Four Months</option>

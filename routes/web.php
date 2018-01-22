@@ -265,6 +265,11 @@ Route::get('all-properties', ['as' => 'property','uses' => 'PropertiesController
 // City property rout 
 Route::get('all', ['as' => 'property','uses' => 'PropertiesController@allcity_property']);
 Route::get('all/{city}', ['as' => 'property','uses' => 'PropertiesController@allcity_property']);
+//city listing
+Route::get('citylist','CityController@citylisting');
+Route::get('citysubaddress/{name}','CityController@citysubaddress');
+Route::get('/addresscityname/{addressname}','CityController@addresscityname');
+
 
 
 
