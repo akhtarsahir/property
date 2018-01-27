@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+@include('layouts.header')
     <!--start section page body-->
     <section id="section-body">
         <div class="container">

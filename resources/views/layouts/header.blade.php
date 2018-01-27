@@ -237,7 +237,7 @@
                     </li>
 
                     <li>
-                        <a href="/all">City/Location</a>
+                        <a href="{{url("citylist")}}">City/Location</a>
                      <ul class="sub-menu">
                          <li><a href="/all">All Pakistan</a></li>
                          @foreach($cities as $city)

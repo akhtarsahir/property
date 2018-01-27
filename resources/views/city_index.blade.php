@@ -1,13 +1,14 @@
 @extends('layouts/app')
 
- 
- 
 <!--page level css -->
 @section('pagecss')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-
+      #scroll {
+   height: 300px;
+   overflow-y: scroll;
+ }
 
     .a-image {
         opacity: 1;
@@ -40,10 +41,12 @@
 
 @section('content')
 <!--start advanced search section-->
-    @include('layouts.header')
-    <!--end advanced search section -->
+@include('layouts.header')
+<!--end advanced search section -->
+
 <!--start section page body-->
 <section id="section-body-inner">
+    
     <!--start Premium carousel module -->
     <div id="carousel-module-4" class="houzez-module caption-above carousel-module"style="padding:0px;">
         <div class="container">
@@ -65,7 +68,7 @@
                     <div id="properties-carousel-4" class="carousel slide-animated">
                         @foreach($Projects as $property)
 
-                        <?php $image = '355x240' . $property->image0; ?>
+<?php $image = '355x240' . $property->image0; ?>
                         <div class="item">
                             <div class="figure-block">
                                 <figure class="item-thumb">
@@ -155,7 +158,7 @@
                     <h2>Featured Properties For {{$value}}</h2>
                     <div class="col-md-12 col-sm-12"style="padding:0px !important">
                         @foreach($Saleproperties as $property)
-                        <?php $image = '385x258' . $property->image0; ?>
+<?php $image = '385x258' . $property->image0; ?>
 
                         <div class="col-md-2 col-sm-2" >
                             <blockquote style="margin: 0px -21px 20px -14px; padding: 0px !important; border-left: 5px solid #f6f6f6" class="abc">
@@ -215,7 +218,7 @@
                     <!--</div>--> 
                     <div class="col-md-12 col-sm-12"style="padding:0px !important">
                         @foreach($leatest_Saleproperties as $property)
-                        <?php $image = '385x258' . $property->image0; ?>
+<?php $image = '385x258' . $property->image0; ?>
 
                         <div class="col-md-2 col-sm-2" >
                             <blockquote style="margin: 0px -14px 20px -21px; padding: 0px !important;border-left: 5px solid #f6f6f6">
@@ -263,6 +266,36 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="detail-bar">
+                    <div class="detail-features detail-block" id="scroll">
+                        <div class="detail-title">
+                            <h2 class="title-left">All Address Of {{$value}}</h2>
+                        </div>
+                        <ul class="list-four-col list-features">
+                            @foreach($duplicates as $duplicates)
+                            <?php
+//                                $duplicates = DB::table('property')
+//    ->select('address', 'city')
+//    ->where('address', $duplicates->address,DB::raw('COUNT(*) as `count`'))
+//    ->groupBy('address', 'city')
+//    ->havingRaw('COUNT(*) > 1')
+//    ->get();
+//    echo $duplicates;exit();
+                            $query = DB::table('property')->where('address', $duplicates->address)->where('city', $duplicates->city)->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->count();
+// $id = DB::table('property')->where('city', $name)->where('address', $data->address)->groupBy('address')->count(); echo $id;
+                            ?>
+                            <li><a href="/subaddresscityname/{{$duplicates->address }}"><i class="fa fa-check"></i>{!! str_limit("$duplicates->address", 22) !!}({{$query}})</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 <!--end agents module-->
 @endsection
@@ -272,6 +305,12 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
+    
+    $(function() {
+  var wtf    = $('#scroll');
+  var height = wtf[0].scrollHeight;
+  wtf.scrollTop(height);
+});
 </script>
 
 @endsection

@@ -272,4 +272,175 @@ class PropertiesController extends Controller {
   
            
     }
+    
+     /*
+     * city page resuts in rent sale and agents citywise
+     * Get All city Rent Property
+     * 
+     */
+
+    public function city_rent_property() {
+        $url_value = \Request::segment(2);
+        $value = \Request::segment(3);
+        if (empty($url_value)) {
+            $properties = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '=', '1')
+                    ->where('purpose', '=', 'rent')
+//                    ->orderBy('number', 'desc')
+                    ->orderBy('featured_category', 'desc')
+                    ->paginate(6);
+            $total_result = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '1')
+                    ->where('purpose', '=', 'rent')
+                    ->count();
+        } else {
+            $subtype = $this->subtype[$url_value];
+            $properties = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '=', '1')
+                    ->where('purpose', '=', 'rent')
+                    ->where('subtype', '=', $subtype)
+                    ->where('city', $value)
+//                    ->orderBy('number', 'desc')
+                    ->orderBy('featured_category', 'desc')
+                    ->paginate(6);
+            $total_result = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '1')
+                    ->where('purpose', '=', 'rent')
+                    ->where('subtype', '=', $subtype)
+                    ->where('city', $value)
+                    ->count();
+        }
+
+        $Agents = $this->user->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
+
+        $Allproperty = $this->PropertyModel->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->get();
+       $cities = $this->CityModel->get();
+        $SocialAcounts = $this->SocialAcounts->get();
+        $Adds = $this->Adds->where('status', '=', '1')->where('type', '=', 'Listing')->where('expiry_date', '>', date('Y-m-d H:i:s'))->get();
+        $featuremodelData = $this->FeatureModel->get();
+
+        return view('cityaddressproperty', ['value' =>$value,'url_value' =>$url_value,'total_result' => $total_result,'featuremodelData' => $featuremodelData, 'AllProperty' => $Allproperty, 'Social_account' => $SocialAcounts, 'properties' => $properties, 'Agents' => $Agents, 'cities' => $cities, 'Adds' => $Adds]);
+    }
+
+    /*
+     * Get All city sale Property
+     * */
+
+    public function city_sale_property() {
+        $url_value = \Request::segment(2);
+          $value = \Request::segment(3);
+         if (empty($url_value)) {
+            $properties = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '=', '1')
+                    ->where('purpose', '=', 'sell')
+//                    ->orderBy('number', 'desc')
+                    ->orderBy('featured_category', 'desc')
+                    ->paginate(6);
+            $total_result = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '1')
+                    ->where('purpose', '=', 'sell')
+                    ->count();
+        } else {
+            $subtype = $this->subtype[$url_value];
+            $properties = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '=', '1')
+                    ->where('purpose', '=', 'sell')
+                    ->where('subtype', '=', $subtype)
+                    ->where('city', $value)
+//                    ->orderBy('number', 'desc')
+                    ->orderBy('featured_category', 'desc')
+                    ->paginate(6);
+            $total_result = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '1')
+                    ->where('purpose', '=', 'sell')
+                    ->where('subtype', '=', $subtype)
+                    ->where('city', $value)
+                    ->count();
+        }
+        $Agents = $this->user->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
+
+        //dd($username);
+        $Allproperty = $this->PropertyModel->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->get();
+        $cities = $this->CityModel->get();
+        $SocialAcounts = $this->SocialAcounts->get();
+        $Adds = $this->Adds->where('status', '=', '1')->where('type', '=', 'Listing')->where('expiry_date', '>', date('Y-m-d H:i:s'))->get();
+        $featuremodelData = $this->FeatureModel->get();
+
+        return view('cityaddressproperty', ['value' =>$value,'url_value' =>$url_value,'total_result' => $total_result, 'featuremodelData' => $featuremodelData, 'AllProperty' => $Allproperty, 'Social_account' => $SocialAcounts, 'properties' => $properties, 'Agents' => $Agents, 'cities' => $cities, 'Adds' => $Adds]);
+    }
+    
+     /*
+     * city page resuts in rent sale and agents citywise
+     * Get All city Rent Property
+     * 
+     */
+
+    public function citysingle_rent_property() {
+          $url_value = '';
+        $value = \Request::segment(2);
+            $properties = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '=', '1')
+                    ->where('purpose', '=', 'rent')
+                    ->where('city', $value)
+//                    ->orderBy('number', 'desc')
+                    ->orderBy('featured_category', 'desc')
+                    ->paginate(6);
+            $total_result = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '1')
+                    ->where('purpose', '=', 'rent')
+                    ->where('city', $value)
+                    ->count();
+        $Agents = $this->user->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
+
+        $Allproperty = $this->PropertyModel->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->get();
+       $cities = $this->CityModel->get();
+        $SocialAcounts = $this->SocialAcounts->get();
+        $Adds = $this->Adds->where('status', '=', '1')->where('type', '=', 'Listing')->where('expiry_date', '>', date('Y-m-d H:i:s'))->get();
+        $featuremodelData = $this->FeatureModel->get();
+
+        return view('cityaddressproperty', ['value' =>$value,'url_value' =>$url_value,'total_result' => $total_result,'featuremodelData' => $featuremodelData, 'AllProperty' => $Allproperty, 'Social_account' => $SocialAcounts, 'properties' => $properties, 'Agents' => $Agents, 'cities' => $cities, 'Adds' => $Adds]);
+    }
+
+    /*
+     * Get All city sale Property
+     * */
+
+    public function citysingle_sale_property() {
+         $url_value = '';
+          $value = \Request::segment(2);
+            $properties = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '=', '1')
+                    ->where('purpose', '=', 'sell')
+                    ->where('city', $value)
+//                    ->orderBy('number', 'desc')
+                    ->orderBy('featured_category', 'desc')
+                    ->paginate(6);
+            $total_result = $this->PropertyModel
+                    ->where('propertexpire', '>', date("Y-m-d"))
+                    ->where('status', '1')
+                    ->where('purpose', '=', 'sell')
+                    ->where('city', $value)
+                    ->count();
+        $Agents = $this->user->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
+
+        //dd($username);
+        $Allproperty = $this->PropertyModel->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->get();
+        $cities = $this->CityModel->get();
+        $SocialAcounts = $this->SocialAcounts->get();
+        $Adds = $this->Adds->where('status', '=', '1')->where('type', '=', 'Listing')->where('expiry_date', '>', date('Y-m-d H:i:s'))->get();
+        $featuremodelData = $this->FeatureModel->get();
+
+        return view('cityaddressproperty', ['value' =>$value,'url_value' =>$url_value,'total_result' => $total_result, 'featuremodelData' => $featuremodelData, 'AllProperty' => $Allproperty, 'Social_account' => $SocialAcounts, 'properties' => $properties, 'Agents' => $Agents, 'cities' => $cities, 'Adds' => $Adds]);
+    }
 }

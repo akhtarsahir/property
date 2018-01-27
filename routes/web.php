@@ -42,6 +42,7 @@ Route::post('detail-property/{id}', ['as' => 'Property','uses' => 'Contactusprop
 //Property Agent Detail Routes
 //Route::get('property-agent-detail/{id}/{title}','AgentController@agent_detail');
 Route::get('agent_list','AgentController@agent_list');
+Route::get('city_agent_list/{city}','AgentController@city_agent_list');
 
 
 
@@ -269,9 +270,12 @@ Route::get('all/{city}', ['as' => 'property','uses' => 'PropertiesController@all
 Route::get('citylist','CityController@citylisting');
 Route::get('citysubaddress/{name}','CityController@citysubaddress');
 Route::get('/addresscityname/{addressname}','CityController@addresscityname');
-
-
-
+Route::get('/subaddresscityname/{addressname}','AgentController@subaddresscityname');
+// city waise sale and rent routes
+Route::get('city-sale-properties/{city}', ['as' => 'property','uses' => 'PropertiesController@citysingle_sale_property']);
+Route::get('city-sale-properties/{subtype}/{city}', ['as' => 'property','uses' => 'PropertiesController@city_sale_property']);
+Route::get('city-rent-properties/{city}', ['as' => 'property','uses' => 'PropertiesController@citysingle_rent_property']);
+Route::get('city-rent-properties/{subtype}/{city}', ['as' => 'property','uses' => 'PropertiesController@city_rent_property']);
 
 Route::get('/add_property', ['as' => 'Property','uses' => 'PropertyController@index'])->name('add_property');
 Route::post('/add_property', ['as' => 'Property','uses' => 'PropertyController@store'  ]);

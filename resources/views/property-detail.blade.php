@@ -150,7 +150,6 @@ img.hover-shadow {
 }
 </style>
 <!--start advanced search section-->
-<!--@include('layouts.advance_search')-->
 <!-- TEST SLIDER -->
 <div class="detail-top detail-top-grid no-margin">
     <div class="container">

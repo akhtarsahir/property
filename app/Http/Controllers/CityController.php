@@ -56,39 +56,39 @@ class CityController extends Controller {
         $featuremodelData = $this->FeatureModel->get();
 //           echo $name;
 //        $data = $this->CitySubAddresModel->where('cityname', $name)->get();
-        $data = $this->PropertyModel->where('city', $name)->get();
-       $today = date("Y-m-d");
-//       echo $today;
-//       echo $name;
-        $duplicates = DB::table('property')
-    ->select('city','address', DB::raw('COUNT(*) as `count`'))
-    ->where('city', $name)
-//    ->where('propertexpire', $today)
-//    ->where('status', '1')
-    ->groupBy('city','address')
-    ->havingRaw('COUNT(*) > 1')
-    ->get();
-        $duplicates = collect($duplicates);
-//        dd($duplicates);
+//        $duplicates = $this->PropertyModel->where('city', $name)->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->get();
+      
+       $duplicates = DB::table('property')
+                ->where('propertexpire', '>', date("Y-m-d"))
+                ->where('status', '=', '1')
+                ->where('city', $name)
+                ->distinct()
+                ->get(['address','city']);
+//        $data = $this->PropertyModel
+//    ->select('city','address', DB::raw('COUNT(*) as `count`'))
+//    ->where('city', $name)
+////    ->where('propertexpire', $today)
+////    ->where('status', '1')
+//    ->groupBy('city','address')
+//    ->havingRaw('COUNT(*) > 1')
+//    ->get();
+////        $duplicates = $this->CitySubAddresModel->get();
+////        $duplicates = collect($duplicates);
+////        dd($results);
 //foreach ($duplicates as $duplicates){
 //echo $duplicates->address;
 //$id = DB::table('property')->where('city', $name)->where('address', $duplicates->address)->groupBy('address')->count();
 //exit();
 //}
-        return view('citysubaddress', ['duplicates' => $duplicates,'name' => $name, 'data' => $data, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
+        return view('citysubaddress', ['duplicates' => $duplicates,'name' => $name, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
     }
     public function addresscityname($addressname) {
-          $addressname = preg_replace('([^a-zA-Z0-9\+\?])', ' ', $addressname);
+//          $addressname = preg_replace('([^a-zA-Z0-9\+\?])', ' ', $addressname);
+//          echo $addressname;
 //        exit();
-        $url_value = $addressname;
-            $properties = $this->PropertyModel
-                    ->where('address', '=', $addressname)
-//                    ->orderBy('number', 'desc')
-//                    ->orderBy('featured_category', 'desc')
-                    ->paginate(6);
-            $total_result = $this->PropertyModel
-                     ->where('address', '=', $addressname)
-                    ->count();
+            $url_value = $addressname;
+            $properties = $this->PropertyModel->where('address', $addressname )->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->orderBy('featured_category', 'desc')->paginate(6);
+            $total_result = $this->PropertyModel ->where('address', $addressname)->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->count();
 
         $Agents = $this->User->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
 

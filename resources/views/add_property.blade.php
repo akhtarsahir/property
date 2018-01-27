@@ -455,7 +455,7 @@
  <!--<div id="map"></div>-->   
     </div>
       
-                                    </div>
+<!--                                    </div>
                                       <div class="col-sm-1 cityhide hide">
                                         <label for="property-price-before" class="bold-class">OR</label>
                                     </div>
@@ -463,7 +463,7 @@
                                             <div class="show-first-time">
                                         </div>
                                         <input type="text"  class="form-control" id="citysubaddress" name="citysubaddress" value="" placeholder="citysubaddress" style="display:none;" >
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class="col-sm-12" style="display:none;">
