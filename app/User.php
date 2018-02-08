@@ -33,7 +33,7 @@ class User extends Authenticatable
         'first_name', 'last_name', 'user_id' ,'DisplayName','email','password', 'BusinessType','remember_token',
         'cell_phone','city','package_type','type','image','status','package_id' , 'description','ceo_name','ceo_image','ceo_description',
         'company_name','company_logo','address','fax_phone','email2','company_phone','company_mobileNo','facebook','twitter','googleplus','linkedin',
-        'address','domainName'
+        'address','domainName','feature_status'
     ];
 
     /**

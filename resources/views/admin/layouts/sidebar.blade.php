@@ -133,6 +133,33 @@
                 </li>
 
                 @endif
+                <li class="">
+                    <a href="#">
+                        <i class="livicon" data-name="user-add" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true" id="livicon-434" ></i>
+                        <span class="title">Agents Featured</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="sub-menu collapse" aria-expanded="false" style="height: 1px;">
+                        <li id="active" class="active">
+                            <a href="/admin/view-all-agent">
+                                <i class="fa fa-angle-double-right"></i>
+                                All  Agents
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/view-featured-agent">
+                                <i class="fa fa-angle-double-right"></i>
+                                Feature Agent
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/agencyOrders_paymentList">
+                                <i class="fa fa-angle-double-right"></i>
+                                Agent Order PaymentList
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="{{ url('admin/propertyinfo') }}">
                         <i class="livicon" data-name="location" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true" ></i>

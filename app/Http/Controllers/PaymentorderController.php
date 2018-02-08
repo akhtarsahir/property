@@ -122,7 +122,7 @@ class PaymentorderController extends Controller
         $order = $this->PaymentOrderModel
               ->where('payementorder_id', $id)
               ->first();
-        $this->OrderModel->where('id', $id->order_id)->update(['payment_TID' => '0']);
+        $this->OrderModel->where('id', $order->order_id)->update(['payment_TID' => '0']);
         if ($this->PaymentOrderModel->delete_paymentorder($id) == true) {
             return redirect()->action('PaymentorderController@ViewOrders_paymentList');
         }

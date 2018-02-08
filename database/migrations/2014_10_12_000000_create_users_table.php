@@ -43,6 +43,7 @@ class CreateUsersTable extends Migration
             $table->integer('created_by')->unsigned()->nullable();
             $table->dateTime('last_login')->nullable();
             $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('feature_status')->nullable();
             $table->tinyInteger('permanent')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_logo')->nullable();

@@ -57,7 +57,7 @@ class IndexController extends Controller
     {
 
         $Adds  = $this->Adds->where('status', '=', '1')->where('type', '=', 'Front')->where('expiry_date', '>', date('Y-m-d H:i:s'))->get();
-        $agents  = $this->User->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
+        $agents  = $this->User->where('feature_status', '=', '1')->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
         $properties           = $this->PropertyModel->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc')->get();
         //dd($properties);
         $Saleproperties       = $this->PropertyModel->where('number', '=', '1')->where('featured_category', '=', '2')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('featured_category', 'desc')->get();

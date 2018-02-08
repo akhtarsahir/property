@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\SocialAcounts;
 use App\User;
 use App\PropertyModel;
@@ -12,6 +13,7 @@ use App\agentModel;
 use App\Adds;
 use App\FeatureModel;
 use App\AboutUs;
+use Auth;
 
 class AgentController extends Controller {
 
@@ -184,6 +186,8 @@ class AgentController extends Controller {
         }
     }
 
+//    All agency show in listing
+    
     public function agent_list() {
         $SocialAcounts = $this->SocialAcounts->get();
         $Agent = $this->User->where('BusinessType', '=', '2')->where('isActive', '=', '1')->paginate(4);
@@ -198,6 +202,9 @@ class AgentController extends Controller {
         //dd($SellProperty);
         return view('agent_list', ['featuremodelData' => $feature, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'Agents' => $Agent, 'RentProperty' => $RentProperty, 'SellProperty' => $SellProperty, 'AllProperty' => $AllProperty, 'cities' => $cities]);
     }
+    
+//    city vise agent list show 
+    
     public function city_agent_list($city) {
         $value =$city;
         $SocialAcounts = $this->SocialAcounts->get();
@@ -213,5 +220,6 @@ class AgentController extends Controller {
         //dd($SellProperty);
         return view('city_agentlist', ['value' =>$value,'featuremodelData' => $feature, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'Agents' => $Agent, 'RentProperty' => $RentProperty, 'SellProperty' => $SellProperty, 'AllProperty' => $AllProperty, 'cities' => $cities]);
     }
+    
 
 }

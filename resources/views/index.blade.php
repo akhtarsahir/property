@@ -254,160 +254,46 @@
                         </div>
                         @endforeach
                     </div><!-- end row -->
+
+        <!--start agents module-->
+        <div class=" module-title text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h2>Agency</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="agents-module" class="houzez-module agents-module">
+            <div class="container">
+                <div class="agents-blocks-main">
+                    <div class="row no-margin">
+
+                        @foreach($Agents as $agent)
+                            <div class="col-md-1">
+                                {{--<div class="agents-block">--}}
+                                <a href="//{{ $agent->DisplayName  }}.justdeal.pk/" class="view">
+                                    <div data-container="body"  tabindex="0" data-toggle="popover" data-placement="top" data-content="<h2> {{ $agent->first_name.' '.$agent->last_name }}</h2><img src='{{ asset('ProfileImage/'.'200x150_'.$agent->image )  }}'></div>">
+                                        <img src="{{ asset('ProfileImage/'.'71x71_'.$agent->image )  }}" alt="{{ $agent->first_name.' '.$agent->last_name }}" width="71" height="71" class="img-circle3">
+
+                                    </div>
+                                </a>
+                            </div>
+
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
                 </section>
 
             </div>
         </div>
     </div>
-    <!--start Feature On Home carousel module-->
-    <!--        <div id="carousel-module-6" class="houzez-module caption-bottom carousel-module">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="module-title-nav clearfix">
-                                <div>
-                                    <h2>Feature On Home</h2>
-                                </div>
-                                <div class="module-nav">
-                                    <button class="btn btn-sm btn-crl-6-prev">Prev</button>
-                                    <button class="btn btn-sm btn-crl-6-next">Next</button>
-                                    <a href="#" class="btn btn-carousel btn-sm">All</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div id="properties-carousel-6" class="carousel slide-animated">
-                                @foreach($Saleproperties as $property)
-        
-    <?php // $image = '355x240' . $property->image0; ?>
-                                <div class="item">
-                                    <div class="figure-block">
-                                        <figure class="item-thumb">
-                                            <div class="label-wrap label-left">
-                                                @if(!empty($property->number== '1'))
-                                                <span class="label label-success">Featured</span>
-                                                @endif
-                                                @if(!empty($property->purpose != ''))
-                                                <span class="label-status label label-default">For {{$property->purpose}}</span>
-                                                @endif
-                                            </div>
-                                            <a href="/property-detail/{{ $property->id  }}/{{ preg_replace('/\.\s|[^a-zA-Z\.\-0-9]+/', '-', $property->title)  }}" class="hover-effect">
-                                                <img src="{{ asset('propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}">
-                                            </a>
-                                            <div class="thumb-caption">
-                                                <div class="cap-price pull-left">$350,000</div>
-                                                @if($property->purpose == 'sell' && $property->price <> '')
-                                                <div class="cap-price pull-left">Rs {{ $property->price }}</div>
-                                                @elseif( $property->price <> '')
-                                                <div class="cap-price pull-left">Rs {{ $property->price }}/month</div>
-                                                @endif
-                                            </div>
-                                            <div class="detail-above detail">
-                                                <div class="fig-title">
-                                                    <h3>{!! str_limit("$property->title", 15) !!} <small  style="color: #5791ed;font-size: 15px;">{{ $property->city }}</small></h3>
-                                                </div>
-                                                <ul class="list-inline">
-                                                    @if(!empty($property->beds))   <li class="cap-price">{{$property->beds}} bd</li>@endif
-                                                    @if(!empty($property->beds))   <li>{{$property->beds}} bd</li>@endif
-                                                    @if(!empty($property->bathroom))   <li>{{$property->bathroom}} ba</li>@endif
-                                                    @if(!empty($property->area))   <li>{{ $property->area }}{{ $property->area_unit }}</li>@endif
-                                                </ul>
-        
-                                            </div>
-                                        </figure>
-                                        <div class="detail-bottom detail">
-                                            <div class="fig-title">
-                                                <h3>{!! str_limit("$property->title", 15) !!} <small  style="color: #5791ed;font-size: 15px;">{{ $property->city }}</small></h3>
-                                            </div>
-                                            <ul class="list-inline">
-                                                @if(!empty($property->beds)) <li>{{$property->beds}} bd</li>@endif
-                                                @if(!empty($property->bathroom)) <li>{{$property->bathroom}} ba</li>@endif
-                                                @if(!empty($property->area)) <li>{{ $property->area }}{{ $property->area_unit }}</li>@endif
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-    <!--end carousel module-->
-    <!--start carousel module feature latest sale-->
-    <!--    <div id="carousel-module-6" class=" caption-bottom carousel-module">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="module-title-nav clearfix" style="margin-bottom: 25px;">
-                            <div class="col-sm-6">
-                                <h2>Latest</h2>
-                            </div>
-                            <div class="col-sm-6 module-nav">
-                                <button class="btn btn-sm btn-crl-6-prev-sale">Prev</button>
-                                <button class="btn btn-sm btn-crl-6-next-sale">Next</button>
-                                <a href="#" class="btn btn-carousel btn-sm">All</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div id="properties-carouselsale-6" class="carousel slide-animated">
-                            @foreach($leatest_Saleproperties as $property)
-    <?php $image = '385x258' . $property->image0; ?>
-                            <div class="item">
-                                <div class="figure-block">
-                                    <figure class="item-thumb">
-                                        <div class="label-wrap label-left">
-                                            <span class="label label-success">Featured</span>
-                                            <span class="label-status label label-default">For Sale</span>
-                                        </div>
-                                        <a href="/property-detail/{{ $property->id  }}/{{ preg_replace('/\.\s|[^a-zA-Z\.\-0-9]+/', '-', $property->title)  }}" class="hover-effect">
-                                            <img src="{{ asset('propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}" width="194" height="143" >
-                                        </a>
-                                        <div class="thumb-caption">
-                                            <div class="cap-price pull-left">
-                                                @if($property->purpose == 'sell' && $property->price <> '')
-                                                Rs {{ $property->price }}
-                                                @elseif( $property->price <> '')
-                                                Rs {{ $property->price }}/month
-                                                @endif
     
-                                            </div>
-                                        </div>
-                                        <div class="detail-above detail">
-                                            <div class="fig-title">
-                                                <h3>{!! str_limit("$property->title", 15) !!} <small  style="color: #5791ed;font-size: 15px;">{{ $property->city }}</small></h3>
-                                            </div>
-                                            <ul class="list-inline">
-                                                @if(!empty($property->beds))   <li class="cap-price">{{$property->beds}} bd</li>@endif
-                                                @if(!empty($property->beds))   <li>{{$property->beds}} bd</li>@endif
-                                                @if(!empty($property->bathroom))   <li>{{$property->bathroom}} ba</li>@endif
-                                                @if(!empty($property->area))   <li>{{ $property->area }}{{ $property->area_unit }}</li>@endif
-                                            </ul>
-                                        </div>
-                                    </figure>
-    
-                                    <div class="detail-bottom detail">
-                                        <div class="fig-title">
-                                            <h3>{!! str_limit("$property->title", 15) !!} <small  style="color: #5791ed;font-size: 15px;">{{ $property->city }}</small></h3>
-                                        </div>
-                                        <ul class="list-inline">
-                                            @if(!empty($property->beds)) <li>{{$property->beds}} bd</li>@endif
-                                            @if(!empty($property->bathroom)) <li>{{$property->bathroom}} ba</li>@endif
-                                            @if(!empty($property->area)) <li>{{ $property->area }}{{ $property->area_unit }}</li>@endif
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-    <!--end carousel module latest Sale-->
-</section>
-<!--end agents module-->
 @endsection
 <!-- begining of page level js -->
 @section('pagejs')

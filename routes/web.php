@@ -165,8 +165,31 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::post('UpdateAgent', 'SignupController@UpdateAgent');
         Route::get('delete-agent/{id}', 'SignupController@delete_agent')->name('delete_agent');
         Route::get('edit-agent/{id}', 'SignupController@edit_agent')->name('edit_agent');
-
-
+        
+        // agent featured order route 
+         Route::get('view-all-agent',array('as' => 'Agency', 'uses' =>'AgencyController@view_agent_all'));
+         Route::get('view-featured-agent',array('as' => 'Agency', 'uses' =>'AgencyController@ViewOrders_List'));
+         Route::get('add-Orderfeature-Agent/{id}','AgencyController@add_Orderfeature_Agency')->name('add_Orderfeature_Agent');
+         Route::post('agency_FeatureOrderStore', ['as' => 'Order','uses' => 'AgencyController@agency_FeatureOrderStore']);
+         Route::get('thanku_agencyfeatured/{id}', ['as' => 'Order','uses' => 'AgencyController@thanku_agencyfeatured']);
+         Route::get('addfeature-agent/{id}','AgencyController@addfeature_agent')->name('addfeature_agent');
+         Route::get('rejectfeature-agent/{id}','AgencyController@rejectfeature_agent')->name('rejectfeature_agent');
+         Route::get('/agencyedit_order/{id}', ['as' => 'Order','uses' => 'AgencyController@edit_order']);
+         Route::post('agencyupdate_order', ['as' => 'Order','uses' => 'AgencyController@update_order']);
+         Route::get('/agencyorder_delete/{id}', ['as' => 'Order','uses' => 'AgencyController@delete_order']);
+  //agent feature Order Payment list Transfermation or cinfirmation ID property Feature 
+        Route::get('add_agencypaymentTID/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@add_agencypaymentTID']);
+        Route::post('add_agencypaymentTIDStore', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@paymentOrderTID_store']);
+        Route::post('agencyclickhere_store', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@clickhere_store']);
+        Route::get('agencyOrders_paymentList', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@ViewagencyOrders_paymentList']);
+        Route::get('agencysingle_paymentList/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@single_paymentList']);
+        Route::get('/agencypaymentTID_delete/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@delete_paymentTID']);
+//        Route::get('/agencyactivate_paymentTID/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@activate_paymentTID']);
+//        Route::get('/agencydeactivate_paymentTID/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@deactivate_paymentTID']);
+        Route::get('/agencyedit_paymentTID/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@edit_paymentTID']);
+        Route::post('agencyupdate_paymentTID', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@update_paymentTID']);
+        
+        
         Route::get('users', 'UserController@users');
         Route::get('view_user', 'UserController@view_user');
         Route::get('view_user_detail', 'UserController@view_user_detail');
