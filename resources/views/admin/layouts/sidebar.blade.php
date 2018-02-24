@@ -133,29 +133,30 @@
                 </li>
 
                 @endif
+                  @if( Auth::user()->BusinessType == 2)
                 <li class="">
                     <a href="#">
                         <i class="livicon" data-name="user-add" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true" id="livicon-434" ></i>
-                        <span class="title">Agents Featured</span>
+                        <span class="title">Agency Featured</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="sub-menu collapse" aria-expanded="false" style="height: 1px;">
                         <li id="active" class="active">
                             <a href="/admin/view-all-agent">
                                 <i class="fa fa-angle-double-right"></i>
-                                All  Agents
+                                Agency
                             </a>
                         </li>
                         <li>
                             <a href="/admin/view-featured-agent">
                                 <i class="fa fa-angle-double-right"></i>
-                                Feature Agent
+                                Feature Agency
                             </a>
                         </li>
                         <li>
                             <a href="/admin/agencyOrders_paymentList">
                                 <i class="fa fa-angle-double-right"></i>
-                                Agent Order PaymentList
+                                Agency Order Payment
                             </a>
                         </li>
                     </ul>
@@ -166,6 +167,7 @@
                         <span class="title">Inquire Property </span>
                     </a>
                 </li>
+                @endif
                 @if( Auth::user()->type == 'admin')
 
                 <li>

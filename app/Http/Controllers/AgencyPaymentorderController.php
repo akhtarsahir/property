@@ -48,7 +48,7 @@ class AgencyPaymentorderController extends Controller
         if (Auth::user()->type == 'admin') {
             $Total_orders = $this->AgencyPaymentorderModel->join('agencyfeatureOrder', 'agencypaymentorders.agencyorder_id','=', 'agencyfeatureOrder.id')->get();
         } else {
-            $Total_orders = $this->AgencyPaymentorderModel->where('created_by', '=', Auth::user()->id)->join('agencyfeatureOrder', 'agencypaymentorders.agencyorder_id','=', 'agencyfeatureOrder.id')->get();
+            $Total_orders = $this->AgencyPaymentorderModel->join('agencyfeatureOrder', 'agencypaymentorders.agencyorder_id','=', 'agencyfeatureOrder.id')->where('agencypaymentorders.user_id', '=', Auth::user()->id)->get();
         }
            $paymentmenthod = $this->PaymentMethodModel->get();
 //        $Total_orders = $this->PaymentOrderModel->get();

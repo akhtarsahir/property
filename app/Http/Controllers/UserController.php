@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\CityModel;
 use App\agentModel;
+use App\CompanySliderModel;
 
 class UserController extends Controller {
 
@@ -22,6 +23,7 @@ class UserController extends Controller {
         $this->user = new User;
         $this->CityModel = new CityModel ();
         $this->agentModel = new agentModel ();
+        $this->CompanySliderModel = new CompanySliderModel ();
     }
 
     public function users() {
@@ -47,7 +49,8 @@ class UserController extends Controller {
             'image' => Auth::user()->image
         );
         $city = $this->CityModel->get();
-        return view('admin.view_user', compact('data', 'city','agents'));
+        $sliderimage = $this->CompanySliderModel->where('user_id',Auth::user()->id)->get();
+        return view('admin.view_user', compact('data', 'city','agents','sliderimage'));
     }
 
     public function view_user_detail() {

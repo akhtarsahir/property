@@ -201,8 +201,10 @@ Route::group(array('prefix' => 'admin'), function ()
         //status approve and block admin user
         Route::get('mark_user/{action}/{id}', 'UserController@mark_status');
 
-
-
+// company slider route
+         Route::post('slidersave', 'CompanySliderController@save');
+         Route::get('companyslider_delete/{id}', 'CompanySliderController@companyslider_delete');
+         
         //Adds route
         Route::get('adds_form', 'AddsController@index');
         Route::post('adds_form', 'AddsController@store');

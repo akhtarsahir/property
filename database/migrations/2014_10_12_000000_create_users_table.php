@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->integer('zip')->nullable();
             $table->integer('package_id')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
 //            $table->string('businessName')->nullable();
-            $table->string('company_about')->nullable();
+            $table->text('company_about')->nullable();
             $table->string('payment_state')->nullable();
             $table->string('payment_zip')->nullable();
             $table->string('home_phone')->nullable();

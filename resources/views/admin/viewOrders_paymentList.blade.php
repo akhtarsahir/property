@@ -105,7 +105,6 @@
                                             <a href="/admin/edit_paymentTID/{{ $user['payementorder_id'] }}" ><i class="livicon" data-name="order-edit" data-size="25" data-loop="true" data-c="#428BCA" data-hc="#428BCA"  title="Order Edit" ></i></a>
                                           @if( Auth::user()->type == 'admin')
                                             <a href="/admin/paymentTID_delete/{{ $user['payementorder_id'] }}" ><i class="livicon" data-name="order-remove" data-size="25" data-loop="true" data-c="#f56954" data-hc="#f56954" title="Order Remove"></i></a>
-                                            
 <!--                                            @if($user['status'] == '0')
                                             <a href="/admin/activate_paymentTID/{{ $user['payementorder_id'] }}" > <button class="label label-info"><i class="fa fa-thumbs-up">Activate</i></button></a>
                                             <a href="/admin/deactivate_paymentTID/{{ $user['payementorder_id'] }}" > <button class="label label-info"><i class="fa fa-thumbs-down">Reject</i></button></a>
@@ -117,7 +116,8 @@
                                             @endif
                                             
                                             <a href="/admin/activate_paymentTID/{{ $user['payementorder_id'] }}" ><button class="label label-primary"> <i class="fa fa-thumbs-up">Activate</i></button></a>
-                                            @endif-->
+                                            -->
+                                           @endif
                                         </td>
                                     </tr>
                                     <?php

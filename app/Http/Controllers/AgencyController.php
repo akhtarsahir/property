@@ -95,8 +95,10 @@ class AgencyController extends Controller {
         if (Auth::user()->type == 'admin') {
             $agents = $this->AgencyfeatureOrderModel->select('users.*', 'agencyfeatureOrder.*', 'agencyfeatureOrder.id as agencyfeatureOrder_id ')->join('users', 'agencyfeatureOrder.user_id', '=', 'users.id')->get();
         } else {
-            $agents = $this->AgencyfeatureOrderModel->select('users.*', 'agencyfeatureOrder.*', 'agencyfeatureOrder.id as agencyfeatureOrder_id ')->join('users', 'agencyfeatureOrder.user_id', '=', 'users.id')->where('created_by', '=', Auth::user()->id)->get();
-        }
+            $agents = $this->AgencyfeatureOrderModel->select('users.*', 'agencyfeatureOrder.*', 'agencyfeatureOrder.id as agencyfeatureOrder_id ')->join('users', 'agencyfeatureOrder.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->get();
+//       echo $agents;
+//            exit();
+            }
         $paymentmenthod = $this->PaymentMethodModel->get();
         return view('admin.all_featured_agent', ['agents' => $agents, 'paymentmenthod' => $paymentmenthod]);
     }
@@ -107,7 +109,7 @@ class AgencyController extends Controller {
         if (Auth::user()->type == 'admin') {
             $agents = $this->User->where('BusinessType', 2)->where('isActive', '=', '1')->get();
         } else {
-            $agents = $this->User->where('BusinessType', 2)->where('isActive', '=', '1')->where('created_by', '=', Auth::user()->id)->get();
+            $agents = $this->User->where('BusinessType', 2)->where('isActive', '=', '1')->where('id', '=', Auth::user()->id)->get();
         }
         //dd($SellProperty);
         return view('admin/view_all_agents', ['agents' => $agents]);
@@ -190,7 +192,7 @@ class AgencyController extends Controller {
     //    auto no gernate
     public function orderID($order) {
 
-//        $AlreadeyExist = $this->OrderModel->where('order_id', '=', $order)->select('id')->exists();
+//      $AlreadeyExist = $this->OrderModel->where('order_id', '=', $order)->select('id')->exists();
         $AlreadeyExist = "";
 
         if ($AlreadeyExist == true) {

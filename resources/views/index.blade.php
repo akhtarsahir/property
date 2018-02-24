@@ -293,7 +293,7 @@
             </div>
         </div>
     </div>
-    
+ </section>   
 @endsection
 <!-- begining of page level js -->
 @section('pagejs')

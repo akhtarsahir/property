@@ -403,7 +403,7 @@ class PropertiesController extends Controller {
         $Agents = $this->user->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
 
         $Allproperty = $this->PropertyModel->where('propertexpire', '>', date("Y-m-d"))->where('status', '=', '1')->get();
-       $cities = $this->CityModel->get();
+        $cities = $this->CityModel->get();
         $SocialAcounts = $this->SocialAcounts->get();
         $Adds = $this->Adds->where('status', '=', '1')->where('type', '=', 'Listing')->where('expiry_date', '>', date('Y-m-d H:i:s'))->get();
         $featuremodelData = $this->FeatureModel->get();

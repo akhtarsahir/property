@@ -300,7 +300,7 @@ class User extends Authenticatable
 		    $DisplayName = null;
 	    }
 	    $this->where('id', Auth::user()->id)
-	         ->update(array(
+	         ->update([
                          'DisplayName'      => $DisplayName,
 		         'company_logo'     => $companylogo,
 		         'background_image' => $companybackground,
@@ -320,7 +320,7 @@ class User extends Authenticatable
 		         'company_about'    => $request->company_about,
                          'ceo_name'         => $request->ceo_name,
                          'ceo_description'  => $request->ceo_description
-	         ));
+	         ]);
 
         return true;
     }

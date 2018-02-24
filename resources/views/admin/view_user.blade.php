@@ -6,6 +6,10 @@
 <link href="{{asset('assets/vendors/x-editable/css/bootstrap-editable.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/css/pages/user_profile.css')}}" rel="stylesheet" type="text/css"/>
 <!--end of page level css-->
+<!--page level css -->
+<link href="{{asset('assets/vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/stylesheets/bootstrap-wysihtml5/core-b3.css')}}"  rel="stylesheet" media="screen"/>
+<link href="{{asset('assets/css/pages/editor.css')}}" rel="stylesheet" type="text/css"/>
+<!--end of page level css-->
 @endsection
 
 
@@ -60,16 +64,16 @@
                             <i class="livicon" data-name="edit" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
                             Update Company</a>
                     </li>
-                                                <li>
-                                                    <a href="#tab6" data-toggle="tab">
-                                                        <i class="livicon" data-name="edit" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
-                                                        Agents</a>
-                                                </li>
-                    <!--                            <li>
-                                                    <a href="#tab6" data-toggle="tab">
-                                                        <i class="livicon" data-name="edit" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
-                                                        CEO Detail</a>
-                                                </li>-->
+                    <li>
+                        <a href="#tab6" data-toggle="tab">
+                            <i class="livicon" data-name="edit" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
+                            Agents</a>
+                    </li>
+                    <li>
+                        <a href="#tab2" data-toggle="tab">
+                            <i class="livicon" data-name="edit" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
+                            Company Slider</a>
+                    </li>
                     @else
                     <li>
                         <a href="#tab5" data-toggle="tab">
@@ -92,6 +96,11 @@
                     @if(Session::has('success12'))
                     <div class="alert alert-success">
                         <p class="errors">{!! Session::get('success12') !!}</p>
+                    </div>
+                    @endif
+                    @if(Session::has('success13'))
+                    <div class="alert alert-danger">
+                        <p class="errors">{!! Session::get('success13') !!}</p>
                     </div>
                     @endif
 
@@ -216,6 +225,97 @@
                             </div>
                         </div>
                     </div>
+                    <div id="tab2" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-md-12 pd-top">
+                                <!-- BEGIN FORM WIZARD WITH VALIDATION -->
+                                <form class="form-wizard" method="POST" action="{{url('admin/slidersave')}}" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <input id="id" type="hidden" name="id" value="{{ Auth::user()->id }}">
+                                    &nbsp; &nbsp; &nbsp;<label>Create a slider please submit minimum 2images</label>
+                                    <br><br>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <label for="image_title">Image Title*</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <input value="" id="image_title" name="image_title" placeholder="Enter your image title"type="text" class="form-control required">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="image_link">Your Link*</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <input value="" id="image_link" name="image_link" type="text" placeholder=" Enter your image link" class="form-control required">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <label>Image</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <input type="file" placeholder="image" name="slider_image" value=""class="form-control">
+                                                    <span>Image Size 1170x400</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="col-md-9 col-md-offset-2">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </form>
+                                <!-- END FORM WIZARD WITH VALIDATION -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+
+                                            Company Slider Data
+                                        </h3>
+
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="users">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Link</th>
+                                                                <th>Images</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach($sliderimage as $slider)
+                                                            <tr>
+                                                                <td>{{$slider->image_title}}</td>
+                                                                <td><a href="{{$slider->image_link}}" target="_blank">{{$slider->image_link}}</a></td>
+                                                                <td>  <img  src="{{ asset('public/CompanySliderImage/1170x400_'.$slider->slider_image)}}" width="200px" height="90px"> </td>
+                                                                <td> <a href="/admin/companyslider_delete/{{ $slider->id }}" title="Remove"> <span class="glyphicon glyphicon-trash"></span></a></td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--                    <div id="tab2" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12 pd-top">
@@ -262,6 +362,7 @@
                                                 </div>
                                             </div>
                                         </div>-->
+
 
                     <div id="tab3" class="tab-pane fade">
                         <div class="row">
@@ -573,11 +674,31 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <label>Agency/Business Detail</label>
+                                                <label>Agency About us</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-10">
                                                 <div class="form-group">
-                                                    <textarea placeholder="Company About" style="height: 150px;" name="company_about" value=""class="form-control">{{Auth::user()->company_about}}</textarea>
+                                                    <!--<textarea placeholder="Company About" style="height: 150px;" name="company_about" value=""class="form-control">{{Auth::user()->company_about}}</textarea>-->
+
+                                                    <div class="row pd-15">
+                                                        <div class='col-lg-12'>
+                                                            <!-- /.box -->
+                                                            <div class='box well well-sm'>
+                                                                <div class='box-header'>
+                                                                    <h3 class='box-title text-info'>
+                                                                        <!--                            About Us
+                                                                                                    <small>Edit</small>-->
+                                                                    </h3>
+                                                                    <!-- tools box -->
+                                                                    <div class="pull-right box-tools"></div>
+                                                                    <!-- /. tools --> </div>
+                                                                <!-- /.box-header -->
+                                                                <div class='box-body pad'>
+                                                                    <textarea class="textarea editor-cls" placeholder="Place some text here Company About" value="" style="height:300px" id="company_about" name="company_about">{{Auth::user()->company_about}}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.col--> </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -727,145 +848,154 @@
                         </div>
                     </div>
                     <div id="tab6" class="tab-pane fade ">
-                         <div class="row">
-            <div class="panel panel-primary ">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                        Agents List
-                    </h4>
-                </div>
-                <br />
-                <div class="col-md-12">
-                    <a href="/admin/addagent">
-                        <input type="button" class="btn btn-primary pull-right" value="Add Agent">
-                    </a>
-                </div>
-                <br />
-                <br />
-
-                <div class="panel-body">
-                    <table class="table table-bordered " id="table">
-                        <thead>
-                            <tr class="filters">
-                                <th> Name</th>
-                                <th>Phone Number</th>
-                                <th>City</th>
-                                <th> Logo  </th>
-                                <th>Created At</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($agents as $data)
-                            <tr>
-                                <td>{{$data->name}}</td>
-                                <td>{{$data->number}}</td>
-                                <td>{{$data->city}}</td>
-                                <td><img src="<?php echo url('public/AgentImage') ?>/35x35_{{$data->logo}}"{{$data->logo}} ></td>
-
-                                <td>{{$data->created_at}}</td>
-                                <td>
-                                    <a href="{{ route('edit_agent', ['id' => $data->id ]) }}" >
-                                        <i class="livicon" data-name="pen" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" ></i>
-                                    </a>
-                                    |
-                                    <a href="#" data-toggle="modal" data-target="#delete_confirm">
-                                        <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <!-- Modal for showing delete confirmation -->
-                            <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title" id="user_delete_confirm_title">
-                                                Delete Agent
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure to delete this Agent? This operation is irreversible.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        <a href="{{ route('delete_agent', ['id' => $data->id ]) }}" type="button" class="btn btn-danger">Delete</a>
-                                        </div>
-                                    </div>
+                        <div class="row">
+                            <div class="panel panel-primary ">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                                        Agents List
+                                    </h4>
                                 </div>
-                            </div>
+                                <br />
+                                <div class="col-md-12">
+                                    <a href="/admin/addagent">
+                                        <input type="button" class="btn btn-primary pull-right" value="Add Agent">
+                                    </a>
+                                </div>
+                                <br />
+                                <br />
 
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <div class="panel-body">
+                                    <table class="table table-bordered " id="table">
+                                        <thead>
+                                            <tr class="filters">
+                                                <th> Name</th>
+                                                <th>Phone Number</th>
+                                                <th>City</th>
+                                                <th> Logo  </th>
+                                                <th>Created At</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($agents as $data)
+                                            <tr>
+                                                <td>{{$data->name}}</td>
+                                                <td>{{$data->number}}</td>
+                                                <td>{{$data->city}}</td>
+                                                <td><img src="<?php echo url('public/AgentImage') ?>/35x35_{{$data->logo}}"{{$data->logo}} ></td>
 
-            </div>
-        </div>
-        <!-- row--> 
-        </div>
-                    </div>
-                    <!--                        <div id="tab6" class="tab-pane fade ">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="panel">
-                                                                <div class="panel-heading">
-                                                                    <h3 class="panel-title">
-                    
-                                                                      CEO Image
-                                                                    </h3>
-                    
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="col-md-4">
-                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                            <div class="fileinput-new thumbnail img-file">
-                                                                                <img src="<?php echo url('public/ProfileImage') ?>/{{Auth::user()->ceo_image}}"></div>
-                                                                            <div class="fileinput-preview fileinput-exists thumbnail img-max"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="panel-body">
-                                                                            <div class="table-responsive">
-                                                                                <table class="table table-bordered table-striped" id="users">
-                                                                                    <tr>
-                                                                                        <td>CEO Name</td>
-                                                                                        <td>
-                                                                                            <a href="#" data-pk="1" class="editable" data-title="Edit User Name">{{Auth::user()->ceo_name}}</a>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>CEO Description</td>
-                                                                                        <td>
-                                                                                            {{Auth::user()->ceo_description}}
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </table>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <td>{{$data->created_at}}</td>
+                                                <td>
+                                                    <a href="{{ route('edit_agent', ['id' => $data->id ]) }}" >
+                                                        <i class="livicon" data-name="pen" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" ></i>
+                                                    </a>
+                                                    |
+                                                    <a href="#" data-toggle="modal" data-target="#delete_confirm">
+                                                        <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <!-- Modal for showing delete confirmation -->
+                                        <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h4 class="modal-title" id="user_delete_confirm_title">
+                                                            Delete Agent
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure to delete this Agent? This operation is irreversible.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        <a href="{{ route('delete_agent', ['id' => $data->id ]) }}" type="button" class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <!-- row--> 
+                        </div>
+                    </div>
+                    <!--                                            <div id="tab6" class="tab-pane fade ">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="panel">
+                                                                                    <div class="panel-heading">
+                                                                                        <h3 class="panel-title">
+                                        
+                                                                                          CEO Image
+                                                                                        </h3>
+                                        
+                                                                                    </div>
+                                                                                    <div class="panel-body">
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                <div class="fileinput-new thumbnail img-file">
+                                                                                                    <img src="<?php echo url('public/ProfileImage') ?>/{{Auth::user()->ceo_image}}"></div>
+                                                                                                <div class="fileinput-preview fileinput-exists thumbnail img-max"></div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-8">
+                                                                                            <div class="panel-body">
+                                                                                                <div class="table-responsive">
+                                                                                                    <table class="table table-bordered table-striped" id="users">
+                                                                                                        <tr>
+                                                                                                            <td>CEO Name</td>
+                                                                                                            <td>
+                                                                                                                <a href="#" data-pk="1" class="editable" data-title="Edit User Name">{{Auth::user()->ceo_name}}</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>CEO Description</td>
+                                                                                                            <td>
+                                                                                                                {{Auth::user()->ceo_description}}
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>-->
                 </div>
             </div>
         </div>
     </section>
-    <!-- content -->
+    <!-- content 
 </aside>
-<!-- right-side -->
+    <!-- right-side -->
 
 
-@endsection
+    @endsection
 
-@section('pagejs')
-<!-- begining of page level js -->
-<!-- Bootstrap WYSIHTML5 -->
-<script  src="{{asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendors/x-editable/jquery.mockjax.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendors/x-editable/bootstrap-editable.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/pages/user_profile.js')}}" type="text/javascript"></script>
-<!-- end of page level js -->
-@endsection
+    @section('pagejs')
+    <!-- begining of page level js -->
+    <!-- Bootstrap WYSIHTML5 -->
+    <script  src="{{asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js')}}" type="text/javascript"></script>
+    <script src="{{asset('vendors/x-editable/jquery.mockjax.js')}}" type="text/javascript"></script>
+    <script src="{{asset('vendors/x-editable/bootstrap-editable.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/pages/user_profile.js')}}" type="text/javascript"></script>
+    <!-- end of page level js -->
+
+    <!-- Bootstrap WYSIHTML5 -->
+    <script  src="{{asset('assets/vendors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+    <script  src="{{asset('assets/vendors/ckeditor/adapters/jquery.js')}}" type="text/javascript" ></script>
+    <script  src="{{asset('assets/vendors/tinymce/js/tinymce/tinymce.min.js')}}" type="text/javascript" ></script>
+    <script  src="{{asset('assets/vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/javascripts/bootstrap-wysihtml5/wysihtml5.js')}}" type="text/javascript"></script>
+    <script  src="{{asset('assets/vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/javascripts/bootstrap-wysihtml5/core-b3.js')}}" type="text/javascript"></script>
+    <script  src="{{asset('assets/js/pages/editor.js')}}" type="text/javascript"></script>
+    <!-- end of page level js -->
+    @endsection

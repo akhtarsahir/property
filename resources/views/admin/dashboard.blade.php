@@ -186,7 +186,40 @@
                         </div>
                     </div>
                 </div>
-
+                  @if( Auth::user()->BusinessType == 2 && Auth::user()->type != 'admin')
+                <div class="col-lg-3 col-sm-6 col-md-6 margin_10 animated fadeInDownBig">
+                    <!-- Trans label pie charts strats here-->
+                    <div class="goldbg no-radius">
+                        <div class="panel-body squarebox square_boxs">
+                            <div class="col-xs-12 pull-left nopadmar">
+                                <div class="row">
+                                    <div class="square_box col-xs-7 pull-left">
+                                        <span>Add Agency featured</span><br><br>
+                                        <div> 
+                                        @if(Auth::user()->feature_status == '')
+                                        <a href="{{ route('add_Orderfeature_Agent', ['id' => Auth::user()->id ]) }}">click here</a>
+                                        @elseif(Auth::user()->feature_status == '1')
+                                        <a href="/admin/view-featured-agent"><strong class="label label-success">Featured</strong></a>
+                                        @elseif(Auth::user()->feature_status == '2')
+                                        <a href="/admin/view-featured-agent"><strong class="label label-danger">Rejected</strong></a>
+                                         @elseif(Auth::user()->feature_status == '0')
+                                        <a href="{{ route('add_Orderfeature_Agent', ['id' => Auth::user()->id ]) }}">click here</a>
+                                        @endif
+                                        </div><br>
+                                    </div>
+                                    <i class="livicon pull-right" data-name="company" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <small class="stat-label"> Agency Name</small>
+                                        <h4 id="totalprojectsPropertyLastweek">{{Auth::user()->company_name}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  @endif
             </div>
             <!--/row-->
 

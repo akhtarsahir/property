@@ -117,7 +117,8 @@
                                             @endif
                                             
                                             <a href="/admin/activate_paymentTID/{{ $user['payementorder_id'] }}" ><button class="label label-primary"> <i class="fa fa-thumbs-up">Activate</i></button></a>
-                                            @endif-->
+                                            -->
+                                            @endif
                                         </td>
                                     </tr>
                                     <?php

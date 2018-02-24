@@ -29,13 +29,13 @@ class AgencyPaymentorderModel extends Model
      */
        public function store($request)
     {
-        $this->agencyorder_id          = $request->agencyorder_id;
-        $this->user_id       = $request->user_id;
-        $this->order_no    = $request->order_no;
-        $this->transferId    = $request->transferId;
-        $this->status            = '0';
-        $this->created_by        = Auth::user()->id;
-        $this->updated_by       = '0';
+        $this->agencyorder_id  = $request->agencyorder_id;
+        $this->user_id         = $request->user_id;
+        $this->order_no        = $request->order_no;
+        $this->transferId      = $request->transferId;
+        $this->status          = '0';
+        $this->created_by      = Auth::user()->id;
+        $this->updated_by      = '0';
    
         $this->save();
        
@@ -51,7 +51,7 @@ class AgencyPaymentorderModel extends Model
 
 
         $updatingData = [
-//            'agencypayementorder_id'           => $request->agencypayementorder_id,
+//          'agencypayementorder_id'           => $request->agencypayementorder_id,
             'agencyorder_id'           => $request->agencyorder_id,
             'user_id'        => $request->user_id,
             'order_no'     => $request->order_no,

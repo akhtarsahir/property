@@ -60,7 +60,9 @@
                                 <th>City</th>
                                 <th>Featured Agent</th>
                                 <th>Logo</th>
+                                 @if( Auth::user()->type != 'admin')
                                 <th>Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -76,11 +78,17 @@
                                             @endif
                                 </td>
                                 <td><img src="<?php echo url('ProfileImage') ?>/239x239_{{$data->image}}" width="50" height="50"></td>
+                               @if( Auth::user()->type != 'admin')
                                 <td>
+                                 @if($data->feature_status != '1')
                                     <a href="{{ route('add_Orderfeature_Agent', ['id' => $data->id ]) }}">
                                         <i class="livicon" data-name="user-add" data-size="25" data-loop="true" data-c="#333" data-hc="#333" title="Featured Agent"></i>
                                     </a>
+                                 @else
+                                <a href="#"><strong class="label label-success">Featured</strong></a>
+                                 @endif
                                 </td>
+                                 @endif
                             </tr>
                             @endforeach
                         </tbody>
