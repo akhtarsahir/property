@@ -118,9 +118,7 @@
 
             </div>
         </div>
-        <!-- row--> 
-        </div>
-    </section>
+        <!-- row--> </section>
 </aside>
 @endsection
 

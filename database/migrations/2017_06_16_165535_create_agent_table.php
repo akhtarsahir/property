@@ -18,7 +18,6 @@ class CreateAgentTable extends Migration
             $table->string('name');
             $table->string('number');
             $table->string('logo');
-            $table->string('city');
             $table->integer('user_id');
             $table->timestamps();
         });

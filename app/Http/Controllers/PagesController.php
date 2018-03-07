@@ -31,13 +31,6 @@ class PagesController extends Controller {
         return view('index');
     }
 
-
-    // pages controller
-    public function property_detail_tabs() {
-        $Social_account = $this->SocialAcounts->get();
-        return view('property_detail_tabs', compact('Social_account'));
-    }
-
     public function about_us() {
         $data = $this->AboutUs->where('key', 'aboutus')->get();
         $Social_account = $this->SocialAcounts->get();
@@ -326,9 +319,9 @@ class PagesController extends Controller {
         return view('property_detail_multi_properties');
     }
 
-//    public function property_detail_tabs() {
-//        return view('property_detail_tabs');
-//    }
+    public function property_detail_tabs() {
+        return view('property_detail_tabs');
+    }
 
     public function property_detail_tabs_vertical() {
         return view('property_detail_tabs_vertical');

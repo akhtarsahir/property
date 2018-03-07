@@ -77,7 +77,7 @@
                                                                             <img src="http://placehold.it/291x217" width="291" height="217" alt="Image">
                                                                         </a>-->
                                     <a href="/property-detail/{{ $property->id  }}/{{ preg_replace('/\.\s|[^a-zA-Z\.\-0-9]+/', '-', $property->title)  }}" class="hover-effect">
-                                        <img src="{{ asset('propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}"  width="291" height="217">
+                                        <img src="{{ asset('public/propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}"  width="291" height="217">
                                     </a>
                                     <ul class="actions">
                                         <li>
@@ -164,7 +164,7 @@
                                     @endif
                                 </div>
                                 <a href="/property-detail/{{ $property->id  }}/{{ preg_replace('/\.\s|[^a-zA-Z\.\-0-9]+/', '-', $property->title)  }}"class="a-image" >
-                                    <img src="{{ asset('propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}" width="385" height="258" >
+                                    <img src="{{ asset('public/propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}" width="385" height="258" >
                                 </a>
                                 <div class="thumb-caption">
                                     @if($property->purpose == 'sell' && $property->price <> '')
@@ -231,7 +231,7 @@
                                     @endif
                                 </div>
                                 <a href="/property-detail/{{ $property->id  }}/{{ preg_replace('/\.\s|[^a-zA-Z\.\-0-9]+/', '-', $property->title)  }}"class="a-image" >
-                                    <img src="{{ asset('propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}" width="385" height="258" >
+                                    <img src="{{ asset('public/propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}" width="385" height="258" >
                                 </a>
                                 <div class="thumb-caption">
                                     @if($property->purpose == 'sell' && $property->price <> '')
@@ -274,8 +274,8 @@
                             <div class="col-md-1">
                                 {{--<div class="agents-block">--}}
                                 <a href="//{{ $agent->DisplayName  }}.justdeal.pk/" class="view">
-                                    <div data-container="body"  tabindex="0" data-toggle="popover" data-placement="top" data-content="<h2> {{ $agent->first_name.' '.$agent->last_name }}</h2><img src='{{ asset('ProfileImage/'.'200x150_'.$agent->image )  }}'></div>">
-                                        <img src="{{ asset('ProfileImage/'.'71x71_'.$agent->image )  }}" alt="{{ $agent->first_name.' '.$agent->last_name }}" width="71" height="71" class="img-circle3">
+                                    <div data-container="body"  tabindex="0" data-toggle="popover" data-placement="top" data-content="<h2> {{ $agent->first_name.' '.$agent->last_name }}</h2><img src='{{ asset('public/ProfileImage/'.'200x150_'.$agent->image )  }}'></div>">
+                                        <img src="{{ asset('public/ProfileImage/'.'71x71_'.$agent->image )  }}" alt="{{ $agent->first_name.' '.$agent->last_name }}" width="71" height="71" class="img-circle3">
 
                                     </div>
                                 </a>
@@ -293,7 +293,7 @@
             </div>
         </div>
     </div>
- </section>   
+     </section>
 @endsection
 <!-- begining of page level js -->
 @section('pagejs')

@@ -192,7 +192,7 @@ class AgencyController extends Controller {
     //    auto no gernate
     public function orderID($order) {
 
-//      $AlreadeyExist = $this->OrderModel->where('order_id', '=', $order)->select('id')->exists();
+//        $AlreadeyExist = $this->OrderModel->where('order_id', '=', $order)->select('id')->exists();
         $AlreadeyExist = "";
 
         if ($AlreadeyExist == true) {

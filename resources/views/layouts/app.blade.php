@@ -1,13 +1,17 @@
+<?php $meta = DB::table('matatag')->where('id',1)->first(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Pakistan Property Real Estate</title>
+    <title>{{$meta->title}}</title>
     <!--Meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Sell Buy Rent Homes & Properties In Pakistan Real Estate justdeal">
-    <meta name="description" content=" justdeal -the leading property portal based in Pakistan - offering the highest levels of service to property buyers sellers landlords tenants alike and to real estate agents in Karachi Lahore Islamabad and all over Pakistan. We are providing quality property - commercial plots, lands and markets - villas - apartments - bungalows - home buying and villa rentals.">
-    <meta name="author" content="Favethemes">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="{{$meta->description}}" />
+    <meta name="keywords" content="{{$meta->keywords}}" />
+    <meta name="author" content="aamir77@gmail.com">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="3 days">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/images/favicons/apple-touch-icon.png')}}">
@@ -37,7 +41,12 @@
 
 </head>
 <body>
+<?php  $server = explode('.', Request::server('HTTP_HOST')); ?>
+@if($server[0] == 'justdeal')
+@if(\Request::path() != 'Search-Result')
 @include('layouts.header')
+@endif
+@endif
     @yield('content')
 
 
@@ -136,7 +145,6 @@
         }
     } );
 </script>
-
 <script>
     $( "#keywordsidebar" ).autocomplete({
         source: function( request, response ) {

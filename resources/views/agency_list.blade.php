@@ -1,6 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
-@include('layouts.header')
 <!--start advanced search section-->
 <section class="advanced-search advance-search-header">
     <div class="container">

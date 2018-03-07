@@ -226,6 +226,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{ url('admin/edit_metatag') }}">
+                        <i class="livicon" data-name="seo" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true" ></i>
+                        <span class="title">Meta Tagging</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#">
                         <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                         <span class="title">Packages</span>

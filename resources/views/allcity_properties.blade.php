@@ -76,7 +76,7 @@
                                                                                                     @endif
                                                                                                 </div>-->
                                                 <a href="/property-detail/{{ $property->id  }}/{{ preg_replace('/\.\s|[^a-zA-Z\.\-0-9]+/', '-', $property->title)  }}">
-                                                    <img src="{{ asset('propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}">
+                                                    <img src="{{ asset('public/propetyImages/'.$property->id.'/'.$image)  }}" alt="{{ $property->title }}">
                                                 </a>
                                                 <div class="thumb-caption clearfix">
                                                     <ul class="actions pull-right">
@@ -167,13 +167,13 @@
                                                 @if(!empty($Ag->DisplayName))
                                                 <br><br><br>
                                                 <a href="//{{ $Ag->DisplayName  }}.justdeal.pk/">
-                                                    <img src="{{ asset('CompanyImage/'.$Ag->company_logo )  }}" title="{{ $Ag->DisplayName  }}" class="media-object" style="display: inline-block !important; height: 74px !important; width:74px !important; left: 20px;" alt="image"  width="74" height="74" >
+                                                    <img src="{{ asset('public/CompanyImage/'.$Ag->company_logo )  }}" title="{{ $Ag->DisplayName  }}" class="media-object" style="display: inline-block !important; height: 74px !important; width:74px !important; left: 20px;" alt="image"  width="74" height="74" >
                                                 </a>
                                                 <h6 style="margin: 0 0 7px !important;font-size: 14px; text-align:center;"> {{ $Ag->company_name  }}</h6>
                                                 @else
                                                 <br><br><br>
                                                 <a href="">
-                                                    <img src="{{ asset('ProfileImage/74x74_'.$Ag->image )  }}" title="{{ $Ag->image  }}" class="media-object" style="display: inline-block !important;" alt="image" width="74" height="74">
+                                                    <img src="{{ asset('public/ProfileImage/74x74_'.$Ag->image )  }}" title="{{ $Ag->image  }}" class="media-object" style="display: inline-block !important;" alt="image" width="74" height="74">
                                                 </a>
                                                 <h6 style="margin: 0 0 7px !important;font-size: 14px;text-align:center;"> {{ $Ag->first_name.' '.$Ag->last_name }}</h6>
                                                 @endif

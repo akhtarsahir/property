@@ -9,7 +9,6 @@ use App\User;
 use App\PropertyModel;
 use App\SocialAcounts;
 use App\CityModel;
-use App\CitySubAddresModel;
 use Illuminate\Http\Response;
 use App\Adds;
 use App\FeatureModel;
@@ -28,7 +27,6 @@ class SearchController extends Controller {
         $this->CityModel = new CityModel();
         $this->Adds = new Adds();
         $this->FeatureModel = new FeatureModel();
-        $this->CitySubAddresModel = new CitySubAddresModel;
     }
 
     public function searchaddress(Request $request) {
@@ -104,7 +102,6 @@ class SearchController extends Controller {
 //            return view('search-result', ['value' => $value,'total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
 //        }
     }
-    
 
     /*
      * Search Form submit Data
@@ -133,7 +130,7 @@ class SearchController extends Controller {
             $total_property = $this->PropertyModel
                     ->where([['propertexpire', '>', date("Y-m-d")], ['status', '=', '1']])
                     ->count();
-            return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
+            return view('search-result', ['total_property' => $total_property, 'SearchProperty' => $properties, 'keyword' => $keyword, 'keyword' => $keyword, 'featuremodelData' => $featuremodelData, 'Adds' => $Adds, 'Social_account' => $SocialAcounts, 'AllProperty' => $otherProperty, 'Agents' => $Agents, 'cities' => $cities]);
         }
         //-----if only  price_to and price_from is selected           
         elseif (Input::get('keywordaddress') == '' && Input::get('keyword') == '' && Input::get('city') == 'All' && Input::get('purpose') == 'All' && Input::get('subtype') == 'All' && Input::get('area_unit') == '' && Input::get('area_from') == '' && Input::get('area_to') == '' && Input::get('price_from') != '' && Input::get('price_to') != '') {
@@ -347,7 +344,7 @@ class SearchController extends Controller {
                     ->whereBetween('area', [$area_from, $area_to])
                     ->where('propertexpire', '>', date("Y-m-d"))
                     ->where('status', '=', '1')
-                    ->orderBy('area', 'ASC')
+//                    ->orderBy('area', 'ASC')
                     ->paginate(10);
             $total_property = $this->PropertyModel
                     ->where('area_unit', '=', Input::get('area_unit'))

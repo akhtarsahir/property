@@ -150,6 +150,10 @@ img.hover-shadow {
 }
 </style>
 <!--start advanced search section-->
+<?php  $server = explode('.', Request::server('HTTP_HOST')); ?>
+@if($server[0] != 'justdeal')
+@include('layouts.header')
+@endif
 <!-- TEST SLIDER -->
 <div class="detail-top detail-top-grid no-margin">
     <div class="container">
@@ -922,7 +926,7 @@ img.hover-shadow {
                         <div class="item">
                             <div class="figure-block">
                                 <figure class="item-thumb"> 
-                                    @if(!empty($property->featured_category== '1'))
+                                     @if(!empty($property->featured_category== '1'))
                                     <span class="label-featured label label-primary" style="background-color: #005fcc;">Premium Ad</span>
                                     @elseif(!empty($property->featured_category== '2'))
                                     <span class="label-featured label label-success">Featured</span>
@@ -934,9 +938,9 @@ img.hover-shadow {
                                     @endif
                                     <div class="label-wrap label-right">
                                         <span class="label-status label label-default">For {{ $property->purpose }}</span>
-                                    @if(!empty($property->featured_category== '1'))
+                                       @if(!empty($property->featured_category== '1'))
                                         <span class="label label-danger">Hot Offer</span>
-                                     @endif
+                                         @endif
                                     </div>
                                     <a href="#" class="hover-effect">
                                         <img src="{{ asset('public/propetyImages/'.$image)  }}" alt="{{ $property->title }}">

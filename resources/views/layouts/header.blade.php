@@ -107,18 +107,24 @@
                 <div class="col-sm-12">
                     <div class="top-bar-left">
                         <ul class="top-drop-downs">
-                            <li class="btn-price-lang btn-price">
-                                <a href="{{ url('contact_us')}}" ><button class="btn " type="button"  style="font-size: 16px;">Contact Us</button></a>
+                            <!-- <li class="btn-price-lang btn-price">
+                               <a href="{{ url('contact_us')}}" style="color: white"><button class="btn" type="button" >Contact Us</button></a>
                             </li>
                             <li class="btn-price-lang btn-area">
                                <a href="{{ url('about_us')}}" style="color: white"><button class="btn" type="button"  >About Us</button></a>
-                            </li>
-                         <li class="btn-price-lang btn-lang">
-                                <button class="btn dropdown-toggle btn-" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="lang-dropdown">Language <i class="fa fa-sort"></i></button>
-                                <ul class="dropdown-menu" aria-labelledby="lang-dropdown">
-                                    <li><img src="images/lang-image.png" alt="img"> Eng</li>
-                                    <li><img src="images/lang-image.png" alt="img"> Ru</li>
-                                    <li><img src="images/lang-image.png" alt="img"> Er</li>
+                            </li> -->
+                            <?php $lahore = DB::table('users')->where('DisplayName', '=', 'lahore')->first();
+                                  $multan = DB::table('users')->where('DisplayName', '=', 'multan')->first();
+                                  $islamabad = DB::table('users')->where('DisplayName', '=', 'islamabad')->first();
+                                  $karachi = DB::table('users')->where('DisplayName', '=', 'karachi')->first();
+                            ?>
+                          <li class="btn-price-lang btn-lang">
+                                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="lang-dropdown" style="font-size: 16px;">City HomePage<i class="fa fa-sort-down"></i></button>
+                                <ul class="dropdown-menu" aria-labelledby="lang-dropdown" style="background-color:#fff">
+                                    <li>@if(!empty($lahore->DisplayName)) <a href="//{!! $lahore->DisplayName !!}.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333; font-size: 15px;">Lahore</a> @else <a href="#" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333; font-size: 15px;">Lahore</a>  @endif </li>
+                                    <li>@if(!empty($multan->DisplayName))<a href="//{!! $multan->DisplayName !!}.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333;font-size: 15px;">Multan</a> @else <a href="#" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333; font-size: 15px;">Multan</a> @endif </li>
+                                    <li>@if(!empty($islamabad->DisplayName))<a href="//{!! $islamabad->DisplayName !!}.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333;font-size: 15px;">Islamabad</a> @else <a href="#" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333; font-size: 15px;">Islamabad</a> @endif </li>
+                                    <li>@if(!empty($karachi->DisplayName))<a href="//{!! $karachi->DisplayName !!}.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333;font-size: 15px;">Karachi</a> @else <a href="#" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #333; font-size: 15px;">Karachi</a> @endif </li>
                                 </ul>
                             </li>
                         </ul>
@@ -161,26 +167,38 @@
             
 
                 <div class="logo">
+                    <?php  $server = explode('.', Request::server('HTTP_HOST'));   $Agent = DB::table('users')->where('DisplayName', '=', $server[0])->first(); ?>
+                @if($server[0] != 'justdeal')
+                        <a href="{{ Config::get('app.url') }}">
+                            @if(empty($Agent->company_logo))
+                                <img src="{{ asset('public/ProfileImage/90x90_'.$Agent->image )  }}" alt="{{ $Agent->first_name.' '.$Agent->last_name }}" style="width: 245px; height: 71px;" >
+                            @else
+                                <img src="{{ asset('public/CompanyImage/245x71_'.$Agent->company_logo )  }}" alt="{{ $Agent->first_name.' '.$Agent->last_name }}"  style="width: 245px; height: 71px;">
+                            @endif
+                        </a>
+                    @else
                         <a href="{{ Config::get('app.url') }}">
                           <!--   <img src="{{asset('assets/images/houzez-logo-color.png')}}" alt="logo"> -->
                             <?php $logo = DB::table('logosite')->first();?>
-                          <img src="{{ asset('LogoImages/245x71_'.$logo->image)  }}" alt="logo">
+                          <img src="{{ asset('public/LogoImages/245x71_'.$logo->image)  }}" alt="logo">
                         </a>
+                        @endif
 
                 </div>
 
-            <!--<nav class="navi main-nav" style="float: right !important; margin-right: -4% !important; margin-top: -86px">-->
-            <nav class="navi main-nav" >
+                @if($server[0] == 'justdeal')
+            <!-- <nav class="navi main-nav" style="float: right !important; margin-right: -4% !important; margin-top: -86px"> -->
+            <nav class="navi main-nav">
                 <ul>
-<!--                 <li>
-                     <a href="#">City/Location</a>
+                <!--  <li>
+                     <a href="#">City HomePage</a>
                      <ul class="sub-menu">
-                          <li> <a href="//.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Lahore</a></li>
-                          <li> <a href="//.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Multan</a></li>
-                          <li> <a href="//.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Islamabad</a></li>
-                          <li> <a href="//.justdeal.pk" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Karachi</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Lahore</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Multan</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Islamabad</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Karachi</a></li>
                      </ul>
-                    </li>-->
+                    </li> -->
                     <li><a href="{{ Config::get('app.url') }}">Home</a></li>
                     <li class="has-child">
                         <a href="/sale-properties">Sale</a>
@@ -251,18 +269,88 @@
 
                 </ul>
             </nav>
-                 
+                    @else
+                    <nav class="navi main-nav">
+                        <ul>
+                            <li><a href="" style="font-size: 30px; font-weight:bold; color: #004274 !important;">{{ $Agent->company_name }}</a></li>
+                       <!-- <li>
+                     <a href="#">City HomePage</a>
+                     <ul class="sub-menu">
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Lahore</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Multan</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Islamabad</a></li>
+                          <li> <a href="" target="_blank" data-pk="1" class="editable" data-title="Edit User Name" style="color: #0d70b7">Karachi</a></li>
+                     </ul>
+                    </li> -->
+                    <li class="has-child">
+                    @if(!empty( $value))
+                        <a href="/city-sale-properties/{{$value}}">Sale</a>
+                       @endif
+                        <ul class="sub-menu">
+                         @if(!empty( $value))
+                            <li><a href="/city-sale-properties/Houses-Villas/{{$value}}">Houses / Villas</a></li>
+                            <li><a href="/city-sale-properties/Plots-Files/{{$value}}">Res. Plots /Files</a></li>
+                            <li><a href="/city-sale-properties/Flats-Apartments/{{$value}}">Flats / Apartments</a></li>
+                            <li><a href="/city-sale-properties/Form-Houses/{{$value}}">Form Houses</a></li>
+                            <li><a href="/city-sale-properties/Upper-Portion/{{$value}}">Upper Portion</a></li>
+                            <li><a href="/city-sale-properties/Lower-Portion/{{$value}}">Lower Portion</a></li>
+                            <li><a href="/city-sale-properties/Commercial-Plots-files/{{$value}}">Commercial Plots /files</a></li>
+                            <li><a href="/city-sale-properties/Agricultural-Land/{{$value}}">Agricultural Land</a></li>
+                            <li><a href="/city-sale-properties/Industrial-Land/{{$value}}">Industrial Land</a></li>
+                            <li><a href="/city-sale-properties/Offices/{{$value}}">Offices</a></li>
+                            <li><a href="/city-sale-properties/Shops-Showrooms/{{$value}}">Shops / Showrooms</a></li>
+                            <li><a href="/city-sale-properties/Warehouses-Godown/{{$value}}">Warehouses / Godown</a></li>
+                            <li><a href="/city-sale-properties/Buildings-Plaza/{{$value}}">Buildings / Plaza</a></li>
+                            <li><a href="/city-sale-properties/Factories-Workshops/{{$value}}">Factories/Workshops</a></li>
+                            <li><a href="/city-sale-properties/Guest-House-Hostels/{{$value}}">Guest House / Hostels</a></li>
+                            <li><a href="/city-sale-properties/Schools-Colleges/{{$value}}">Schools / Colleges</a></li>
+                            <li><a href="/city-sale-properties/Hotel-Restaurant/{{$value}}">Hotel / Restaurant</a></li>
+                        @endif
+                        </ul>
+                    </li>
+                    <li>@if(!empty( $value))
+                        <a href="/city-rent-properties/{{$value}}">Rent</a>
+                        @endif
+                        <ul class="sub-menu">
+                         @if(!empty( $value))
+                            <li><a href="/city-rent-properties/Houses-Villas/{{$value}}">Houses / Villas</a></li>
+                            <li><a href="/city-rent-properties/Plots-Files/{{$value}}">Res. Plots /Files</a></li>
+                            <li><a href="/city-rent-properties/Flats-Apartments/{{$value}}">Flats / Apartments</a></li>
+                            <li><a href="/city-rent-properties/Form-Houses/{{$value}}">Form Houses</a></li>
+                            <li><a href="/city-rent-properties/Upper-Portion/{{$value}}">Upper Portion</a></li>
+                            <li><a href="/city-rent-properties/Lower-Portion/{{$value}}">Lower Portion</a></li>
+                            <li><a href="/city-rent-properties/Commercial-Plots-files/{{$value}}">Commercial Plots /files</a></li>
+                            <li><a href="/city-rent-properties/Agricultural-Land/{{$value}}">Agricultural Land</a></li>
+                            <li><a href="/city-rent-properties/Industrial-Land/{{$value}}">Industrial Land</a></li>
+                            <li><a href="/city-rent-properties/Offices/{{$value}}">Offices</a></li>
+                            <li><a href="/city-rent-properties/Shops-Showrooms/{{$value}}">Shops / Showrooms</a></li>
+                            <li><a href="/city-rent-properties/Warehouses-Godown/{{$value}}">Warehouses / Godown</a></li>
+                            <li><a href="/city-rent-properties/Buildings-Plaza/{{$value}}">Buildings / Plaza</a></li>
+                            <li><a href="/city-rent-properties/Factories-Workshops/{{$value}}">Factories/Workshops</a></li>
+                            <li><a href="/city-rent-properties/Guest-House-Hostels/{{$value}}">Guest House / Hostels</a></li>
+                            <li><a href="/city-rent-properties/Schools-Colleges/{{$value}}">Schools / Colleges</a></li>
+                            <li><a href="/city-rent-properties/Hotel-Restaurant/{{$value}}">Hotel / Restaurant</a></li>
+                        @endif
+                        </ul>
+                    </li>
+                    @if(!empty( $value))
+                    <!-- <li class="houzez-megamenu"><a href="http://justdeal.pk/all-properties">All Properties</a></li> -->
+                    <li class="houzez-megamenu"><a href="/city_agent_list/{{$value}}">Agency</a></li>
+                        @endif
+                        </ul>
+                    </nav>
+                    @endif
         </div>
 
         <div class="header-right">
             <div class="user">
                @if( !Auth::user())
-               	 <a href="{{ url('add_property') }}" class="btn btn-default">Add Property</a>
+               	 <a href="http://justdeal.pk/add_property" class="btn btn-default">Add Property</a>
                 <!-- <a href="#" data-toggle="modal" data-target="#pop-login" class="btn btn-default">Add Property</a> -->
                 @endif
              <?php if(!isset($_SESSION)){session_start();}?>
                 @if( Auth::user())
-                <a href="{{ url('add_property') }}" class="btn btn-default">Add Property</a>
+                <a href="http://justdeal.pk/add_property" class="btn btn-default">Add Property</a>
                 <a href="{{url("/logout")}}">SignOut</a>
                 <a href="{{ url('/admin/') }}" class="">Profile</a>
                 @else
@@ -276,7 +364,7 @@
     </div>
 @if(\Request::path() != 'add_property')
     <!--start advanced search section-->
-    @include('layouts.searchbar')
+   @include('layouts.searchbar')
     <!--end advanced search section-->
     @endif
 

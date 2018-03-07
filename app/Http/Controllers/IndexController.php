@@ -60,16 +60,14 @@ class IndexController extends Controller
         $agents  = $this->User->where('feature_status', '=', '1')->where('BusinessType', '=', '2')->where('isActive', '=', '1')->get();
         $properties           = $this->PropertyModel->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc')->get();
         //dd($properties);
-       $Rentproperties       = $this->PropertyModel->where('number', '=', '1')->where('purpose', '=', 'rent')->where('number', '=', '1')->where('purpose', '=', 'rent')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc')->get();
+        $Saleproperties       = $this->PropertyModel->where('number', '=', '1')->where('featured_category', '=', '2')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('featured_category', 'desc')->get();
+        $leatest_Saleproperties= $this->PropertyModel->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc') ->paginate(12);
+        $Rentproperties       = $this->PropertyModel->where('number', '=', '1')->where('purpose', '=', 'rent')->where('number', '=', '1')->where('purpose', '=', 'rent')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc')->get();
         $leatest_Rentproperties= $this->PropertyModel->where('purpose', '=', 'rent')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc')->get();
 //     primium
         $Projects             = $this->PropertyModel->where('number', '=', '1')->where('featured_category', '=', '1')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('featured_category', 'desc')->get();
-//    featured
-        $Saleproperties       = $this->PropertyModel->where('number', '=', '1')->where('featured_category', '=', '2')->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('featured_category', 'desc')->get();
-//    leatest sale 
-        $leatest_Saleproperties= $this->PropertyModel->where('status', '=', '1')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc') ->paginate(12);
-        
         $leatest_Projects     = $this->PropertyModel->where('status', '=', '1')->where('type', '=', 'projects')->where('propertexpire', '>=', date("Y-m-d")) ->orderBy('id', 'desc')->get();
+       
         $Social_account       = $this->SocialAcounts->get();
         $cities               = $this->CityModel->get();
         $featuremodelData              = $this->FeatureModel->get();

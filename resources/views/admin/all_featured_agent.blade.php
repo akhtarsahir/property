@@ -89,7 +89,7 @@
                                     <a href="/admin/add_agencypaymentTID/{{  $data->id }}" > <button class="btn btn-primary btn-xs" style="padding: 4px 0px 5px 0px;"><strong>Send Your Transection ID <br>from here for activation</strong></button></a>
                                     @endif
                                 </td>
-                                <td><img src="<?php echo url('ProfileImage') ?>/239x239_{{$data->image}}" width="50" height="50"></td>
+                                <td><img src="<?php echo url('public/ProfileImage') ?>/239x239_{{$data->image}}" width="50" height="50"></td>
                                 <td>
                                     <a href="/admin/agencyedit_order/{{ $data->id }}" ><i class="livicon" data-name="order-edit" data-size="20" data-loop="true" data-c="#428BCA" data-hc="#428BCA"  title="Order Edit"data-toggle="tooltip" data-placement="bottom" ></i></a>
                                     @if( Auth::user()->type == 'admin')

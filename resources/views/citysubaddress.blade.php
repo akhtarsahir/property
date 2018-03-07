@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-contentbar">
                     <div class="detail-bar">
                         <div class="detail-features detail-block" id="scroll">
                             <div class="detail-title">

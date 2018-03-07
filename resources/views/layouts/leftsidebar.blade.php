@@ -82,7 +82,7 @@
                         <div class="item">
                             <div class="figure-block">
                                 <figure class="item-thumb">
-                                   @if(!empty($property->featured_category== '1'))
+                                @if(!empty($property->featured_category== '1'))
                                     <span class="label-featured label label-primary" style="background-color: #005fcc;">Premium Ad</span>
                                     @elseif(!empty($property->featured_category== '2'))
                                     <span class="label-featured label label-success">Featured</span>

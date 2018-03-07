@@ -51,7 +51,6 @@ class CitySubAddressController extends Controller {
 			$html .= "<option class=\"$city->latitude,$city->longitude\" value=\"$city->latitude,$city->longitude\">$city->citysubaddress</option>";
 		}
 		$html .= '</select>';
-//		$html .= "<input type=\"text\" class=\"form-control\" id=\"\"  name=\"subaddress\"  value=\"$city->citysubaddress\" placeholder=\"Enter address\" >";
 		return $html;
 	}
 

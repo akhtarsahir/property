@@ -15,8 +15,8 @@
                             </div>
 
                             <select name="city" class="selectpicker bs-select-hidden" data-live-search="false" data-live-search-style="begins">
-                               <option value="All">All Cities</option>
-                               @if(!empty( $value))
+                                <option value="All">All Cities</option>
+                                 @if(!empty( $value))
                                 @foreach($cities as $citys)
                                 <option value="{{ $citys->name }}" @if(!empty( $value == $citys->name)) selected @endif >{{ $citys->name }}</option>
                                 @endforeach
@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-<!--                            <div class="col-sm-12 col-xs-12 features-list">
+                            <!-- <div class="col-sm-12 col-xs-12 features-list">
 
                                 <label class="advance-trigger text-uppercase title"><i class="fa fa-plus-square"></i> Other Features </label>
                                 <div class="clearfix"></div>
@@ -158,8 +158,8 @@
                                             <input type="checkbox" name="feature[]" value="{{ $feature->id }}"> {{ $feature->name }}
                                         </label>
                                     @endforeach
-                                </div>-->
-                            </div>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </form>

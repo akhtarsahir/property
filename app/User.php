@@ -301,7 +301,7 @@ class User extends Authenticatable
 	    }
 	    $this->where('id', Auth::user()->id)
 	         ->update([
-                         'DisplayName'      => $DisplayName,
+	             'DisplayName'      => $DisplayName,
 		         'company_logo'     => $companylogo,
 		         'background_image' => $companybackground,
 		         'ceo_image'        => $ceo_image,
@@ -315,11 +315,11 @@ class User extends Authenticatable
 		         'googleplus'       => $request->googleplus,
 		         'facebook'         => $request->facebook,
 		         'twitter'          => $request->twitter,
-                         'email2'           => $request->email2,
+                 'email2'           => $request->email2,
 		         'description'      => $request->description,
 		         'company_about'    => $request->company_about,
-                         'ceo_name'         => $request->ceo_name,
-                         'ceo_description'  => $request->ceo_description
+                 'ceo_name'         => $request->ceo_name,
+                 'ceo_description'  => $request->ceo_description
 	         ]);
 
         return true;

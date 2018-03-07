@@ -61,8 +61,9 @@ class signupController extends Controller
     public function SignupForm(SignupFormRequest $request)
 	{
     	$request->remember_token = md5(time() . $request->email);
-    	$data       =  $this->user->SignugpForm($request);
+    	$data       =  $this->user->SignupForm($request);
     	$UserData   = User::find($data);
+
 
         Mail::to($UserData->email)->send(new signupMail($UserData));
         //$expireEmail = new ExpireEmailLink();

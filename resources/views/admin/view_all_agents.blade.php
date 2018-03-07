@@ -77,7 +77,7 @@
                                             <a href="#"> <strong class="label label-danger">Rejected</strong></a>
                                             @endif
                                 </td>
-                                <td><img src="<?php echo url('ProfileImage') ?>/239x239_{{$data->image}}" width="50" height="50"></td>
+                                <td><img src="<?php echo url('public/ProfileImage') ?>/239x239_{{$data->image}}" width="50" height="50"></td>
                                @if( Auth::user()->type != 'admin')
                                 <td>
                                  @if($data->feature_status != '1')

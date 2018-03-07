@@ -6,10 +6,7 @@
 @endsection
 <!--end of page level css-->
 <!--start advanced search section-->
-<?php  $server = explode('.', Request::server('HTTP_HOST')); ?>
-@if($server[0] != 'justdeal')
 @include('layouts.header')
-@endif
 <!--end advanced search section -->
 <!--start section page body-->
 <section id="section-body">

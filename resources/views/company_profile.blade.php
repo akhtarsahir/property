@@ -48,11 +48,11 @@
     <div id="banner-module" class="houzez-module banner-module">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div id="banner-slider" class="owl-carousel owl-theme banner-slider">
                         @foreach($Companyslider as $slider)
                         <div class="item" style="height:400px">
-                            <div class="caption" style="width: 300px;">
+                            <div class="caption" style="width: 300px; margin-top:157px;margin-left:609px;">
                                 <a href="{{$slider->image_link }}" target="_blank" class="btn btn-primary btn-detail">Details <i class="fa fa-angle-right"></i></a>
                                 <div class="item-body">
                                     <div class="body-left">
@@ -98,14 +98,14 @@
                             <div class="profile-tab-pane tab-pane fade active in">
                                 <div class="profile-tab-content profile-overview" style="display:inline-block; width: 100%">
                                     <div class="col-sm-12">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-9">
                                             <div class="profile-description">
                                                 <h3>ABOUT</h3>
                                                 <h4 class="position">{{ $Agent->company_name }}</h4>
-                                                <p> {{ $Agent->company_about }}</p>
+                                                <p> {!! $Agent->company_about !!}</p>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             @if($Agent->ceo_name <> '0') <h1>{{ $Agent->ceo_name }}</h1> @endif
                                             <p>
                                                 @if(!empty($Agent->ceo_image))
@@ -922,6 +922,7 @@
                                 <div class="profile-tab-content profile-properties">
                                     <div class="property-filter-wrap">
                                         <h4 class="filter-title"> Rent Properties </h4>
+
                                     </div>
                                     <!--start property items-->
                                     <div class="property-listing grid-view grid-view-3-col">

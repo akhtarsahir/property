@@ -28,6 +28,7 @@ Route::group(['domain' => '{username}.justdeal.pk'], function () {
 });
 
 
+
 // Socail Sharing Routes
 Route::get('twitter/{id}',['as' => 'Rating','uses' => 'SocailshareController@twitter']);
 Route::get('facebook/{id}',['as' => 'Rating','uses' => 'SocailshareController@facebook']);
@@ -38,12 +39,10 @@ Route::get('pinterest/{id}',['as' => 'Rating','uses' => 'SocailshareController@p
 Route::post('contact_us','ContactUsController@store');
 //     Contact_us Inquire about this property 
 Route::post('detail-property/{id}', ['as' => 'Property','uses' => 'ContactuspropertyinfoController@store'  ]);
-
 //Property Agent Detail Routes
 //Route::get('property-agent-detail/{id}/{title}','AgentController@agent_detail');
 Route::get('agent_list','AgentController@agent_list');
-Route::get('city_agent_list/{city}','AgentController@city_agent_list');
-
+Route::get('city_agent_list/{city?}','AgentController@city_agent_list');
 
 
 
@@ -79,10 +78,10 @@ Route::group(array('prefix' => 'admin'), function ()
           Route::get('/edit_citysubAddress/{id}', 'CitySubAddressController@show');
           Route::post('/updatesubcity/{id}', ['as' => 'updatesubcity','uses' => 'CitySubAddressController@update']);
           
-           Route::post('/ajax/{id}', 'CitySubAddressController@ajax');
+          //  Route::post('/ajax/{id}', 'CitySubAddressController@ajax');
           
-          Route::get('/googleapi',function(){ return view('admin.googleapi');});
-          
+          // Route::get('/googleapi',function(){ return view('admin.googleapi');});
+
         Route::resource('feature', 'FeatureCotroller');
         Route::post('/updatefeature/{id}', ['as' => 'feature','uses' => 'FeatureCotroller@update']);
         Route::get('/featuredestroy/{id}', ['as' => 'feature','uses' => 'FeatureCotroller@destroy']);
@@ -123,6 +122,7 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::get('rejected_property', ['as' => 'Property','uses' => 'PropertyController@rejected_property']);
         Route::get('activate_property/{id}', ['as' => 'Property','uses' => 'PropertyController@activate_property']);
         Route::get('deactivate_property/{id}', ['as' => 'Property','uses' => 'PropertyController@deactivate_property']);
+
 //      Order property feature 
         Route::get('add_OrderFeature/{id}', ['as' => 'Order','uses' => 'OrderController@add_feature']);
         Route::post('OrderStore', ['as' => 'Order','uses' => 'OrderController@Orderdata_store']);
@@ -148,15 +148,15 @@ Route::group(array('prefix' => 'admin'), function ()
         
 //      Payment Method For bank detail
         Route::get('add_paymentMethod', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@add_paymentMethod']);
-        Route::post('paymentmethodstore', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@paymentmethod_store']);
-        Route::get('paymentMethods', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@View_paymentmethod']);
-        Route::get('edit_paymentMethod/{id}', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@edit_paymentmethod']);
-        Route::post('update_paymentmethod', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@Update_paymentmethod']);
-        Route::get('/paymentMethod_delete/{id}', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@delete_paymentmethod']);
+        Route::post('paymentmethodstore', ['as' => 'PaymentTID','uses' => 'PaymentMethodController@paymentmethod_store']);
+        Route::get('paymentMethods', ['as' => 'PaymentTID','uses' => 'PaymentMethodController@View_paymentmethod']);
+        Route::get('edit_paymentMethod/{id}', ['as' => 'PaymentTID','uses' => 'PaymentMethodController@edit_paymentmethod']);
+        Route::post('update_paymentmethod', ['as' => 'PaymentTID','uses' => 'PaymentMethodController@Update_paymentmethod']);
+        Route::get('/paymentMethod_delete/{id}', ['as' => 'Order','uses' => 'PaymentMethodController@delete_paymentmethod']);
 //        set featured price 
         Route::get('set_featuredprice', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@set_featuredprice']);
         Route::post('price_update', ['as' => 'PaymentMethod','uses' => 'PaymentMethodController@price_update']);
-        
+
         //Route::get('adduser', function () {return view('admin.adduser');});
 	    Route::get('adduser',array('as' => 'addAgent', 'uses' =>'SignupController@addAgent'));
 	    Route::get('addagent',array('as' => 'addagent', 'uses' =>'SignupController@AddAgents'));
@@ -165,8 +165,8 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::post('UpdateAgent', 'SignupController@UpdateAgent');
         Route::get('delete-agent/{id}', 'SignupController@delete_agent')->name('delete_agent');
         Route::get('edit-agent/{id}', 'SignupController@edit_agent')->name('edit_agent');
-        
-        // agent featured order route 
+ 
+  // agent featured order route 
          Route::get('view-all-agent',array('as' => 'Agency', 'uses' =>'AgencyController@view_agent_all'));
          Route::get('view-featured-agent',array('as' => 'Agency', 'uses' =>'AgencyController@ViewOrders_List'));
          Route::get('add-Orderfeature-Agent/{id}','AgencyController@add_Orderfeature_Agency')->name('add_Orderfeature_Agent');
@@ -189,7 +189,7 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::get('/agencyedit_paymentTID/{id}', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@edit_paymentTID']);
         Route::post('agencyupdate_paymentTID', ['as' => 'PaymentTID','uses' => 'AgencyPaymentorderController@update_paymentTID']);
         
-        
+
         Route::get('users', 'UserController@users');
         Route::get('view_user', 'UserController@view_user');
         Route::get('view_user_detail', 'UserController@view_user_detail');
@@ -204,7 +204,7 @@ Route::group(array('prefix' => 'admin'), function ()
 // company slider route
          Route::post('slidersave', 'CompanySliderController@save');
          Route::get('companyslider_delete/{id}', 'CompanySliderController@companyslider_delete');
-         
+
         //Adds route
         Route::get('adds_form', 'AddsController@index');
         Route::post('adds_form', 'AddsController@store');
@@ -224,7 +224,9 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::post('edit_blogPost', 'BlogController@update');
         Route::get('destroy_blogPost', 'BlogController@destroy_blogPost');
 
-
+        // Meta tag rout
+         Route::get('edit_metatag', 'MetatagController@edit_metatag');
+         Route::post('edit_metatag', 'MetatagController@update');
         //       About us
         Route::get('edit_aboutus', 'AboutUsController@edit_aboutus');
         Route::post('edit_aboutus', 'AboutUsController@update');
@@ -239,6 +241,7 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::get('view_contactus','ContactUsController@index');
         Route::get('contactus_reply', 'ContactUsController@contactus_reply');
         Route::get('contactus_sendemail', 'ContactUsController@contactus_sendemail');
+
         Route::get('destroy', 'ContactUsController@destroy');
 //     contact us status active inactive  admin site
         Route::get('contactus_status/{action}/{id}', 'ContactUsController@contactus_status');
@@ -257,7 +260,7 @@ Route::group(array('prefix' => 'admin'), function ()
         Route::post('offer_update', 'OfferController@update');
         Route::get('delete_offer/{id}', 'OfferController@delete_offer');
         
-//   Inquire About Property information View admin site
+ //   Inquire About Property information View admin site
         Route::get('inquire_propertyinfo','ContactuspropertyinfoController@index');
         Route::get('propertyinfo','ContactuspropertyinfoController@single_user');
         Route::get('contactus_reply', 'ContactuspropertyinfoController@contactus_reply');
@@ -288,6 +291,7 @@ Route::get('projects-properties', ['as' => 'property','uses' => 'PropertiesContr
 Route::get('projects-properties/{subtype}', ['as' => 'property','uses' => 'PropertiesController@projects_property']);
 
 Route::get('all-properties', ['as' => 'property','uses' => 'PropertiesController@active_property']);
+
 // City property rout 
 Route::get('all', ['as' => 'property','uses' => 'PropertiesController@allcity_property']);
 Route::get('all/{city}', ['as' => 'property','uses' => 'PropertiesController@allcity_property']);
@@ -311,7 +315,6 @@ Route::get('detail-property/{id}', ['as' => 'Property','uses' => 'PropertyContro
 
 Route::get('/','IndexController@index');
 Route::get('index','IndexController@index');
-Route::get('index2','IndexController@index2');
 Route::post('/rating', ['as' => 'rating','uses' => 'RatingController@store']);
 
 
@@ -332,8 +335,11 @@ Route::get('blog_detail','PagesController@blog_detail');
 Route::post('comment_post','BlogController@comment_post');
 Route::post('reply_post','BlogController@reply_post');
 
-
-
+// test our AJAX CALL
+Route::post('/datasend/ajax', 'CitySubAddressController@ajaxdata');
+          
+          Route::get('ajax',function(){ return view('ajax');});
+// <!...........!>
 
 //property dateail tabs
 Route::get('property_detail_tabs','PagesController@property_detail_tabs');
@@ -358,6 +364,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
- Route::get('/datasend/ajax', 'CitySubAddressController@ajaxdata')->name('get-city-address');
-
-          Route::get('ajax',function(){ return view('ajax');});
+Route::get('/datasend/ajax', 'CitySubAddressController@ajaxdata')->name('get-city-address');

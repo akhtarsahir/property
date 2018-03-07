@@ -92,11 +92,14 @@
                     <div class="row hide RealBusiness">
                         <div class="col-sm-12">
                             <div class="col-sm-2">
-                                <label for="company_name" class="bold-class">Name Of Business *</label>
+                                <label for="businessName" class="bold-class">Name Of Business *</label>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <input class="form-control" name="company_name" value="{{old('company_name')}}" id="company_name"  placeholder="Enter your Name Of Business">
+                                    @if($errors->first('company_name'))
+                                    <label class="error text-danger" for="company_name">*{{ $errors->first('company_name') }}</label>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -136,7 +139,7 @@
                         </div>
                     </div>
                     <!--<div class="row hide RealBusiness" >-->
-                    <div class="row hide " style="display: none">
+                          <div class="row hide" style="display: none" >
                         <div class="col-sm-12">
                             <div class="col-sm-2" style="width: 18.667%;">
                                 <label for="domainName" class="bold-class">Domain Name Of WebSite*</label>
